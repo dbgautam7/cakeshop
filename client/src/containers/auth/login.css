@@ -1,0 +1,96 @@
+.login-area {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* min-height: 145vh; */
+    background-color: #f5f5f500;
+  }
+  
+  .login-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 560px;
+    height: 540px;
+    background-color: #ebd6ff;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .left-side {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    height: 80%;
+    background-color: #ebd6ff;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    padding: 30px;
+  }
+  
+  .right-side {
+    display: flex;
+    align-items: center;
+    justify-content: cen
+    ter;
+    width: 50%;
+    height: 80%;
+    background-color: #f5f5f5;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+  }
+
+  
+  .left-side h3 {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .left-side form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+  }
+  
+  .left-side form input {
+    width: 80%;
+    height: 45px;
+    border: none;
+    border-radius: 45px;
+    padding: 0 15px;
+    margin-bottom: 15px;
+    font-size: 16px;
+  }
+  
+  .left-side form button {
+    width: 80%;
+    height: 45px;
+    border: none;
+    border-radius: 5px;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+  }
+  
+  .left-side form button:hover {
+    background-color: #45a049;
+  }
+  
+  .left-side form .error-message {
+    font-size: 14px;
+    color: red;
+    margin-bottom: 15px;
+  }
+  
+  .right-side .img-box {
+    display: flex
+  }  
