@@ -2,14 +2,14 @@ import React from "react";
 import './login.css'
 import Button from "../../components/Button";
 import { Formik, Form, Field,ErrorMessage } from "formik"; 
-
-// import img from "../../image/login.png";
-// import { Link } from "react-router-dom";
+import {addUserDetails} from "../../redux/actions/userAction"
+import {useDispatch} from "react-redux";
+import { Link } from "react-router-dom";
 import * as Yup from "yup";
 
 
 const Login = () => {
-
+    const dispatch= useDispatch()
     console.log(`${process.env.REACT_APP_API_URL}/login`)
 
     const loginSchema = Yup.object().shape({
@@ -43,7 +43,7 @@ const Login = () => {
                                 const res = await fetch(`${process.env.REACT_APP_API_URL}/login`, requestOptions);
                                 const data = await res.json()
                                 if(res.status===200){
-                                    alert(data)
+                                    dispatch(addUserDetails(data.userData))
                                 }else{
                                     alert(data.msg)
                                 }
@@ -64,6 +64,9 @@ const Login = () => {
                             )}
                         </Formik>
                     </div>
+                    <div className="">
+                                <span><Link to='/auth/signup'>Create an account </Link></span>
+                            </div>
                     </div>
             </div>
         </>

@@ -40,3 +40,12 @@
         transition: 0.7s;
   }
   
+  .nav-to-login{
+    display: flex;
+justify-content: center;
+align-items: center;
+  }
+
+  .nav-to-login span {
+    text-align: center;
+    }
