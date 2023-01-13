@@ -2,7 +2,7 @@ import React from "react";
 import "./signup.css"
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import image from "../../images/bakery4.png"
+import image from "../../images/cake.jpg"
 
 const SignupForm = () => {
   // schema generation
@@ -59,7 +59,7 @@ const SignupForm = () => {
             // backgroundRepeat: "no-repeat",
             backgroundSize: "contain",
             height: 235,
-            width: 800,
+            width: 1150,
           }} />  
 {/* image is added */}
 

@@ -1,14 +1,16 @@
 import React from "react";
 import './login.css'
 import Button from "../../components/Button";
-import { Formik, Form, Field,ErrorMessage } from "formik";
+import { Formik, Form, Field,ErrorMessage } from "formik"; 
+
 // import img from "../../image/login.png";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import * as Yup from "yup";
-import { useNavigate } from "react-router-dom"
 
 
 const Login = () => {
+
+    console.log(`${process.env.REACT_APP_API_URL}/login`)
 
     const loginSchema = Yup.object().shape({
         phone: Yup.string()
@@ -22,7 +24,6 @@ const Login = () => {
             .required('Password is required'),
     });
 
-    const navigate = useNavigate();
 
     return (
         <>
@@ -33,9 +34,22 @@ const Login = () => {
                         <Formik
                             initialValues={{ phone: '', password: '' }}
                             validationSchema={loginSchema}
-                            onSubmit={(values, { setSubmitting }) => {
-                                // submit the form
-                            }}
+                            onSubmit={async(values, { resetForm }) => {
+                                const requestOptions = {
+                                    method: "POST",
+                                    headers: { "Content-Type": "application/json" },
+                                    body: JSON.stringify(values),
+                                }
+                                const res = await fetch(`${process.env.REACT_APP_API_URL}/login`, requestOptions);
+                                const data = await res.json()
+                                if(res.status===200){
+                                    alert(data)
+                                }else{
+                                    alert(data.msg)
+                                }
+                                resetForm({ values: '' })
+                            }
+                        }
                         >
                             {({ isSubmitting }) => (
                                 <Form>
