@@ -1,19 +1,21 @@
 import React from "react";
 import './login.css'
-import Button from "../../components/Button";
+// import Button from "../../components/Button";
 import { Formik, Form, Field,ErrorMessage } from "formik"; 
 import {addUserDetails} from "../../redux/actions/userAction"
 import {useDispatch} from "react-redux";
 import { Link } from "react-router-dom";
 import * as Yup from "yup";
+import { useNavigate } from "react-router-dom";
 
 
 const Login = () => {
     const dispatch= useDispatch()
+    const navigate=useNavigate()
     console.log(`${process.env.REACT_APP_API_URL}/login`)
 
     const loginSchema = Yup.object().shape({
-        phone: Yup.string()
+        phoneNumber: Yup.string()
             .matches(/^\d+$/, 'Phone number can only contain digits')
             .min(10, 'Phone number must be at least 10 digits')
             .max(10, 'Phone number can only be 10 digits')
@@ -32,7 +34,7 @@ const Login = () => {
                     <div className="left-side">
                         <h3>Welcome to login page</h3>
                         <Formik
-                            initialValues={{ phone: '', password: '' }}
+                            initialValues={{ phoneNumber: '', password: '' }}
                             validationSchema={loginSchema}
                             onSubmit={async(values, { resetForm }) => {
                                 const requestOptions = {
@@ -47,19 +49,20 @@ const Login = () => {
                                 }else{
                                     alert(data.msg)
                                 }
+                                navigate('/home')
                                 resetForm({ values: '' })
                             }
                         }
                         >
                             {({ isSubmitting }) => (
                                 <Form>
-                                    <Field type="tel" name="phone" placeholder="Phone number" />
-                                    <ErrorMessage name="phone" component="div" />
+                                    <Field type="tel" name="phoneNumber" placeholder="Phone number" />
+                                    <ErrorMessage name="phoneNumber" component="div" />
                                     <Field type="password" name="password" placeholder="Password" />
                                     <ErrorMessage name="password" component="div" />
-                                    <Button type="submit">
+                                    <button type="submit">
                                         Log in
-                                    </Button>
+                                    </button>
                                 </Form>
                             )}
                         </Formik>

@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 const SignupForm = () => {
 
   // const navigate = useNavigate();
+  console.log(`${process.env.REACT_APP_API_URL}/register`)
 
   // schema generation
   const SignUpSchema = Yup.object().shape({
@@ -59,7 +60,7 @@ const SignupForm = () => {
               body: JSON.stringify(updatedValues),
             };
             try {
-              const response = await fetch(`${process.env.REACT_APP_API_URL}/register`, requestOptions)
+              const response = await fetch(`${process.env.REACT_APP_API_URL}/signUp`, requestOptions)
               const data = await response.json()
               console.log(data)
               // resetForm({ values: "" });

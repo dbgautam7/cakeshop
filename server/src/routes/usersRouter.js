@@ -4,7 +4,7 @@ const router = express.Router();
 const Users = require("../models/Users");
 const bcrypt = require("bcrypt")
 
-router.post("/signup", async (req, res) => {
+router.post("/signUp", async (req, res) => {
   try {
     const hash = await bcrypt.hashSync(req.body.password, 10);
     Users.findOne({ email: req.body.email }).then((user) => {
@@ -26,12 +26,13 @@ router.post("/signup", async (req, res) => {
 });
 
 router.post("/login", async (req, res) => {
-  const user = await Users.findOne({email: req.body.email}).lean()
+  const user = await Users.findOne({phoneNumber: req.body.phoneNumber}).lean()
+  console.log()
   if(user){
     try{
-    const {email,password} = user;
+    const {phoneNumber,password} = user;
     const isMatched= bcrypt.compareSync(req.body.password, password)
-    if(email && isMatched){
+    if(phoneNumber && isMatched){
       const {password, ...refactoredUserObj} = user
       res.status(200).json({
         msg:"logged in successfully",
