@@ -9,8 +9,8 @@ const MyNavbar = () => {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto my-2 my-lg-0">
-                        <Nav.Link href="/home">Home</Nav.Link>
-                        <Nav.Link href="/about">About Us</Nav.Link>
+                        <Nav.Link href="/">Home</Nav.Link>
+                        <Nav.Link href="/aboutus">About Us</Nav.Link>
                         <Nav.Link href="/contact">Contact</Nav.Link>
                     </Nav>
                     <Form className="d-flex">

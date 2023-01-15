@@ -4,6 +4,8 @@ import SignupForm from './containers/auth/signup';
 import Login from './containers/auth/login';
 import Home from './containers/home/home';
 import MyNavbar from './containers/navbar/navbar';
+import AboutUs from './containers/aboutUs/aboutUs';
+import Contact from './containers/contact/contact';
 
 const App=()=> {
   return (
@@ -11,8 +13,10 @@ const App=()=> {
       <Routes>
       <Route  path="/auth/signup" element={<SignupForm />} />
       <Route path="/auth/login" element={<Login />} />
-      <Route path='/home' element={<Home />} />
+      <Route path='/' element={<Home />} />
       <Route exact path='/' element={<MyNavbar />} />
+      <Route path='/contact' element={<Contact />}></Route>
+      <Route path='/aboutus' element={<AboutUs />}></Route>
       </Routes>
     </div>
   );
