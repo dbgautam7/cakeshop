@@ -4,11 +4,11 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import image from "../../images/cake.jpg"
 import { Link } from "react-router-dom";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const SignupForm = () => {
 
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   console.log(`${process.env.REACT_APP_API_URL}/register`)
 
   // schema generation
@@ -63,7 +63,8 @@ const SignupForm = () => {
               const response = await fetch(`${process.env.REACT_APP_API_URL}/signUp`, requestOptions)
               const data = await response.json()
               console.log(data)
-              // resetForm({ values: "" });
+              navigate('/home')
+              resetForm({ values: "" });
             } catch (err) {
               alert(err);
             }
@@ -72,14 +73,14 @@ const SignupForm = () => {
 
           <Form className="form">
 
-            <div style={{
+            {/* <div style={{
               backgroundImage: `url(${image})`,
               // backgroundRepeat: "no-repeat",
               backgroundSize: "contain",
               height: 235,
               width: 1150,
             }} />
-            {/* image is added */}
+            image is added */}
 
 
             <label htmlFor="firstName">First Name</label>
@@ -113,7 +114,7 @@ const SignupForm = () => {
         </Formik>
         <div className="nav-to-login">
         <span>
-          Already have an account <Link to="/auth/login">Login..</Link>
+          Already have an account <Link to="/login">Login..</Link>
         </span>
       </div>
       </div>

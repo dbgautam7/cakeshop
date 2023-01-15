@@ -11,10 +11,10 @@ const App=()=> {
   return (
     <div className="App">
       <Routes>
-      <Route  path="/auth/signup" element={<SignupForm />} />
-      <Route path="/auth/login" element={<Login />} />
-      <Route path='/' element={<Home />} />
-      <Route exact path='/' element={<MyNavbar />} />
+      <Route exact path="/" element={<SignupForm />} />
+      <Route path="/login" element={<Login />} />
+      <Route path='/home' element={<Home />} />
+      <Route  path='/navbar' element={<MyNavbar />} />
       <Route path='/contact' element={<Contact />}></Route>
       <Route path='/aboutus' element={<AboutUs />}></Route>
       </Routes>

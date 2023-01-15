@@ -32,7 +32,8 @@ const Home = () => {
         <Card.Body>
           <Card.Title>Buns</Card.Title>
           <Card.Text>
-
+            Price: Rs 77<br />
+          This is a great Buns to taste.
           </Card.Text>
           <Button variant="primary">Add to cart</Button>
         </Card.Body>
@@ -43,7 +44,8 @@ const Home = () => {
         <Card.Body>
           <Card.Title>Pastries</Card.Title>
           <Card.Text>
-
+            Price: Rs 99<br />
+          Pastries can be enjoyed as a dessert, a breakfast treat, or as a snack.
           </Card.Text>
           <Button variant="primary">Add to cart</Button>
         </Card.Body>
@@ -54,7 +56,8 @@ const Home = () => {
         <Card.Body>
           <Card.Title>Cakes</Card.Title>
           <Card.Text>
-
+            Price: Rs 599 to Rs 1499 <br />
+            Made for special occasions such as birthdays or weddings.
           </Card.Text>
           <Button variant="primary">Add to cart</Button>
         </Card.Body>
@@ -65,7 +68,8 @@ const Home = () => {
         <Card.Body>
           <Card.Title>Cookies</Card.Title>
           <Card.Text>
-
+            Price: Rs 89<br />
+          Cookies can be enjoyed as a snack on their own or as part of a larger meal.
           </Card.Text>
           <Button variant="primary">Add to cart</Button>
         </Card.Body>
@@ -76,7 +80,8 @@ const Home = () => {
         <Card.Body>
           <Card.Title>Desserts</Card.Title>
           <Card.Text>
-
+            Price: Rs 120<br />
+            Hava a sweet and tasty flavour.
           </Card.Text>
           <Button variant="primary">Add to cart</Button>
         </Card.Body>
@@ -87,7 +92,8 @@ const Home = () => {
         <Card.Body>
           <Card.Title>Others</Card.Title>
           <Card.Text>
-
+          Price: Rs 299<br />
+          Enjoy the special combo.
           </Card.Text>
           <Button variant="primary">Add to cart</Button>
         </Card.Body>
