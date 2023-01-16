@@ -2,7 +2,6 @@ import React from "react";
 import "./signup.css"
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import image from "../../images/cake.jpg"
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
