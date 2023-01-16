@@ -8,6 +8,8 @@ import dessert from '../../images/dessert.jpg'
 import pastries from '../../images/pastries.jpg'
 import other from '../../images/bakery3.jpg'
 import './cart.css'
+import { AiFillPlusCircle,AiFillMinusCircle } from "react-icons/ai";
+
 
 const Products = () => {
     const products = [
@@ -153,15 +155,15 @@ const Products = () => {
                                 <tr>
                                     <td>{item.name}</td>
 
-                                    <td><button onClick={() => delCart(id)}>-</button>{item.cartCount}
-                                        <button onClick={() => addCart(id)}>+</button></td>
+                                    <td><button onClick={() => delCart(id)}><AiFillMinusCircle /></button>{item.cartCount}
+                                        <button onClick={() => addCart(id)}><AiFillPlusCircle /></button></td>
 
-                                    <td>Rs{item.price}</td>
-                                    <td>Rs{item.cartCount * item.price}</td>
+                                    <td>Rs {item.price}</td>
+                                    <td>Rs {item.cartCount * item.price}</td>
                                 </tr>
                             )
                         })}
-                        <h7 id="center">Grand Total  =Rs{calculateGrandTotal()}</h7>
+                        <h7 id="center">Grand Total  =Rs {calculateGrandTotal()}</h7>
                     </tbody>
                 </table>
             </div>

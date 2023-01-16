@@ -63,7 +63,7 @@ const SignupForm = () => {
               const data = await response.json()
               console.log(data)
               navigate('/home')
-              resetForm({ values: "" });
+              // resetForm({ values: "" });
             } catch (err) {
               alert(err);
             }

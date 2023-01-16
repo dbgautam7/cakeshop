@@ -50,7 +50,7 @@ const Login = () => {
                                     alert(data.msg)
                                 }
                                 navigate('/home')
-                                resetForm({ values: '' })
+                                // resetForm({ values: '' })
                             }
                         }
                         >
