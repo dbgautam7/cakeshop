@@ -4,7 +4,7 @@ const router = express.Router();
 const Users = require("../models/Users");
 const bcrypt = require("bcrypt")
 
-router.post("/signUp", async (req, res) => {
+router.post("/signup", async (req, res) => {
   try {
     const hash = await bcrypt.hashSync(req.body.password, 10);
     Users.findOne({ email: req.body.email }).then((user) => {

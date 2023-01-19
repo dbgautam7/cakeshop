@@ -9,13 +9,15 @@ import React from 'react'
 // import pastries from '../../images/pastries.jpg'
 // import other from '../../images/bakery3.jpg'
 import Products from '../addToCart/products'
+import AdminDashboard from '../admin/adminDashboard'
 
 
 
 const Home = () => {
   return (
     <>
-    <Products />
+    <AdminDashboard />
+    {/* <Products /> */}
 
     {/* // <div style={{ display: 'flex', flexWrap: 'wrap', padding: '10px' }}>
     //   <Card style={{ width: '45%', marginTop: '15px' }}>

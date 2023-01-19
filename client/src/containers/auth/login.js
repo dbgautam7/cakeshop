@@ -14,7 +14,7 @@ import HandlePassword from "../../components/handlePasword";
 const Login = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    console.log(`${process.env.REACT_APP_API_URL}/login`)
+    
 
     const loginSchema = Yup.object().shape({
         phoneNumber: Yup.string()
@@ -51,13 +51,13 @@ const Login = () => {
                                 } else {
                                     alert(data.msg)
                                 }
-                                navigate('/home')
+                                navigate('/admindashboard')
                                 // resetForm({values: '' })
                             }
                             }
                         >
                             {({ isSubmitting }) => (
-                                <Form>
+                                <Form className="login-form">
                                     <Field type="tel" name="phoneNumber" placeholder="Phone number" />
                                     <ErrorMessage name="phoneNumber" component="div" />
                                     <HandlePassword />
@@ -72,7 +72,7 @@ const Login = () => {
 
                     </div>
                     <div>
-                        <span><Link to='/'>Create an account </Link></span>
+                        <span><Link to='/signup'>Create an account </Link></span>
                     </div>
                 </div>
             </div >

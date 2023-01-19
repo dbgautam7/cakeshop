@@ -7,7 +7,8 @@ const usersSchema = new mongoose.Schema(
     phoneNumber: { type: Number },
     email: { type: String },
     address: { type: String },
-    password: { type: String }
+    password: { type: String },
+    role:{type:String}
   },
   { collection: "users" }
 );

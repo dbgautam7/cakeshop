@@ -59,10 +59,10 @@ const SignupForm = () => {
               body: JSON.stringify(updatedValues),
             };
             try {
-              const response = await fetch(`${process.env.REACT_APP_API_URL}/signUp`, requestOptions)
+              const response = await fetch(`${process.env.REACT_APP_API_URL}/signup`, requestOptions)
               const data = await response.json()
               console.log(data)
-              navigate('/home')
+              navigate('/')
               // resetForm({ values: "" });
             } catch (err) {
               alert(err);
@@ -113,7 +113,7 @@ const SignupForm = () => {
         </Formik>
         <div className="nav-to-login">
         <span>
-          Already have an account <Link to="/login">Login..</Link>
+          Already have an account <Link to="/">Login..</Link>
         </span>
       </div>
       </div>
