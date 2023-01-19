@@ -1,17 +1,19 @@
 import React from "react";
 import './login.css'
 // import Button from "../../components/Button";
-import { Formik, Form, Field,ErrorMessage } from "formik"; 
-import {addUserDetails} from "../../redux/actions/userAction"
-import {useDispatch} from "react-redux";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import { addUserDetails } from "../../redux/actions/userAction"
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
+import Alerts from "../../components/Alert";
+import HandlePassword from "../../components/handlePasword";
 
 
 const Login = () => {
-    const dispatch= useDispatch()
-    const navigate=useNavigate()
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
     console.log(`${process.env.REACT_APP_API_URL}/login`)
 
     const loginSchema = Yup.object().shape({
@@ -36,7 +38,7 @@ const Login = () => {
                         <Formik
                             initialValues={{ phoneNumber: '', password: '' }}
                             validationSchema={loginSchema}
-                            onSubmit={async(values, { resetForm }) => {
+                            onSubmit={async (values, { resetForm }) => {
                                 const requestOptions = {
                                     method: "POST",
                                     headers: { "Content-Type": "application/json" },
@@ -44,34 +46,36 @@ const Login = () => {
                                 }
                                 const res = await fetch(`${process.env.REACT_APP_API_URL}/login`, requestOptions);
                                 const data = await res.json()
-                                if(res.status===200){
+                                if (res.status === 200) {
                                     dispatch(addUserDetails(data.userData))
-                                }else{
+                                } else {
                                     alert(data.msg)
                                 }
                                 navigate('/home')
-                                // resetForm({ values: '' })
+                                // resetForm({values: '' })
                             }
-                        }
+                            }
                         >
                             {({ isSubmitting }) => (
                                 <Form>
                                     <Field type="tel" name="phoneNumber" placeholder="Phone number" />
                                     <ErrorMessage name="phoneNumber" component="div" />
-                                    <Field type="password" name="password" placeholder="Password" />
-                                    <ErrorMessage name="password" component="div" />
-                                    <button type="submit">
+                                    <HandlePassword />
+                                    <button type="submit" className="login-btn">
                                         Log in
                                     </button>
+
                                 </Form>
                             )}
+
                         </Formik>
+
                     </div>
                     <div>
-                                <span><Link to='/'>Create an account </Link></span>
-                            </div>
+                        <span><Link to='/'>Create an account </Link></span>
                     </div>
-            </div>
+                </div>
+            </div >
         </>
     );
 };

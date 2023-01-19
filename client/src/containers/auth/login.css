@@ -68,7 +68,7 @@
     font-size: 16px;
   }
   
-  .left-side form button {
+  .login-btn {
     width: 80%;
     height: 45px;
     border: none;
@@ -81,7 +81,7 @@
     transition: all 0.2s ease-in-out;
   }
   
-  .left-side form button:hover {
+  .login-btn:hover {
     background-color: #45a049;
   }
   
