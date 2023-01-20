@@ -4,11 +4,10 @@ const usersSchema = new mongoose.Schema(
   {
     firstName: { type: String },
     lastName: { type: String },
-    phoneNumber: { type: Number },
+    phoneNumber: { type: Number , required:true,unique:true },
     email: { type: String },
     address: { type: String },
-    password: { type: String },
-    role:{type:String}
+    password: { type: String }
   },
   { collection: "users" }
 );

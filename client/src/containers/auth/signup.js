@@ -4,6 +4,8 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+// import {message} from 'antd'
+import { responseHandler } from "../../utils/responseHandler";
 
 const SignupForm = () => {
 
@@ -59,10 +61,12 @@ const SignupForm = () => {
               body: JSON.stringify(updatedValues),
             };
             try {
-              const response = await fetch(`${process.env.REACT_APP_API_URL}/signup`, requestOptions)
+              const response = await fetch(`${process.env.REACT_APP_API_URL}/signUp`, requestOptions)
               const data = await response.json()
-              console.log(data)
-              navigate('/')
+              const alertMessage = responseHandler(response, data.errorMsg)
+                  alert(alertMessage)
+              // console.log(data)
+             
               // resetForm({ values: "" });
             } catch (err) {
               alert(err);
@@ -113,7 +117,7 @@ const SignupForm = () => {
         </Formik>
         <div className="nav-to-login">
         <span>
-          Already have an account <Link to="/">Login..</Link>
+          Already have an account <Link to="/login">Login..</Link>
         </span>
       </div>
       </div>

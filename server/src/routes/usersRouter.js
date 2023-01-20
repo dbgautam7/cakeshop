@@ -4,7 +4,7 @@ const router = express.Router();
 const Users = require("../models/Users");
 const bcrypt = require("bcrypt")
 
-router.post("/signup", async (req, res) => {
+router.post("/signUp", async (req, res) => {
   try {
     const hash = await bcrypt.hashSync(req.body.password, 10);
     Users.findOne({ email: req.body.email }).then((user) => {
@@ -12,9 +12,10 @@ router.post("/signup", async (req, res) => {
         req.body.password = hash
         const userData =  Users.create(req.body);
         if (userData) {
-          res.json({ msg: "user is added" });
+          res.status(200).json({ msg: "user is added" });
+
         } else {
-          res.json({ msg: "something went worng" });
+          res.status(401).json({ msg: "something went worng" });
         }
       } else {
         res.status(409).json({ error: "user already exists" });
@@ -36,12 +37,13 @@ router.post("/login", async (req, res) => {
       const {password, ...refactoredUserObj} = user
       res.status(200).json({
         msg:"logged in successfully",
+        isLogedin:true,
         userData: refactoredUserObj
       })
     }
     else{
       res.status(401).json({
-        error:"unauthorized user"
+        errorMsg:"unauthorized user"
       })
     }
     }
@@ -51,7 +53,7 @@ router.post("/login", async (req, res) => {
     }
     else{
       res.json({
-        msg:"user doesn't exist"
+        errorMsg:"user doesn't exist"
       })
     }
 

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { BsEyeSlashFill,BsEyeFill } from 'react-icons/bs';
+import { AiFillEyeInvisible,AiFillEye } from 'react-icons/ai';
 import './handlePassword.css'
 import { Field } from "formik";
 
@@ -18,7 +18,7 @@ const HandlePassword=()=>{
                 <Field name="password" placeholder="Password"
                     type={passwordVisible ? "text" : "password"} id="password" />
                 <button type="button" onClick={togglePasswordVisibility}>
-                    {passwordVisible ? <BsEyeFill /> : <BsEyeSlashFill/>}
+                    {passwordVisible ? <AiFillEye /> : <AiFillEyeInvisible/>}
                 </button>
                 </div>
                 </>

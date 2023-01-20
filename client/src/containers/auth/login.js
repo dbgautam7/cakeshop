@@ -7,14 +7,13 @@ import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
-import Alerts from "../../components/Alert";
 import HandlePassword from "../../components/handlePasword";
+import {message} from 'antd'
 
 
 const Login = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    
 
     const loginSchema = Yup.object().shape({
         phoneNumber: Yup.string()
@@ -34,7 +33,7 @@ const Login = () => {
             <div className="login-area">
                 <div className="login-box" >
                     <div className="left-side">
-                        <h3>Welcome to login page</h3>
+                        <h5>Welcome to login page</h5>
                         <Formik
                             initialValues={{ phoneNumber: '', password: '' }}
                             validationSchema={loginSchema}
@@ -46,33 +45,34 @@ const Login = () => {
                                 }
                                 const res = await fetch(`${process.env.REACT_APP_API_URL}/login`, requestOptions);
                                 const data = await res.json()
-                                if (res.status === 200) {
+                                if (data.isLogedin) {
                                     dispatch(addUserDetails(data.userData))
+                                    message.success(data.msg,[2])
+                                    navigate('/home')
                                 } else {
-                                    alert(data.msg)
+                                  message.error(data.errorMsg,[2],)
+                                    // alert(data.msg)
                                 }
-                                navigate('/admindashboard')
+                                
                                 // resetForm({values: '' })
                             }
                             }
                         >
                             {({ isSubmitting }) => (
-                                <Form className="login-form">
+                                <Form>
                                     <Field type="tel" name="phoneNumber" placeholder="Phone number" />
                                     <ErrorMessage name="phoneNumber" component="div" />
                                     <HandlePassword />
                                     <button type="submit" className="login-btn">
                                         Log in
                                     </button>
-
                                 </Form>
                             )}
-
                         </Formik>
 
                     </div>
                     <div>
-                        <span><Link to='/signup'>Create an account </Link></span>
+                        <span><Link to='/'>Create an account </Link></span>
                     </div>
                 </div>
             </div >

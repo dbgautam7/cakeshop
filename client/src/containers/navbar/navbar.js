@@ -1,31 +1,44 @@
-import React, {useState,useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
-import { Button, Container, Form, Nav, Navbar } from 'react-bootstrap';
+import { Container, Form, Nav, Navbar } from 'react-bootstrap';
+import { useSelector, useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { logoutResetDetails } from "../../redux/actions/userAction"
+import { BsPersonCircle } from 'react-icons/bs';
+import { Button } from 'antd';
+
+import './navbar.css'
 
 const MyNavbar = () => {
 
     const [currentTime, setCurrentTime] = useState(new Date());
 
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      setCurrentTime(new Date());
-    }, 1000);
-    return () => clearInterval(intervalId);
-  }, []);
+    useEffect(() => {
+        const intervalId = setInterval(() => {
+            setCurrentTime(new Date());
+        }, 1000);
+        return () => clearInterval(intervalId);
+    }, []);
 
+    const dispatch = useDispatch()
+    const { firstName } = useSelector(state => state.user)
+    const triggerLogout = () => {
+        dispatch(logoutResetDetails())
+    }
 
     return (
+    <>
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
             <Container fluid>
-                <Navbar.Brand href="/"></Navbar.Brand>
+                <Navbar.Brand href="/home">Bakery Shop</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto my-2 my-lg-0">
-                        <Nav.Link href="/">Home</Nav.Link>
                         <Nav.Link href="/aboutus">About Us</Nav.Link>
-                        <Nav.Link href="/contact">Contact</Nav.Link><t></t> 
-                        <h3 style={{color:'powderblue', marginLeft:'280px'}} >{currentTime.toLocaleString()}</h3>
+                        <Nav.Link href="/contact">Contact</Nav.Link><t></t>
+                        <h3 className='show-time'>{currentTime.toLocaleString()}</h3>
                     </Nav>
+
                     <Form className="d-flex">
                         <Form.Control
                             type="search"
@@ -35,9 +48,17 @@ const MyNavbar = () => {
                         />
                         <Button variant="outline-success">Search</Button>
                     </Form>
+                    <div className="icon">
+                        <div className="user_details">                          
+                            <h3>{firstName}</h3>
+                            <Link to="/profile" className="first-name"><BsPersonCircle className='bs-person' /></Link>
+                            </div>
+                            <Button type="primary" shape="rectangle" onClick={()=>triggerLogout()}>Logout</Button>
+                    </div>
                 </Navbar.Collapse>
             </Container>
         </Navbar>
+    </>
     );
 }
 
