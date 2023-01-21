@@ -21,9 +21,9 @@ import {ADD_USER_DETAILS,REMOVE_USER_DETAILS_LOGOUT,} from "../actionTypes/actio
         case REMOVE_USER_DETAILS_LOGOUT:
       return {
         ...state,
-        firstName,
-        email,
-        phoneNumber,
+        firstName:"",
+        email:"",
+        phoneNumber:""
       };
       default:
         return state;

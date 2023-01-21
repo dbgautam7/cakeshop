@@ -4,7 +4,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-// import {message} from 'antd'
+import {message} from 'antd'
 import { responseHandler } from "../../utils/responseHandler";
 
 const SignupForm = () => {
@@ -63,9 +63,16 @@ const SignupForm = () => {
             try {
               const response = await fetch(`${process.env.REACT_APP_API_URL}/signUp`, requestOptions)
               const data = await response.json()
-              const alertMessage = responseHandler(response, data.errorMsg)
-                  alert(alertMessage)
-              // console.log(data)
+              if(data){
+                message.success(data.msg,[3])
+                navigate('/home')
+              }
+              else{
+                message.error(data.error,[3])
+              }
+              // const alertMessage = responseHandler(response, data.errorMsg)
+              //     alert(alertMessage)
+              
              
               // resetForm({ values: "" });
             } catch (err) {
@@ -75,16 +82,6 @@ const SignupForm = () => {
         >
 
           <Form className="form">
-
-            {/* <div style={{
-              backgroundImage: `url(${image})`,
-              // backgroundRepeat: "no-repeat",
-              backgroundSize: "contain",
-              height: 235,
-              width: 1150,
-            }} />
-            image is added */}
-
 
             <label htmlFor="firstName">First Name</label>
             <Field name="firstName" type="text" />
