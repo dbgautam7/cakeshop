@@ -4,12 +4,13 @@ import { Container, Form, Nav, Navbar } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { logoutResetDetails } from "../../redux/actions/userAction"
-import { BsPersonCircle } from 'react-icons/bs';
 import { Button } from 'antd';
+import { useNavigate } from 'react-router-dom';
 
 import './navbar.css'
 
 const MyNavbar = () => {
+    const navigate=useNavigate()
 
     const [currentTime, setCurrentTime] = useState(new Date());
 
@@ -24,6 +25,7 @@ const MyNavbar = () => {
     const { firstName } = useSelector(state => state.user)
     const triggerLogout = () => {
         dispatch(logoutResetDetails())
+        navigate('/login')
     }
 
     return (
@@ -50,8 +52,7 @@ const MyNavbar = () => {
                     </Form>
                     <div className="icon">
                         <div className="user_details">                          
-                            <h3>{firstName}</h3>
-                            <Link to="/profile" className="first-name"><BsPersonCircle className='bs-person' /></Link>
+                            <Link to="/profile" className="first-name"><h3>{firstName}</h3></Link>
                             </div>
                             <Button type="primary" shape="rectangle" onClick={()=>triggerLogout()}>Logout</Button>
                     </div>

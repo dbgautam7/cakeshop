@@ -48,7 +48,7 @@ const Login = () => {
                                 if (data.isLogedin) {
                                     dispatch(addUserDetails(data.userData))
                                     message.success(data.msg,[2])
-                                    navigate('/home')
+                                    navigate('/')
                                 } else {
                                   message.error(data.errorMsg,[2],)
                                     // alert(data.msg)
