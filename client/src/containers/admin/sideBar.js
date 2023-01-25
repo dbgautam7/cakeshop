@@ -9,7 +9,8 @@ import {
 } from 'cdbreact';
 import { NavLink,Link } from 'react-router-dom';
 import { GrUserAdmin } from 'react-icons/gr';
-
+import { CgProfile } from 'react-icons/cg';
+import { TbDeviceAnalytics } from 'react-icons/tb';
 
 
 const MySidebar = () => {
@@ -24,17 +25,17 @@ const MySidebar = () => {
 
         <CDBSidebarContent className="sidebar-content">
           <CDBSidebarMenu>
-            <NavLink exact to="/" activeClassName="activeClicked">
-              <CDBSidebarMenuItem icon="columns">Dashboard</CDBSidebarMenuItem>
+            <NavLink exact to="/adminDashboard" activeClassName="activeClicked">
+              <CDBSidebarMenuItem icon="columns"> Dashboard</CDBSidebarMenuItem>
             </NavLink>
             <NavLink exact to="/tables" activeClassName="activeClicked">
               <CDBSidebarMenuItem icon="table">Tables</CDBSidebarMenuItem>
             </NavLink>
             <NavLink exact to="/profile" activeClassName="activeClicked">
-              <CDBSidebarMenuItem icon="user">Profile page</CDBSidebarMenuItem>
+              <CDBSidebarMenuItem icon="user">{<CgProfile />} Profile page</CDBSidebarMenuItem>
             </NavLink>
             <NavLink exact to="/analytics" activeClassName="activeClicked">
-              <CDBSidebarMenuItem icon="chart-line">Analytics</CDBSidebarMenuItem>
+              <CDBSidebarMenuItem icon="chart-line">{<TbDeviceAnalytics />} Analytics</CDBSidebarMenuItem>
             </NavLink>
 
             <NavLink exact to="/hero404" target="_blank" activeClassName="activeClicked">

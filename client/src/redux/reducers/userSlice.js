@@ -3,7 +3,7 @@ import {ADD_USER_DETAILS,REMOVE_USER_DETAILS_LOGOUT,} from "../actionTypes/actio
   const initialState = {
     firstName:"",
     email: "",
-    phoneNumber: "",
+    phoneNumber:"",
     token: "",
     _id:""
   };

@@ -38,7 +38,7 @@ const Products = () => {
             quantity: 1
         },
         {
-            id: 3,
+            id: 4,
             img: bdycake,
             name: "Cakes",
             price: 699,
@@ -46,7 +46,7 @@ const Products = () => {
             quantity: 1
         },
         {
-            id: 3,
+            id: 5,
             img: cookies,
             name: "Cookies",
             price: 89,
@@ -54,7 +54,7 @@ const Products = () => {
             quantity: 1
         },
         {
-            id: 3,
+            id: 6,
             img: dessert,
             name: "Desserts",
             price: 120,
@@ -62,7 +62,7 @@ const Products = () => {
             quantity: 1
         },
         {
-            id: 3,
+            id: 7,
             img: other,
             name: "Others",
             price: 299,

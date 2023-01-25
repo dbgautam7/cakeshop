@@ -9,8 +9,9 @@ const Contact = () => {
     <div style={{margin:"30px"}}>
       <section className="mb-4">
 
-        <p className="text-center w-responsive mx-auto mb-5 big-font" style={{fontSize: "24px"}}>Do you have any questions? Please do not hesitate to contact us directly. Our team will come back to you within
-          a matter of hours to help you.</p>
+        <p className="text-center w-responsive mx-auto mb-5 big-font" style={{fontSize: "24px"}}>
+          Do you have any questions? Please do not hesitate to contact us directly. 
+          Our team will come back to you within a matter of hours to help you.</p>
 
         <div className="row">
           <div className="col-md-9 mb-md-0 mb-5">
