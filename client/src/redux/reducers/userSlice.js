@@ -11,19 +11,23 @@ import {ADD_USER_DETAILS,REMOVE_USER_DETAILS_LOGOUT,} from "../actionTypes/actio
   const userSlice = (state = initialState, action) => {
     switch (action.type) {
       case ADD_USER_DETAILS:
-        const { email,phoneNumber,firstName } = action.payload;
+        const { email,phoneNumber,firstName,token,_id } = action.payload;
         return {
           ...state,
           firstName,
           email,
           phoneNumber,
+          token,
+          _id
         };
         case REMOVE_USER_DETAILS_LOGOUT:
       return {
         ...state,
         firstName:"",
         email:"",
-        phoneNumber:""
+        phoneNumber:"",
+        token:"",
+        _id:""
       };
       default:
         return state;

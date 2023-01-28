@@ -10,52 +10,54 @@ import Profile from './containers/profile/profile';
 import ErrorPage from './containers/errrorPage/errorPage';
 import { useSelector } from 'react-redux';
 import RoutesHandler from './containers/admin/routesHandler';
+import AdminDashboard from './containers/admin/adminDashboard';
 
 const App=()=> {
-  // const {phoneNumber} =useSelector(state=>state.user)
-  //       if(phoneNumber==="9804400486"){
-  //         return <AdminScreen />
-  //       }else if(phoneNumber!=="9804400486"){
-  //         return <UserScreen />
-  //       }
-  //       else{
-  //         return <AuthScreen />
-  //       }
-  //     }
-      
-  //     const AuthScreen=()=>{
-  //       return(
-  //         <Routes>
-  //         <Route  path="/" element={<SignupForm />} />
-  //     <Route path="/login" element={<Login />} />
-  //     </Routes>
-  //       )
-  //     }
+//   const {phoneNumber} =useSelector(state=>state.user)
+//         if(phoneNumber==="9804400486"){
+//           return <AdminScreen />
+//         }else if(phoneNumber!=="9804400486"){
+//           return <UserScreen />
+//         }
+//         else{
+//           return <AuthScreen />
+//         }
+// }
+//       const AuthScreen=()=>{
+//         return(
+//           <Routes>
+//           <Route  path="/" element={<SignupForm />} />
+//       <Route path="/login" element={<Login />} />
+//       <Route path='*' element={<ErrorPage />} />
+//       </Routes>
+//         )
+//       }
 
-  //     const AdminScreen=()=>{
-  //       return(
-  //         <Routes>
-  //           <Route path='/adminDashboard' element={<AdminDashboard />} />
-  //         </Routes>
-  //       )
-  //     }
+//       const AdminScreen=()=>{
+//         return(
+//           <Routes>
+//             <Route path='/' element={<AdminDashboard />} />
+//             <Route path='*' element={<ErrorPage />} />
+//           </Routes>
+//         )
+//       }
     
 
-  //     const UserScreen=()=>{
-  //       return(
-  //         <Routes>
-  //           <Route path='/home' element={<><MyNavbar /><Home /></>} />
-  //     <Route path='/contact' element={<><MyNavbar /><Contact /></>} />
-  //     <Route path='/aboutus' element={<><MyNavbar /><AboutUs /></>} />
-  //     <Route path='/profile' element={<><MyNavbar /><Profile /></>} />
-  //     <Route path='*' element={<ErrorPage />} />
-  //         </Routes>
-  //       )
-  //     }
+//       const UserScreen=()=>{
+//         return(
+//           <Routes>
+//             <Route path='/' element={<><MyNavbar /><Home /></>} />
+//       <Route path='/contact' element={<><MyNavbar /><Contact /></>} />
+//       <Route path='/aboutus' element={<><MyNavbar /><AboutUs /></>} />
+//       <Route path='/profile' element={<><MyNavbar /><Profile /></>} />
+//       <Route path='*' element={<ErrorPage />} />
+//           </Routes>
+//         )
+//       }
 
 return (
   <>
-  <RoutesHandler />
+  <AdminDashboard />
   </>
 )
 }

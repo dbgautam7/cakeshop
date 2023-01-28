@@ -28,19 +28,28 @@ const MySidebar = () => {
             <NavLink exact to="/adminDashboard" activeClassName="activeClicked">
               <CDBSidebarMenuItem icon="columns"> Dashboard</CDBSidebarMenuItem>
             </NavLink>
-            <NavLink exact to="/tables" activeClassName="activeClicked">
-              <CDBSidebarMenuItem icon="table">Tables</CDBSidebarMenuItem>
-            </NavLink>
-            <NavLink exact to="/profile" activeClassName="activeClicked">
-              <CDBSidebarMenuItem icon="user">{<CgProfile />} Profile page</CDBSidebarMenuItem>
+            <NavLink exact to="/users" activeClassName="activeClicked">
+              <CDBSidebarMenuItem icon="users">Users</CDBSidebarMenuItem>
             </NavLink>
             <NavLink exact to="/analytics" activeClassName="activeClicked">
               <CDBSidebarMenuItem icon="chart-line">{<TbDeviceAnalytics />} Analytics</CDBSidebarMenuItem>
             </NavLink>
-
-            <NavLink exact to="/hero404" target="_blank" activeClassName="activeClicked">
-              <CDBSidebarMenuItem icon="exclamation-circle">404 page</CDBSidebarMenuItem>
+            <NavLink exact to="/analytics" activeClassName="activeClicked">
+              <CDBSidebarMenuItem icon="chart-line">{<TbDeviceAnalytics />} Delivery</CDBSidebarMenuItem>
             </NavLink>
+            <NavLink exact to="/analytics" activeClassName="activeClicked">
+              <CDBSidebarMenuItem icon="chart-line">{<TbDeviceAnalytics />} Notifications</CDBSidebarMenuItem>
+            </NavLink>
+            <NavLink exact to="/analytics" activeClassName="activeClicked">
+              <CDBSidebarMenuItem icon="chart-line">{<TbDeviceAnalytics />} Settings</CDBSidebarMenuItem>
+            </NavLink>
+            <NavLink exact to="/profile" activeClassName="activeClicked">
+              <CDBSidebarMenuItem icon="user">{<CgProfile />} Profile</CDBSidebarMenuItem>
+            </NavLink>
+            <NavLink exact to="/analytics" activeClassName="activeClicked">
+              <CDBSidebarMenuItem icon="chart-line">{<TbDeviceAnalytics />} Logout</CDBSidebarMenuItem>
+            </NavLink>
+
           </CDBSidebarMenu>
         </CDBSidebarContent>
 

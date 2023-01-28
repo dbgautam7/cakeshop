@@ -1,15 +1,18 @@
 import React from 'react'
 import AllProducts from './allProducts'
-import MySidebar from './sideBar'
 import './adminDashboard.css'
+import Home from './pages/home/home'
+import RoutesHandler from './routesHandler'
+import MySidebar from './components/sidebar/sidebar'
 
 const AdminDashboard = () => {
   return (
     <>
-      <div className='admin-dashboard'>
-        <MySidebar />
-        <AllProducts />
-      </div>
+    <RoutesHandler />
+    <MySidebar />
+      {/* <div className='admin-dashboard'>
+        Welcome to AdminDashboard
+      </div> */}
     </>
   )
 }

@@ -9,6 +9,7 @@ import pastries from '../../images/pastries.jpg'
 import other from '../../images/bakery3.jpg'
 import './cart.css'
 import { AiFillPlusCircle,AiFillMinusCircle } from "react-icons/ai";
+import BoxSx from '../../components/box';
 
 
 const Products = () => {
@@ -120,6 +121,7 @@ const Products = () => {
 
     return (
         <>
+        
             <div className='product-container'>
                 {productList.map((item, id) => {
                     return (<Cart item={item}
@@ -128,7 +130,13 @@ const Products = () => {
                         newCount={newCount} />)
                 }
                 )}
-
+            </div>
+            
+            <div>
+            {productList.map((item,id)=>{
+                    return (<BoxSx item={item} 
+                    id={id} />)
+                })}
             </div>
 
             <div className="Fav">

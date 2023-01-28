@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { faHeart, faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import './cart.css'
-function Cart(props) {
+const Cart=(props)=> {
   const [isFav, setIsFav] = useState(false)
   return (
     <div className='cart-container'>

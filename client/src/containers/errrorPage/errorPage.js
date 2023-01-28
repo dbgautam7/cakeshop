@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom'
 const ErrorPage = () => {
   return (
     <div style={{textAlign:'center', padding:'10px'}}>
-        <NavLink to='/home' style={{position: "absolute",
+        <NavLink to='/' style={{position: "absolute",
             top: "3%",
             left: "50%",
             fontSize:'30px',

@@ -32,7 +32,7 @@ const MyNavbar = () => {
     <>
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
             <Container fluid>
-                <Navbar.Brand href="/home">Bakery Shop</Navbar.Brand>
+                <Navbar.Brand href="/">Bakery Shop</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto my-2 my-lg-0">

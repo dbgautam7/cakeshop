@@ -6,14 +6,12 @@ import { addUserDetails } from "../../redux/actions/userAction"
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import * as Yup from "yup";
-import { useNavigate } from "react-router-dom";
 import HandlePassword from "../../components/handlePasword";
 import {message} from 'antd'
 
 
 const Login = () => {
     const dispatch = useDispatch()
-    const navigate = useNavigate()
 
     const loginSchema = Yup.object().shape({
         phoneNumber: Yup.string()
@@ -48,7 +46,6 @@ const Login = () => {
                                 if (data.isLogedin) {
                                     dispatch(addUserDetails(data.userData))
                                     message.success(data.msg,[2])
-                                    navigate('/')
                                 } else {
                                   message.error(data.errorMsg,[2],)
                                     // alert(data.msg)
