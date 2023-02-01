@@ -9,12 +9,11 @@ import MyNavbar from './containers/navbar/navbar';
 import Profile from './containers/profile/profile';
 import ErrorPage from './containers/errrorPage/errorPage';
 import { useSelector } from 'react-redux';
-import RoutesHandler from './containers/admin/routesHandler';
 import AdminDashboard from './containers/admin/adminDashboard';
 
 const App=()=> {
   const {phoneNumber} =useSelector(state=>state.user)
-        if(phoneNumber===9847239854){
+        if(phoneNumber===9804400486){
           return <AdminScreen />
         }else if(phoneNumber!==""){
           return <UserScreen />
@@ -37,6 +36,7 @@ const App=()=> {
         return(
           <Routes>
             <Route path='/' element={<AdminDashboard />} />
+
             <Route path='*' element={<ErrorPage />} />
           </Routes>
         )

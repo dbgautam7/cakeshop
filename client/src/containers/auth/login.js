@@ -1,17 +1,17 @@
 import React from "react";
 import './login.css'
-// import Button from "../../components/Button";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { addUserDetails } from "../../redux/actions/userAction"
-import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import * as Yup from "yup";
 import HandlePassword from "../../components/handlePasword";
 import {message} from 'antd'
+import { useDispatch } from "react-redux";
 
 
 const Login = () => {
-    const dispatch = useDispatch()
+
+const dispatch=useDispatch()
 
     const loginSchema = Yup.object().shape({
         phoneNumber: Yup.string()

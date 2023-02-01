@@ -132,12 +132,12 @@ const Products = () => {
                 )}
             </div>
             
-            <div>
+            {/* <div>
             {productList.map((item,id)=>{
                     return (<BoxSx item={item} 
                     id={id} />)
                 })}
-            </div>
+            </div> */}
 
             <div className="Fav">
                 Favorites list: {favLists.length}

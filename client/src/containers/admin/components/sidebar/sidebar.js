@@ -22,11 +22,11 @@ const MySidebar = () => {
 
   return (
     <div className="sidebar" style={{backgroundColor: selectedColor}}>
-      <div style={{marginLeft:"300px"}}>
+      {/* <div style={{marginLeft:"300px"}}>
       <Home />
-      </div>
-        
-    <div style={{ display: 'flex', height: '100vh', overflow: 'scroll initial' }}>
+      </div> */}
+        <div>
+    {/* // <div style={{ display: 'flex', height: '100vh', overflow: 'scroll initial' }}> */}
       <CDBSidebar textColor="#fff" backgroundColor="#333">
         <CDBSidebarHeader prefix={<i className="fa fa-bars fa-large"></i>}>
           <Link to="/" className="text-decoration-none" style={{ color: 'inherit', fontSize: '24px'}}>
