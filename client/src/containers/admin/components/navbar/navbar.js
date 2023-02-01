@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import logo from '../../../../images/admin.png'
 import { IoMdNotifications } from 'react-icons/io';
+import { GrLanguage } from 'react-icons/gr';
 
 const Navbar = () => {
   return (
@@ -23,8 +24,9 @@ const Navbar = () => {
             </span>
           </form>
 
-          <IoMdNotifications style={{ height: "50px", width: "50px", color: "grey" }} />
+          <IoMdNotifications style={{ height: "40px", width: "40px", color: "grey" }} />
 
+         <h3 style={{color:"black"}}><GrLanguage /> English</h3>
 
           <ul className="navbar-nav">
             <li className="nav-item">

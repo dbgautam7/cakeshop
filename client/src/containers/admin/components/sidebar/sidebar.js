@@ -11,6 +11,7 @@ import { NavLink,Link } from 'react-router-dom';
 import { GrUserAdmin } from 'react-icons/gr';
 import { CgProfile } from 'react-icons/cg';
 import { TbDeviceAnalytics } from 'react-icons/tb';
+import Home from '../../pages/home/home';
 
 const MySidebar = () => {
   const [selectedColor, setSelectedColor] = useState('grey');
@@ -21,6 +22,10 @@ const MySidebar = () => {
 
   return (
     <div className="sidebar" style={{backgroundColor: selectedColor}}>
+      <div style={{marginLeft:"300px"}}>
+      <Home />
+      </div>
+        
     <div style={{ display: 'flex', height: '100vh', overflow: 'scroll initial' }}>
       <CDBSidebar textColor="#fff" backgroundColor="#333">
         <CDBSidebarHeader prefix={<i className="fa fa-bars fa-large"></i>}>
@@ -67,7 +72,6 @@ const MySidebar = () => {
     <div className="color-options">
       <button className="color-option" onClick={() => handleColorChange('white')}>White</button>
       <button className="color-option" onClick={() => handleColorChange('green')}>Green</button>
-    
     </div>
         <CDBSidebarFooter style={{ textAlign: 'center' }}>
           <div

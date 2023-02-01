@@ -109,7 +109,7 @@ const SignupForm = () => {
         </Formik>
         <div className="nav-to-login">
         <span>
-          Already have an account <Link to="/login">Login..</Link>
+          Already have an account <Link to="/">Login..</Link>
         </span>
       </div>
       </div>

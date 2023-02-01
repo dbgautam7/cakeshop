@@ -25,7 +25,7 @@ const MyNavbar = () => {
     const { firstName } = useSelector(state => state.user)
     const triggerLogout = () => {
         dispatch(logoutResetDetails())
-        navigate('/login')
+        navigate('/')
     }
 
     return (

@@ -2,7 +2,10 @@ import React from 'react'
 
 const Widget = () => {
   return (
-    <div>Widget</div>
+    <>
+    <div>left</div>
+    <div>right</div>
+    </>
   )
 }
 

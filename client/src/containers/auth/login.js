@@ -46,6 +46,7 @@ const Login = () => {
                                 if (data.isLogedin) {
                                     dispatch(addUserDetails(data.userData))
                                     message.success(data.msg,[2])
+
                                 } else {
                                   message.error(data.errorMsg,[2],)
                                     // alert(data.msg)
@@ -69,7 +70,7 @@ const Login = () => {
 
                     </div>
                     <div>
-                        <span><Link to='/'>Create an account </Link></span>
+                        <span><Link to='/signup'>Create an account </Link></span>
                     </div>
                 </div>
             </div >
