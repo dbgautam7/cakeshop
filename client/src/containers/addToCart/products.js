@@ -9,7 +9,6 @@ import pastries from '../../images/pastries.jpg'
 import other from '../../images/bakery3.jpg'
 import './cart.css'
 import { AiFillPlusCircle,AiFillMinusCircle } from "react-icons/ai";
-import BoxSx from '../../components/box';
 
 
 const Products = () => {

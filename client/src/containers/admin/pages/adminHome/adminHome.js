@@ -1,15 +1,13 @@
 import React from 'react'
 import Widget from '../../components/widget/widget'
-import './home.css'
+import './adminHome.css'
 
-const Home = () => {
+const AdminHome = () => {
   return (
     <div className='home'>
-<Widget />
-<Widget />
 <Widget />
     </div>
   )
 }
 
-export default Home
+export default AdminHome

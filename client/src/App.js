@@ -9,8 +9,10 @@ import MyNavbar from './containers/navbar/navbar';
 import Profile from './containers/sharedScreens/profile';
 import ErrorPage from './containers/errrorPage/errorPage';
 import { useSelector } from 'react-redux';
-import AdminDashboard from './containers/admin/adminDashboard';
 import MyMap from './components/map';
+import Navbar from './containers/admin/components/navbar/navbar';
+import MySidebar from './containers/admin/components/sidebar/sidebar';
+import AdminHome from './containers/admin/pages/adminHome/adminHome';
 
 const App=()=> {
   const {phoneNumber} =useSelector(state=>state.user)
@@ -36,8 +38,7 @@ const App=()=> {
       const AdminScreen=()=>{
         return(
           <Routes>
-            <Route path='/' element={<AdminDashboard />} />
-
+            <Route path='/' element={<><Navbar /><MySidebar /></>} />
             <Route path='*' element={<ErrorPage />} />
           </Routes>
         )
