@@ -61,5 +61,15 @@ router.post("/login", async (req, res) => {
 
 });
 
+router.post('/profile', async (req, res) =>{
+  console.log(req)
+  // const data = await Users.findByIdAndUpdate(req.body._id, {avatarName: req.file.filename}).lean()
+  // if(data){
+  //   res.status(200).json({
+  //     msg:"imageUploaded Successfully",
+  //   })
+  // }
+})
+
 
 module.exports = router;

@@ -38,6 +38,7 @@ const MyNavbar = () => {
                     <Nav className="me-auto my-2 my-lg-0">
                         <Nav.Link href="/aboutus">About Us</Nav.Link>
                         <Nav.Link href="/contact">Contact</Nav.Link><t></t>
+                        <Nav.Link href="/map">Map</Nav.Link>
                         <h3 className='show-time'>{currentTime.toLocaleString()}</h3>
                     </Nav>
 
