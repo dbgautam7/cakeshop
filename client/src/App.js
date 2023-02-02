@@ -6,7 +6,7 @@ import Home from './containers/home/home';
 import AboutUs from './containers/aboutUs/aboutUs';
 import Contact from './containers/contact/contact';
 import MyNavbar from './containers/navbar/navbar';
-import Profile from './containers/profile/profile';
+import Profile from './containers/sharedScreens/profile';
 import ErrorPage from './containers/errrorPage/errorPage';
 import { useSelector } from 'react-redux';
 import AdminDashboard from './containers/admin/adminDashboard';

@@ -1,12 +1,15 @@
-import './profile.css'
+// import './profile.css'
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import { Link } from "react-router-dom";
 const Profile = () => {
+
   const { _id } = useSelector((state) => state.user);
   const [file, setFile] = useState(null);
   const [userDetails, setUserDetails] = useState({});
+
+
   const triggerImgSave = async () => {
     const formdata = new FormData();
     formdata.append("avatar", file);
@@ -20,13 +23,14 @@ const Profile = () => {
       fetchUserDetails()
     }
   };
+
   const fetchUserDetails = () => {
-    axios
-      .get(`${process.env.REACT_APP_API_URL}/users/${_id}`)
-      .then((response) => {
+    axios.get(`${process.env.REACT_APP_API_URL}/users/${_id}`)
+    .then((response) => {
         setUserDetails(response.data.userDetails);
       });
   };
+  
   useEffect(() => {
     fetchUserDetails();
   }, []);

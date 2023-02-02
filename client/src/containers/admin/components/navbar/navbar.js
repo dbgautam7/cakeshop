@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import logo from '../../../../images/admin.png'
 import { IoMdNotifications } from 'react-icons/io';
 import { GrLanguage } from 'react-icons/gr';
+import Logout from '../../../../components/logout';
 
 const Navbar = () => {
   return (
@@ -36,6 +37,7 @@ const Navbar = () => {
               </Link>
             </li>
           </ul>
+          <Logout />
         </div>
       </nav>
     </>

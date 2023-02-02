@@ -1,16 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import { Container, Form, Nav, Navbar } from 'react-bootstrap';
-import { useSelector, useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { logoutResetDetails } from "../../redux/actions/userAction"
 import { Button } from 'antd';
-import { useNavigate } from 'react-router-dom';
-
 import './navbar.css'
+import Logout from '../../components/logout';
 
 const MyNavbar = () => {
-    const navigate=useNavigate()
 
     const [currentTime, setCurrentTime] = useState(new Date());
 
@@ -21,12 +16,6 @@ const MyNavbar = () => {
         return () => clearInterval(intervalId);
     }, []);
 
-    const dispatch = useDispatch()
-    const { firstName } = useSelector(state => state.user)
-    const triggerLogout = () => {
-        dispatch(logoutResetDetails())
-        navigate('/')
-    }
 
     return (
     <>
@@ -51,12 +40,7 @@ const MyNavbar = () => {
                         />
                         <Button variant="outline-success">Search</Button>
                     </Form>
-                    <div className="icon">
-                        <div className="user_details">                          
-                            <Link to="/profile" className="first-name"><h3>{firstName}</h3></Link>
-                            </div>
-                            <Button type="primary" shape="rectangle" onClick={()=>triggerLogout()}>Logout</Button>
-                    </div>
+                    <Logout />
                 </Navbar.Collapse>
             </Container>
         </Navbar>

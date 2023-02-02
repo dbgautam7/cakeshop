@@ -1,9 +1,31 @@
 const express = require("express");
-// const { db } = require("../models/Users");
 const router = express.Router();
 const Users = require("../models/Users");
 const bcrypt = require("bcrypt")
 const jwt = require('jsonwebtoken');
+const multer  = require('multer')
+
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, '../client/src/uploads')
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname)
+  }
+})
+
+const upload = multer({ storage: storage }).single('avatar')
+
+router.post('/profile', upload, async (req, res) =>{
+  console.log(req.file)
+  const data = await Users.findByIdAndUpdate(req.body._id, {avatarName: req.file.filename}).lean()
+  if(data){
+    res.status(200).json({
+      msg:"Image Uploaded Successfully",
+    })
+  }
+})
 
 router.post("/signup", async (req, res) => {
   try {
@@ -60,16 +82,5 @@ router.post("/login", async (req, res) => {
     }
 
 });
-
-router.post('/profile', async (req, res) =>{
-  console.log(req)
-  // const data = await Users.findByIdAndUpdate(req.body._id, {avatarName: req.file.filename}).lean()
-  // if(data){
-  //   res.status(200).json({
-  //     msg:"imageUploaded Successfully",
-  //   })
-  // }
-})
-
 
 module.exports = router;
