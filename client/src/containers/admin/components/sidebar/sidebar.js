@@ -8,17 +8,15 @@ import {
   CDBSidebarMenuItem,
 } from 'cdbreact';
 import { NavLink,Link } from 'react-router-dom';
-import { GrUserAdmin } from 'react-icons/gr';
 import { TbDeviceAnalytics } from 'react-icons/tb';
 import { ImUsers } from 'react-icons/im';
 import { FaProductHunt } from 'react-icons/fa';
 import { FaJediOrder } from 'react-icons/fa';
 import { IoIosNotifications } from 'react-icons/io';
 import { MdSettings } from 'react-icons/md';
-import AdminHome from '../../pages/adminHome/adminHome';
 
 const MySidebar = () => {
-  const [selectedColor, setSelectedColor] = useState('white');
+  const [selectedColor, setSelectedColor] = useState('black');
 
   const handleColorChange=(color)=>{
       setSelectedColor(color)
@@ -26,13 +24,11 @@ const MySidebar = () => {
 
   return (
     <>
-    <div style={{ width: '25%', float: 'left' }}>
-        <div>
  <div style={{ display: 'flex', height: '100vh', overflow: 'scroll initial' }}>
       <CDBSidebar textColor="#fff" backgroundColor="#333">
         <CDBSidebarHeader prefix={<i className="fa fa-bars fa-large"></i>}>
           <Link to="/" className="text-decoration-none" style={{ color: 'inherit', fontSize: '24px'}}>
-            Admin <GrUserAdmin />
+            Admin Panel
           </Link>
         </CDBSidebarHeader>
 
@@ -59,13 +55,11 @@ const MySidebar = () => {
           </CDBSidebarMenu>
         </CDBSidebarContent>
 
-       
-    <div className="color-options">
-      <button className="color-option" onClick={() => handleColorChange('grey')}>Grey</button>
+    <div className="color-options" style={{backgroundColor:selectedColor}}>
+      <button className="color-option" onClick={() => handleColorChange('grey')} >Grey</button>
       <button className="color-option" onClick={() => handleColorChange('green')}>Green</button>
     </div>
   
-
         <CDBSidebarFooter style={{ textAlign: 'center' }}>
           <div
             style={{
@@ -78,13 +72,6 @@ const MySidebar = () => {
         </CDBSidebarFooter>
       </CDBSidebar>
     </div>
-    </div>
-    </div>
-
-    <div style={{ width: '75%', float: 'right', backgroundColor: selectedColor, marginTop:"20px" }}>
-    <AdminHome />
-  </div>
-
     </>
   );
 };

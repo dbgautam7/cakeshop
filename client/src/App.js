@@ -38,7 +38,7 @@ const App=()=> {
       const AdminScreen=()=>{
         return(
           <Routes>
-            <Route path='/' element={<><Navbar /><MySidebar /></>} />
+            <Route path='/' element={<><Navbar /><AdminHome /></>} />
             <Route path='*' element={<ErrorPage />} />
           </Routes>
         )
