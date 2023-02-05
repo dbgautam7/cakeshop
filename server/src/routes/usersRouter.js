@@ -1,8 +1,31 @@
 const express = require("express");
-const { db } = require("../models/Users");
 const router = express.Router();
 const Users = require("../models/Users");
 const bcrypt = require("bcrypt")
+const jwt = require('jsonwebtoken');
+const multer  = require('multer')
+
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, '../client/src/uploads')
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname)
+  }
+})
+
+const upload = multer({ storage: storage }).single('avatar')
+
+router.post('/profile', upload, async (req, res) =>{
+  console.log(req.file)
+  const data = await Users.findByIdAndUpdate(req.body._id, {avatarName: req.file.filename}).lean()
+  if(data){
+    res.status(200).json({
+      msg:"Image Uploaded Successfully",
+    })
+  }
+})
 
 router.post("/signup", async (req, res) => {
   try {
@@ -12,9 +35,10 @@ router.post("/signup", async (req, res) => {
         req.body.password = hash
         const userData =  Users.create(req.body);
         if (userData) {
-          res.json({ msg: "user is added" });
+          res.status(200).json({ msg: "user is added" });
+
         } else {
-          res.json({ msg: "something went worng" });
+          res.status(401).json({ msg: "something went worng" });
         }
       } else {
         res.status(409).json({ error: "user already exists" });
@@ -26,21 +50,24 @@ router.post("/signup", async (req, res) => {
 });
 
 router.post("/login", async (req, res) => {
-  const user = await Users.findOne({email: req.body.email}).lean()
+  const user = await Users.findOne({phoneNumber: req.body.phoneNumber}).lean()
   if(user){
     try{
-    const {email,password} = user;
-    const isMatched= bcrypt.compareSync(req.body.password, password)
-    if(email && isMatched){
+    const {phoneNumber,password} = user;
+    const isMatched=await bcrypt.compareSync(req.body.password, password)
+    if(phoneNumber && isMatched){
+      const token=await jwt.sign({phoneNumber:req.body.phoneNumber}, process.env.SECRET_TOKEN)
+      user.token=token
       const {password, ...refactoredUserObj} = user
       res.status(200).json({
         msg:"logged in successfully",
+        isLogedin:true,
         userData: refactoredUserObj
       })
     }
     else{
       res.status(401).json({
-        error:"unauthorized user"
+        errorMsg:"unauthorized user"
       })
     }
     }
@@ -50,11 +77,10 @@ router.post("/login", async (req, res) => {
     }
     else{
       res.json({
-        msg:"user doesn't exist"
+        errorMsg:"user doesn't exist"
       })
     }
 
 });
-
 
 module.exports = router;

@@ -3,6 +3,8 @@
 .eslintcache
 # dependencies
 /node_modules
+npm-debug.log
+package-lock.json
 /.pnp
 .pnp.js
 /.env

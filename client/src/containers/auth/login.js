@@ -1,17 +1,20 @@
 import React from "react";
 import './login.css'
-import Button from "../../components/Button";
-import { Formik, Form, Field,ErrorMessage } from "formik";
-// import img from "../../image/login.png";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import { addUserDetails } from "../../redux/actions/userAction"
 import { Link } from "react-router-dom";
 import * as Yup from "yup";
-import { useNavigate } from "react-router-dom"
+import HandlePassword from "../../components/handlePasword";
+import {message} from 'antd'
+import { useDispatch } from "react-redux";
 
 
 const Login = () => {
 
+const dispatch=useDispatch()
+
     const loginSchema = Yup.object().shape({
-        phone: Yup.string()
+        phoneNumber: Yup.string()
             .matches(/^\d+$/, 'Phone number can only contain digits')
             .min(10, 'Phone number must be at least 10 digits')
             .max(10, 'Phone number can only be 10 digits')
@@ -22,36 +25,55 @@ const Login = () => {
             .required('Password is required'),
     });
 
-    const navigate = useNavigate();
 
     return (
         <>
             <div className="login-area">
                 <div className="login-box" >
                     <div className="left-side">
-                        <h3>Welcome to login page</h3>
+                        <h5>Welcome to login page</h5>
                         <Formik
-                            initialValues={{ phone: '', password: '' }}
+                            initialValues={{ phoneNumber: '', password: '' }}
                             validationSchema={loginSchema}
-                            onSubmit={(values, { setSubmitting }) => {
-                                // submit the form
-                            }}
+                            onSubmit={async (values, { resetForm }) => {
+                                const requestOptions = {
+                                    method: "POST",
+                                    headers: { "Content-Type": "application/json" },
+                                    body: JSON.stringify(values),
+                                }
+                                const res = await fetch(`${process.env.REACT_APP_API_URL}/login`, requestOptions);
+                                const data = await res.json()
+                                if (data.isLogedin) {
+                                    dispatch(addUserDetails(data.userData))
+                                    message.success(data.msg,[2])
+
+                                } else {
+                                  message.error(data.errorMsg,[2],)
+                                    // alert(data.msg)
+                                }
+                                
+                                // resetForm({values: '' })
+                            }
+                            }
                         >
                             {({ isSubmitting }) => (
                                 <Form>
-                                    <Field type="tel" name="phone" placeholder="Phone number" />
-                                    <ErrorMessage name="phone" component="div" />
-                                    <Field type="password" name="password" placeholder="Password" />
-                                    <ErrorMessage name="password" component="div" />
-                                    <Button type="submit">
+                                    <Field type="tel" name="phoneNumber" placeholder="Phone number" />
+                                    <ErrorMessage name="phoneNumber" component="div" />
+                                    <HandlePassword />
+                                    <button type="submit" className="login-btn">
                                         Log in
-                                    </Button>
+                                    </button>
                                 </Form>
                             )}
                         </Formik>
+
                     </div>
+                    <div>
+                        <span><Link to='/signup'>Create an account </Link></span>
                     </div>
-            </div>
+                </div>
+            </div >
         </>
     );
 };

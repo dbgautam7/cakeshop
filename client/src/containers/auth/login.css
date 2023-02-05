@@ -1,96 +1,101 @@
 .login-area {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    /* min-height: 145vh; */
-    background-color: #f5f5f500;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
   }
   
   .login-box {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 560px;
-    height: 540px;
-    background-color: #ebd6ff;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: rgb(159, 204, 224);
+  box-shadow: 0px 0px 10px 0px #ccc; 
+  width: 40%;
+  height: 70%;
   }
   
   .left-side {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 50%;
-    height: 80%;
-    background-color: #ebd6ff;
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
-    padding: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   }
+  
+  .left-side h5 {
+  margin-bottom: 20px;
+  }
+  
+  .left-side Form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80%; 
+  }
+  
+  .left-side Form Field, .left-side Form HandlePassword {
+  margin: 10px;
+width: 100%;
+padding: 10px;
+border-radius: 5px;
+border: none;
+margin-bottom: 30px; 
+  }
+  
+  .left-side Form .login-btn {
+  background-color: #007bff; 
+  color: #fff; 
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none; 
+  cursor: pointer;
+  margin-top: 10px;
+  }
+  
+  
+  .login-box div span a {
+  color: #007bff; 
+  text-decoration: none;
+  }
+  
+ 
+  .left-side Form ErrorMessage {
+  color: red;
+  }
+  
   
   .right-side {
-    display: flex;
-    align-items: center;
-    justify-content: cen
-    ter;
-    width: 50%;
-    height: 80%;
-    background-color: #f5f5f5;
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
-  }
-
-  
-  .left-side h3 {
-    font-size: 22px;
-    font-weight: 600;
-    margin-bottom: 20px;
-    text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   }
   
-  .left-side form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 5px;
+  .right-side span {
+  margin-top: 20px;
   }
   
-  .left-side form input {
-    width: 80%;
-    height: 45px;
-    border: none;
-    border-radius: 45px;
-    padding: 0 15px;
-    margin-bottom: 15px;
-    font-size: 16px;
+  .right-side span a {
+  color: #007bff;
+  text-decoration: none;
   }
   
-  .left-side form button {
-    width: 80%;
-    height: 45px;
-    border: none;
-    border-radius: 5px;
-    background-color: #4CAF50;
-    color: white;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.2s ease-in-out;
+  
+  .right-side span a {
+  padding: 10px 20px;
+  border-radius: 5px;
+  background-color: #fff;
+  border: 1px solid #007bff;
+  color: #007bff; 
   }
   
-  .left-side form button:hover {
-    background-color: #45a049;
-  }
   
-  .left-side form .error-message {
-    font-size: 14px;
-    color: red;
-    margin-bottom: 15px;
+  .right-side span a:hover {
+  background-color: #007bff; 
+  color: #fff; 
   }
-  
-  .right-side .img-box {
-    display: flex
-  }  
+ 
+  .right-side span a {
+  color: #007bff; 
+  text-decoration: none;
+  }
