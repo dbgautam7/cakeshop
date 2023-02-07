@@ -1,9 +1,7 @@
 import React from 'react'
 import MySidebar from '../../components/sidebar/sidebar'
-import Widget from '../../components/widget/widget'
-import './adminHome.css'
 
-const AdminHome = () => {
+const Users = () => {
   return (
     <>
     <div className='home' style={{display:"flex"}}>
@@ -11,11 +9,11 @@ const AdminHome = () => {
             <MySidebar />
         </div>
         <div style={{width:"75%", marginTop:"30px"}}>
-<Widget />
+Users list
 </div>
     </div>
     </>
   )
 }
 
-export default AdminHome
+export default Users

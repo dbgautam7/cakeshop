@@ -11,8 +11,9 @@ import ErrorPage from './containers/errrorPage/errorPage';
 import { useSelector } from 'react-redux';
 import MyMap from './components/map';
 import Navbar from './containers/admin/components/navbar/navbar';
-import MySidebar from './containers/admin/components/sidebar/sidebar';
 import AdminHome from './containers/admin/pages/adminHome/adminHome';
+import Users from './containers/admin/pages/users/users';
+import Products from './containers/admin/pages/products/products';
 
 const App=()=> {
   const {phoneNumber} =useSelector(state=>state.user)
@@ -39,6 +40,8 @@ const App=()=> {
         return(
           <Routes>
             <Route path='/' element={<><Navbar /><AdminHome /></>} />
+            <Route path='/users' element={<><Navbar /><Users /></>} />
+            <Route path='/products' element={<><Navbar /><Products /></>} />
             <Route path='*' element={<ErrorPage />} />
           </Routes>
         )
