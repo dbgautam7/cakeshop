@@ -11,9 +11,9 @@ import ErrorPage from './containers/errrorPage/errorPage';
 import { useSelector } from 'react-redux';
 import MyMap from './components/map';
 import Navbar from './containers/admin/components/navbar/navbar';
-import AdminHome from './containers/admin/pages/adminHome/adminHome';
 import Users from './containers/admin/pages/users/users';
 import Products from './containers/admin/pages/products/products';
+import AdminHome from './containers/admin/pages/adminHome/adminHome';
 
 const App=()=> {
   const {phoneNumber} =useSelector(state=>state.user)
