@@ -27,7 +27,7 @@ const Products = () => {
         </div>
         <div style={{ width: "75%", marginTop: "30px",display:"flex", justifyContent:"center"}}>
           <Button type="primary" onClick={showModal}
-            style={{ height: '150px', width: '300px', backgroundColor: '#25a5be', fontSize:"30px"}}>
+            style={{ height: '300px', width: '500px', backgroundColor: '#25a5be', fontSize:"40px"}}>
             Add Product
           </Button>
           <Modal
