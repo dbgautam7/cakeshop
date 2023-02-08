@@ -1,71 +1,101 @@
-import React, { useState } from 'react';
-import { Button, Modal } from 'antd';
-import MySidebar from '../../components/sidebar/sidebar';
-import { Input } from 'antd';
-
+import React, { useState } from "react";
+import { Modal, Form, Input, Button, message,Upload} from "antd";
+import axios from "axios";
+import MySidebar from "../../components/sidebar/sidebar";
+import { IoIosAddCircle } from 'react-icons/io';
+import { FiUpload } from 'react-icons/fi';
 const Products = () => {
-  const [loading, setLoading] = useState(false);
-  const [open, setOpen] = useState(false);
+  const [visible, setVisible] = useState(false);
+  const [formData, setFormData] = useState({});
+
   const showModal = () => {
-    setOpen(true);
+    setVisible(true);
   };
+
   const handleOk = () => {
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-      setOpen(false);
-    }, 3000);
+    axios.post(`${process.env.REACT_APP_API_URL}/products`, formData).then(response => {
+      console.log(response.data);
+      message.success("Product added successfully",[2])
+    })
+    .catch(error => {
+      console.error(error);
+    });
+    setVisible(false);
   };
+
   const handleCancel = () => {
-    setOpen(false);
+    setVisible(false);
   };
+
+  const onFinish = values => {
+    setFormData(values);
+  };
+
+
   return (
     <>
-      <div className='home' style={{ display: "flex" }}>
-        <div style={{ width: "25%" }}>
-          <MySidebar />
-        </div>
-        <div style={{ width: "75%", marginTop: "30px",display:"flex", justifyContent:"center"}}>
-          <Button type="primary" onClick={showModal}
+    <div className='home' style={{ display: "flex" }}>
+    <div style={{ width: "25%" }}>
+      <MySidebar />
+    </div>
+    <div style={{ width: "75%", marginTop: "30px",display:"flex", justifyContent:"center"}}>
+    <Button type="primary" onClick={showModal}
             style={{ height: '300px', width: '500px', backgroundColor: '#25a5be', fontSize:"40px"}}>
-            Add Product
+            Add Product <IoIosAddCircle />
           </Button>
-          <Modal
-            open={open}
-            title="Title"
-            onOk={handleOk}
-            onCancel={handleCancel}
-            footer={[
-              <Button key="back" onClick={handleCancel}>
-                Return
-              </Button>,
-              <Button key="submit" type="primary" loading={loading} onClick={handleOk}>
-                Submit
-              </Button>,
+      <Modal
+        title="Add Product"
+        visible={visible}
+        onOk={handleOk}
+        onCancel={handleCancel}
+      >
+        <Form onFinish={onFinish}>
+          <Form.Item
+            label="Name"
+            name="name"
+            rules={[{ required: true }]}
+          >
+            <Input />
+          </Form.Item>
+          <Form.Item
+            label="Price"
+            name="price"
+            rules={[{ required: true}]}
+          >
+            <Input />
+          </Form.Item>
+          <Form.Item label="Product Image">
+        <Upload
+          name="file"
+          beforeUpload={() => false}
+        >
+          <Button>
+            <FiUpload />Upload
+          </Button>
+        </Upload>
+      </Form.Item>
+          <div style={{ textAlign: "center" }}>
+          <Form.Item >
+            <Button type="primary" htmlType="submit">
+              Post
+            </Button>
+          </Form.Item>
+          <Form.Item>
               <Button
                 key="link"
                 href="https://google.com"
-                type="primary"
-                loading={loading}
+                type="dashed"
                 onClick={handleOk}
               >
                 Search on Google
-              </Button>,
-            ]}
-          >
-            Name: <Input placeholder='Enter product name' />
-            Price: <Input placeholder='Enter product price' />
-            <div class="input-group">
-              <div class="custom-file">
-                <input type="file" class="custom-file-input" id="inputGroupFile01"
-                  aria-describedby="inputGroupFileAddon01" />
+              </Button>
+              </Form.Item>
               </div>
-            </div>
-          </Modal>
-        </div>
+        </Form>
+      </Modal>
+      </div>
       </div>
     </>
-
   );
 };
 
