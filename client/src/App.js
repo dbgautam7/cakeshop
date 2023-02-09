@@ -14,6 +14,12 @@ import Navbar from './containers/admin/components/navbar/navbar';
 import Users from './containers/admin/pages/users/users';
 import Products from './containers/admin/pages/products/products';
 import AdminHome from './containers/admin/pages/adminHome/adminHome';
+import ProfileSettings from './containers/sharedScreens/profileSettings';
+import ChangePassword from './containers/sharedScreens/changePassword';
+import Settings from './containers/admin/pages/settings/settings';
+import Orders from './containers/admin/pages/orders/orders';
+import Analytics from './containers/admin/pages/analytics/analytics';
+import Notifications from './containers/admin/pages/notifications/notifications';
 
 const App=()=> {
   const {phoneNumber} =useSelector(state=>state.user)
@@ -40,8 +46,12 @@ const App=()=> {
         return(
           <Routes>
             <Route path='/' element={<><Navbar /><AdminHome /></>} />
+            <Route path='/orders' element={<><Navbar /><Orders /></>} />
             <Route path='/users' element={<><Navbar /><Users /></>} />
             <Route path='/products' element={<><Navbar /><Products /></>} />
+            <Route path='/analytics' element={<><Navbar /><Analytics /></>} />
+            <Route path='/settings' element={<><Navbar /><Settings /></>} />
+            <Route path='/notifications' element={<><Navbar /><Notifications /></>} />
             <Route path='*' element={<ErrorPage />} />
           </Routes>
         )
@@ -55,6 +65,8 @@ const App=()=> {
       <Route path='/contact' element={<><MyNavbar /><Contact /></>} />
       <Route path='/aboutus' element={<><MyNavbar /><AboutUs /></>} />
       <Route path='/profile' element={<><MyNavbar /><Profile /></>} />
+      <Route path='/profileSettings' element={<><MyNavbar /><ProfileSettings /></>} />
+      <Route path='/changePassword' element={<><MyNavbar /><ChangePassword /></>} />
       <Route path='/map' element={<><MyNavbar /><MyMap /></>} />
       <Route path='*' element={<ErrorPage />} />
           </Routes>

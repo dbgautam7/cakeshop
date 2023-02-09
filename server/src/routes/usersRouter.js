@@ -27,6 +27,23 @@ router.post('/profile', upload, async (req, res) =>{
   }
 })
 
+router.get("/users/:id", async (req, res) => {
+  try {
+      const data = await Users.findById(req.params.id)
+      if(data){
+          res.status(200).json({
+            userDetails:data
+          })
+      }else{
+          res.status(500).json({
+              msg: "something went wrong"
+          })
+      }
+  } catch (err) {
+      console.log(err);
+  }
+  });
+
 router.post("/signup", async (req, res) => {
   try {
     const hash = await bcrypt.hashSync(req.body.password, 10);
