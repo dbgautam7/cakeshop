@@ -1,4 +1,26 @@
+.userNavbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #fff;
+    padding: 10px;
+  }
+  
+  .userNavbar a {
+    color: #fff;
+    text-decoration: none;
+    margin-right: 20px;
+    font-size: 18px;
+  }
 
+  .userNavbar h4 {
+  color: rgb(183, 154, 190);
+}
+  
+  /* .show-time {
+    font-size: 18px;
+  } */
+  
 .show-time{
     color: rgb(64, 207, 135);
      margin-left: 120px;

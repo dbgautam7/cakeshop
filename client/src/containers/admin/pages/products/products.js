@@ -1,14 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Modal, Form, Input, Button, message,Upload} from "antd";
 import axios from "axios";
 import MySidebar from "../../components/sidebar/sidebar";
 import { IoIosAddCircle } from 'react-icons/io';
 import { FiUpload } from 'react-icons/fi';
 
-
 const Products = () => {
   const [visible, setVisible] = useState(false);
-
   const [name, setName] = useState("");
   const [price,setPrice]=useState()
   const [selectedFile, setSelectedFile] = useState();
@@ -17,7 +15,10 @@ const Products = () => {
     setVisible(true);
   };
 
-  const handleOk = () => {
+
+  const handleOk = (e) => {
+    console.log(e.target.value)
+
     const formData = new FormData();
     formData.append("name", name);
     formData.append("price", price);
@@ -26,6 +27,10 @@ const Products = () => {
     axios.post(`${process.env.REACT_APP_API_URL}/products`, formData).then((res) => {
       console.log(res.data);
       message.success("Product added successfully",[2])
+      setName('')
+      setPrice()
+      setSelectedFile('')
+      setVisible(false);
       })
       .catch((err) => alert(err,"Error"));
   };
@@ -76,7 +81,8 @@ const Products = () => {
           label="Product Image">
         <Upload
           name="file"
-          status='done'
+          showUploadList={true}
+          status="done"
           value={selectedFile}
           onChange={(e) => setSelectedFile(e.target.files[0])}
           >

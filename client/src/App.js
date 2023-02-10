@@ -35,8 +35,8 @@ const App=()=> {
       const AuthScreen=()=>{
         return(
           <Routes>
-          <Route  path="/signup" element={<SignupForm />} />
-      <Route path="/" element={<Login />} />
+            <Route exact path="/" element={<Login />} />
+          <Route path="/signup" element={<SignupForm />} />
       <Route path='*' element={<ErrorPage />} />
       </Routes>
         )
@@ -45,7 +45,7 @@ const App=()=> {
       const AdminScreen=()=>{
         return(
           <Routes>
-            <Route path='/' element={<><Navbar /><AdminHome /></>} />
+            <Route exact path='/' element={<><Navbar /><AdminHome /></>} />
             <Route path='/orders' element={<><Navbar /><Orders /></>} />
             <Route path='/users' element={<><Navbar /><Users /></>} />
             <Route path='/products' element={<><Navbar /><Products /></>} />
@@ -61,7 +61,7 @@ const App=()=> {
       const UserScreen=()=>{
         return(
           <Routes>
-            <Route path='/' element={<><MyNavbar /><Home /></>} />
+            <Route exact path='/' element={<><MyNavbar /><Home /></>} />
       <Route path='/contact' element={<><MyNavbar /><Contact /></>} />
       <Route path='/aboutus' element={<><MyNavbar /><AboutUs /></>} />
       <Route path='/profile' element={<><MyNavbar /><Profile /></>} />

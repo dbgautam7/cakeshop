@@ -3,6 +3,7 @@ import { faHeart, faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import './cart.css'
 const Cart=(props)=> {
+
   const [isFav, setIsFav] = useState(false)
   return (
     <div className='cart-container'>
@@ -23,7 +24,6 @@ const Cart=(props)=> {
        <FontAwesomeIcon icon={faCartShopping} 
         onClick={()=>{
           props.addCart(props.id)
-          
         }}
        />  
       </div>

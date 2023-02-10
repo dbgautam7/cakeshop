@@ -1,5 +1,6 @@
 import React from 'react'
 import MySidebar from '../../components/sidebar/sidebar'
+import OrdersDescription from './ordersDescription'
 
 const Orders = () => {
   return (
@@ -8,7 +9,7 @@ const Orders = () => {
             <MySidebar />
         </div>
         <div style={{width:"75%", marginTop:"30px"}}>
-Orders
+<OrdersDescription />
 </div>
     </div>
   )

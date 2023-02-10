@@ -52,8 +52,6 @@ const MyMap = ()=> {
     }
     
   function DraggableMarker() {
-
-    // const {senderLocationLatLng} = useSelector(state=> state.location)
     const dispatch = useDispatch()
     const markerRef = useRef(null)
 

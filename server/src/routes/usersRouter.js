@@ -100,4 +100,38 @@ router.post("/login", async (req, res) => {
 
 });
 
+router.post("/changePassword", async (req, res) => {
+  const { currentPassword, newPassword } = req.body;
+  console.log(currentPassword,newPassword,req.body)
+
+  try {
+    // Validate the current password
+    const user = await Users.findOne({ phoneNumber: req.body.phoneNumber }).lean();
+    console.log(req.body.phoneNumber)
+    console.log( user)
+
+    if (!user) {
+      return res.status(400).json({ error: "User not found" });
+    }
+
+    const isMatch = await bcrypt.compare(currentPassword, user.password);
+   
+
+    if (!isMatch) {
+      return res.status(400).json({ success: false, message: 'Incorrect current password' });
+    }
+
+    // Hash the new password and update the user in the database
+    const salt = await bcrypt.genSalt(10);
+    const hash = await bcrypt.hash(newPassword, salt);
+    user.password = hash;
+    await user.save();
+
+    return res.json({ success: true });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ success: false, message: 'Server error' });
+  }
+});
+
 module.exports = router;

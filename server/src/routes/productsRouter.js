@@ -3,17 +3,29 @@ const router = express.Router();
 const Products=require("../models/Products")
 const multer  = require('multer')
 
-router.post("/products", async (req, res) => {
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, '../client/src/uploads')
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname)
+  }
+})
+
+const upload = multer({ storage: storage }).single('productImage')
+
+router.post("/products", upload, async (req, res) => {
     try {
-      const product=await Products.findOne({ name: req.body.name })
+      console.log(req.file)
+      const product=await Products.findOne({ name: req.body.name,price:req.body.price ,productImage:req.file})
         if(!product){
-          const productData =await Products.create(req.body);
-          console.log(productData)
-          if (productData) {
+          // const productData =await Products.create(req.body);
+          // console.log(productData)
+          // if (productData) {
             res.json({ msg: "Product is added" });
-          } else {
-            res.json({ msg: "something went worng" });
-          } 
+          // } else {
+          //   res.json({ msg: "something went worng" });
+          // } 
         }
         else{
           res.status(409).json({ error: "Product already exists" });

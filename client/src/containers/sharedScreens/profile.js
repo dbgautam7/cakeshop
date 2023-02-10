@@ -67,7 +67,9 @@ const Profile = () => {
   </Row>
   <div className='actionBtn'>
     <Button type="dashed" ghost >
-      <Link to='/changePassword'><ChangePassword /></Link></Button>
+      <Link to='/changePassword'>Change Password</Link></Button>
+      {/* <Link to='/profileSettings'><ProfileSettings /></Link></Button> */}
+
       </div>
   </div>
     </>
