@@ -106,8 +106,7 @@ router.post("/changePassword", async (req, res) => {
 
   try {
     // Validate the current password
-    const user = await Users.findOne({ phoneNumber: req.body.phoneNumber }).lean();
-    console.log(req.body.phoneNumber)
+    const user = await Users.findOne({_id:req.body._id}).lean();
     console.log( user)
 
     if (!user) {

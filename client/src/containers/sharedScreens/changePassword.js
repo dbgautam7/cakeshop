@@ -28,7 +28,7 @@ const ChangePassword = () => {
   };
 
   return (
-    <>
+    <div className='changePassword'>
     <Form form={form} onFinish={handleSubmit}>
     <Form.Item
       label="Current password"
@@ -69,7 +69,7 @@ const ChangePassword = () => {
       </Button>
     </Form.Item>
   </Form>
-  </>
+  </div>
   )
 }
 

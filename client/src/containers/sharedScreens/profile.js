@@ -66,10 +66,10 @@ const Profile = () => {
     </Col>
   </Row>
   <div className='actionBtn'>
-    <Button type="dashed" ghost >
-      <Link to='/changePassword'>Change Password</Link></Button>
-      {/* <Link to='/profileSettings'><ProfileSettings /></Link></Button> */}
-
+    <Button type="dashed" ghost>
+      <Link to='/changePassword'>Change Password</Link>
+      {/* <Link to='/profileSettings'>Profile Settings</Link> */}
+      </Button>
       </div>
   </div>
     </>

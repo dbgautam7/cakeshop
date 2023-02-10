@@ -10,9 +10,9 @@ const ProfileSettings = () => {
         {
           key: '1',
           label: (
-            <Link to='/changePassword' >
+            // <Link to='/changePassword' >
               <ChangePassword />
-            </Link>
+            // </Link>
           ),
         },
         {

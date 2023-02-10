@@ -9,7 +9,7 @@ import MyNavbar from './containers/navbar/navbar';
 import Profile from './containers/sharedScreens/profile';
 import ErrorPage from './containers/errrorPage/errorPage';
 import { useSelector } from 'react-redux';
-import MyMap from './components/map';
+import MyMap from './containers/map/map';
 import Navbar from './containers/admin/components/navbar/navbar';
 import Users from './containers/admin/pages/users/users';
 import Products from './containers/admin/pages/products/products';
