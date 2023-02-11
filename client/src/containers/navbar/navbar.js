@@ -20,7 +20,7 @@ const MyNavbar = () => {
 
     return (
     <>
-        <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+        <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" style={{ height: "80px" }}>
             <div className='userNavbar'>
                     <Nav className="me-auto my-2 my-lg-0">
                     <Link to="/"><h4>Bakery Shop</h4></Link>

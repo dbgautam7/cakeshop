@@ -100,36 +100,29 @@ router.post("/login", async (req, res) => {
 
 });
 
-router.post("/changePassword", async (req, res) => {
-  const { currentPassword, newPassword } = req.body;
-  console.log(currentPassword,newPassword,req.body)
-
+router.put("/changePassword", async (req, res) => {
   try {
-    // Validate the current password
-    const user = await Users.findOne({_id:req.body._id}).lean();
-    console.log( user)
-
-    if (!user) {
-      return res.status(400).json({ error: "User not found" });
+    const user = await Users.findOne({ _id: req.query._id })
+    if (user) {
+      const { password } = user;
+      const isMatched =await bcrypt.compareSync(req.body.currentPassword, password);
+      if (isMatched) {
+        const hash = await bcrypt.hashSync(req.body.newPassword, 10);
+        user.password = hash;
+        const data = await Users.findByIdAndUpdate(user._id, user);
+        if (data) {
+          res.status(200).json({success:true, msg: "Password has changed" })
+        }
+        else {
+          res.status(500).json({ msg: "something went wrong" })
+        }
+      } else {
+        res.status(500).json({ msg: "Current password does not matched" })
+      }
     }
 
-    const isMatch = await bcrypt.compare(currentPassword, user.password);
-   
-
-    if (!isMatch) {
-      return res.status(400).json({ success: false, message: 'Incorrect current password' });
-    }
-
-    // Hash the new password and update the user in the database
-    const salt = await bcrypt.genSalt(10);
-    const hash = await bcrypt.hash(newPassword, salt);
-    user.password = hash;
-    await user.save();
-
-    return res.json({ success: true });
-  } catch (error) {
-    console.error(error);
-    return res.status(500).json({ success: false, message: 'Server error' });
+  } catch (err) {
+    console.log(err);
   }
 });
 

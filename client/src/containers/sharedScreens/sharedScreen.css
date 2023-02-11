@@ -63,3 +63,13 @@
     margin-top: 10px;
   }
   
+
+  .changePassword{
+    width: fit-content;
+    height: max-content;
+    margin: 40px auto;
+    padding: 10px;
+    background-color: blanchedalmond;
+    border: 5px solid rosybrown;
+   border-radius: 15px;
+  }

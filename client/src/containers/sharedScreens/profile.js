@@ -1,4 +1,4 @@
-import './profile.css'
+import './sharedScreen.css'
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
@@ -59,6 +59,7 @@ const Profile = () => {
     <Col span={20}>
       <Card title="User Description" bordered={true}>
       <div className="usertdetails">
+      <h3>Name:<div></div><span>{userDetails.firstName} {userDetails.lastName}</span></h3>
       <h3>Email:<div></div><span>{userDetails.email}</span></h3>
               <h3>Phone Number:<div></div><span>{userDetails.phoneNumber}</span></h3>
               </div>

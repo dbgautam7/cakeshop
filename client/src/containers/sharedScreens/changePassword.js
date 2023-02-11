@@ -1,24 +1,35 @@
 import React, { useState } from 'react';
 import { Form, Input, Button, message } from 'antd';
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux'
+import { logoutResetDetails } from "../../redux/actions/userAction"
+import './sharedScreen.css'
 
 const ChangePassword = () => {
+
+  const [isFormVisible, setIsFormVisible] = useState(true);
+  const dispatch = useDispatch()
+    const { _id } = useSelector(state => state.user)
+
   const [form] = Form.useForm();
 
-  const handleSubmit = async values => {
+  const handleSubmit = async (values) => {
     try {
       const { currentPassword, newPassword } = values;
   
       // Make API call to change password
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/changePassword`, {
-        method: 'POST',
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/changePassword?_id=${_id}`, {
+        method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ currentPassword, newPassword })
       });
       const data = await response.json();
   
       if (data.success) {
-        message.success('Password changed successfully');
+        message.success('Password has changed successfully');
         form.resetFields();
+        dispatch(logoutResetDetails)
+        setIsFormVisible(false);
       } else {
         message.error(data.message);
       }
@@ -28,7 +39,8 @@ const ChangePassword = () => {
   };
 
   return (
-    <div className='changePassword'>
+    <div className='changePassword text-center'>
+      {isFormVisible && (
     <Form form={form} onFinish={handleSubmit}>
     <Form.Item
       label="Current password"
@@ -69,6 +81,7 @@ const ChangePassword = () => {
       </Button>
     </Form.Item>
   </Form>
+)}
   </div>
   )
 }

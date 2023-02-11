@@ -1,5 +1,6 @@
 import React from 'react'
 import MySidebar from '../../components/sidebar/sidebar'
+import { Progress, Space } from 'antd';
 
 const Analytics = () => {
   return (
@@ -8,7 +9,16 @@ const Analytics = () => {
             <MySidebar />
         </div>
         <div style={{width:"75%", marginTop:"30px"}}>
-Analytics
+        <Space wrap>
+        <Progress
+        type="circle"
+        percent={90}
+        strokeColor={{
+          '0%': '#108ee9',
+          '100%': '#87d068',
+        }}
+      />
+  </Space>
 </div>
     </div>
   )

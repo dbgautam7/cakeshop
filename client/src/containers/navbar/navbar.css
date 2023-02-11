@@ -17,17 +17,14 @@
   color: rgb(183, 154, 190);
 }
   
-  /* .show-time {
-    font-size: 18px;
-  } */
   
 .show-time{
     color: rgb(64, 207, 135);
-     margin-left: 120px;
+     margin-left: 130px;
 }
 
 .d-flex{
-    margin-right: 120px;
+    margin-right: 250px;
 }
 
 .bs-person{
