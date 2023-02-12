@@ -30,6 +30,7 @@ router.post('/profile', upload, async (req, res) =>{
 router.get("/users/:id", async (req, res) => {
   try {
       const data = await Users.findById(req.params.id)
+      console.log(data)
       if(data){
           res.status(200).json({
             userDetails:data
@@ -99,6 +100,26 @@ router.post("/login", async (req, res) => {
     }
 
 });
+
+router.get("/users", async (req, res) => {
+  try {
+      const data = await Users.find()
+      console.log(data)
+      if(data){
+          res.status(200).json({
+            userDetails:data
+          })
+      }else{
+          res.status(500).json({
+              msg: "something went wrong"
+          })
+      }
+  } catch (err) {
+      console.log(err);
+  }
+  });
+
+
 
 router.put("/changePassword", async (req, res) => {
   try {

@@ -25,7 +25,7 @@ const MyNavbar = () => {
                     <Nav className="me-auto my-2 my-lg-0">
                     <Link to="/"><h4>Bakery Shop</h4></Link>
                         <Link to="/aboutus">About Us</Link>
-                        <Link to="/contact">Contact</Link><t></t>
+                        <Link to="/contact">Contact</Link>
                         <Link to="/map">Map</Link>
                         <h3 className='show-time'>{currentTime.toLocaleString()}</h3>
                     </Nav>

@@ -16,16 +16,24 @@ const upload = multer({ storage: storage }).single('productImage')
 
 router.post("/products", upload, async (req, res) => {
     try {
-      console.log(req.file)
+      console.log(req.selectedFile)
       const product=await Products.findOne({ name: req.body.name,price:req.body.price ,productImage:req.file})
         if(!product){
           // const productData =await Products.create(req.body);
-          // console.log(productData)
-          // if (productData) {
+          
+          const productData =await new Products({
+            name: req.body.name,
+            price: req.body.price,
+            productImage: req.body.selectedFile
+          });
+          productData.save()
+
+          console.log(productData)
+          if (productData) {
             res.json({ msg: "Product is added" });
-          // } else {
-          //   res.json({ msg: "something went worng" });
-          // } 
+          } else {
+            res.json({ msg: "something went worng" });
+          } 
         }
         else{
           res.status(409).json({ error: "Product already exists" });

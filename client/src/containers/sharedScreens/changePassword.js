@@ -52,7 +52,17 @@ const ChangePassword = () => {
     <Form.Item
       label="New password"
       name="newPassword"
-      rules={[{ required: true, message: 'Please input your new password' }]}
+      rules={[{ required: true, message: 'Please input your new password' },
+      {
+        validator: (rule, value, callback) => {
+          const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{5,}$/;
+          if (!passwordRegex.test(value)) {
+            callback('The password must contain at least 5 characters, including a letter and a number.');
+          }
+          callback();
+        },
+      },
+    ]}
     >
       <Input.Password />
     </Form.Item>
