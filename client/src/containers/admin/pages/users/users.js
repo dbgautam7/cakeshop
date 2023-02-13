@@ -1,12 +1,11 @@
 import React from 'react'
 import MySidebar from '../../components/sidebar/sidebar'
 import { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
 import axios from "axios";
+import UserDataTable from './userDataTable';
 
 const Users = () => {
 
-  const { _id } = useSelector((state) => state.user);
   const [userDetails, setUserDetails] = useState([]);
 
   const fetchUserDetails=async()=> {
@@ -29,12 +28,12 @@ const Users = () => {
             <MySidebar />
         </div>
         <div style={{width:"75%", marginTop:"30px"}}>
-Users list {JSON.stringify(userDetails.firstName)}
-<ul>
-      {userDetails.map(user => (
-        <li key={user._id}>{user.name} ({user.email})</li>
-      ))}
-    </ul>
+      {/* {userDetails.map((user,index) => (
+         (<UserDataTable user={user} index={index} />)
+      ))} */}
+
+      <UserDataTable userDetails={userDetails} />
+    
 </div>
     </div>
     </>

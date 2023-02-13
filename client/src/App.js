@@ -62,12 +62,12 @@ const App=()=> {
         return(
           <Routes>
             <Route exact path='/' element={<><MyNavbar /><Home /></>} />
-      <Route path='/contact' element={<><MyNavbar /><Contact /></>} />
-      <Route path='/aboutus' element={<><MyNavbar /><AboutUs /></>} />
-      <Route path='/profile' element={<><MyNavbar /><Profile /></>} />
-      <Route path='/profileSettings' element={<><MyNavbar /><ProfileSettings /></>} />
-      <Route path='/changePassword' element={<><MyNavbar /><ChangePassword /></>} />
-      <Route path='/map' element={<><MyNavbar /><MyMap /></>} />
+      <Route exact path='/contact' element={<><MyNavbar /><Contact /></>} />
+      <Route exact path='/aboutus' element={<><MyNavbar /><AboutUs /></>} />
+      <Route exact path='/profile' element={<><MyNavbar /><Profile /></>} />
+      <Route exact path='/profileSettings' element={<><MyNavbar /><ProfileSettings /></>} />
+      <Route exact path='/changePassword' element={<><MyNavbar /><ChangePassword /></>} />
+      <Route exact path='/map' element={<><MyNavbar /><MyMap /></>} />
       <Route path='*' element={<ErrorPage />} />
           </Routes>
         )

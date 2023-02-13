@@ -23,13 +23,14 @@ const Products = () => {
     formData.append("name", name);
     formData.append("price", price);
     formData.append("productImage", selectedFile);
+    
 
     axios.post(`${process.env.REACT_APP_API_URL}/products`, formData).then((res) => {
       console.log(res.data);
       message.success("Product added successfully", [2])
-      setName('')
-      setPrice()
-      setSelectedFile('')
+      // setName('')
+      // setPrice()
+      // setSelectedFile('')
       setVisible(false);
     })
       .catch((err) => alert(err, "Error"));

@@ -69,8 +69,8 @@ const Profile = () => {
   <div className='actionBtn'>
     <Button type="dashed" ghost>
       {/* <Link to='/changePassword'>Change Password</Link> */}
-      {/* <Link to='/profileSettings'>Profile Settings</Link> */}
-      <ProfileSettings />
+      <Link to='/profileSettings'>Profile Settings</Link>
+      {/* <ProfileSettings /> */}
       </Button>
       </div>
   </div>

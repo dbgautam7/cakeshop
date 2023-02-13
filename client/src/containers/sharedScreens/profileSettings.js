@@ -1,49 +1,50 @@
-import React from 'react'
 import { DownOutlined, SmileOutlined } from '@ant-design/icons';
 import { Dropdown, Space } from 'antd';
-import ChangePassword from './changePassword';
-import { Link } from 'react-router-dom';
-
-const ProfileSettings = () => {
-
-  const elements = [
-    {
-      key: '1',
-      label: (
-        <Link target="_blank" rel="noopener noreferrer" to='/changePassword' >
-          <ChangePassword />
-       </Link>
-      ),
-    },
-    {
-      key: '2',
-      label:"Forgot Password",
-      icon: <SmileOutlined />,
-      disabled: true,
-    },
-    {
-      key: '3',
-      danger: true,
-      label: 'Deactivate Account',
-    },
-  ];
-
-  return (
-    <> 
-    <Dropdown
+import {Link} from 'react-router-dom'
+const items = [
+  {
+    key: '1',
+    label: (
+      <Link to='/changePassword'> Change Password</Link>
+    ),
+  },
+  {
+    key: '2',
+    label: (
+      <Link target="_blank" rel="noopener noreferrer" to="https://www.aliyun.com">
+        2nd menu item (disabled)
+      </Link>
+    ),
+    icon: <SmileOutlined />,
+    disabled: true,
+  },
+  {
+    key: '3',
+    label: (
+      <Link target="_blank" rel="noopener noreferrer" to="https://www.luohanacademy.com">
+        3rd menu item (disabled)
+      </Link>
+    ),
+    disabled: true,
+  },
+  {
+    key: '4',
+    danger: true,
+    label: 'a danger item',
+  },
+];
+const ProfileSettings = () => (
+  <Dropdown
     menu={{
-      elements,
+      items,
     }}
   >
-     <Link onClick={(e) => e.preventDefault()} to="/profileSettings">
-    <Space>
-      Profile Settings
-      <DownOutlined />
-    </Space>
+    <Link onClick={(e) => e.preventDefault()}>
+      <Space>
+        Hover me
+        <DownOutlined />
+      </Space>
     </Link>
-</Dropdown>
-  </>
-  )
-}
-
-export default ProfileSettings
+  </Dropdown>
+);
+export default ProfileSettings;
