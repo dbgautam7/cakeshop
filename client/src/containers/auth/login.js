@@ -28,7 +28,7 @@ const dispatch=useDispatch()
 
     return (
         <>
-            <div className="login-area">
+        <div className="login-container">
                 <div className="login-box" >
                     <div className="left-side">
                         <h5>Welcome to login page</h5>
@@ -51,7 +51,7 @@ const dispatch=useDispatch()
                                   message.error(data.errorMsg,[2],)
                                 }
                                 
-                                // resetForm({values: '' })
+                                resetForm({values: '' })
                             }
                             }
                         >
