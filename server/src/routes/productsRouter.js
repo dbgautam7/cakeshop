@@ -16,15 +16,15 @@ const upload = multer({ storage: storage }).single('productImage')
 
 router.post("/products", upload, async (req, res) => {
     try {
-      console.log(req.selectedFile)
-      const product=await Products.findOne({ name: req.body.name,price:req.body.price ,productImage:req.file})
+      // console.log(req)
+      const product=await Products.find({})
         if(!product){
           // const productData =await Products.create(req.body);
           
           const productData =await new Products({
             name: req.body.name,
             price: req.body.price,
-            productImage: req.body.selectedFile
+            productImage: req.body.productImage
           });
           productData.save()
 

@@ -16,13 +16,18 @@ const Products = () => {
   };
 
 
+const haandleImageUpload=(e)=>{
+  setSelectedFile(e.target.files[0])
+}
+
   const handleOk = (e) => {
     console.log(e.target.value)
 
     const formData = new FormData();
     formData.append("name", name);
     formData.append("price", price);
-    formData.append("productImage", selectedFile);
+    formData.append("productImage", selectedFile.name);
+    console.log(selectedFile.name)
     
 
     axios.post(`${process.env.REACT_APP_API_URL}/products`, formData).then((res) => {
@@ -98,9 +103,7 @@ const Products = () => {
               <Form.Item
                 rules={[{ required: true }]}
                 label="Product Image">
-                <Upload {...props} onChange={(e) => setSelectedFile(e.target.files[0])}>
-                  <Button icon={<FiUpload />}>Upload</Button>
-                </Upload>
+                <input type='file' onChange={(e) => haandleImageUpload(e)} />
               </Form.Item>
               <div style={{ textAlign: "center" }}>
                 <Form.Item>
