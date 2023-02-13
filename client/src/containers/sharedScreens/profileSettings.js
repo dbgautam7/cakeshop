@@ -8,29 +8,16 @@ const items = [
       <Link to='/changePassword'> Change Password</Link>
     ),
   },
+  
   {
     key: '2',
-    label: (
-      <Link target="_blank" rel="noopener noreferrer" to="https://www.aliyun.com">
-        2nd menu item (disabled)
-      </Link>
-    ),
-    icon: <SmileOutlined />,
+    label: "Deactivate Account(disabled)",
     disabled: true,
   },
   {
     key: '3',
-    label: (
-      <Link target="_blank" rel="noopener noreferrer" to="https://www.luohanacademy.com">
-        3rd menu item (disabled)
-      </Link>
-    ),
-    disabled: true,
-  },
-  {
-    key: '4',
     danger: true,
-    label: 'a danger item',
+    label: 'Forgot Password',
   },
 ];
 const ProfileSettings = () => (
@@ -41,7 +28,7 @@ const ProfileSettings = () => (
   >
     <Link onClick={(e) => e.preventDefault()}>
       <Space>
-        Hover me
+        Profile Settings
         <DownOutlined />
       </Space>
     </Link>

@@ -4,7 +4,6 @@ import { useSelector } from "react-redux";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import ProfileSettings from "./profileSettings";
-import ChangePassword from "./changePassword";
 import { Card, Col, Row,Button } from 'antd';
 import { DownloadOutlined } from '@ant-design/icons';
 
@@ -68,9 +67,7 @@ const Profile = () => {
   </Row>
   <div className='actionBtn'>
     <Button type="dashed" ghost>
-      {/* <Link to='/changePassword'>Change Password</Link> */}
-      <Link to='/profileSettings'>Profile Settings</Link>
-      {/* <ProfileSettings /> */}
+      <Link to='/profileSettings'><ProfileSettings /></Link>
       </Button>
       </div>
   </div>
