@@ -49,7 +49,6 @@ const dispatch=useDispatch()
 
                                 } else {
                                   message.error(data.errorMsg,[2],)
-                                    // alert(data.msg)
                                 }
                                 
                                 // resetForm({values: '' })

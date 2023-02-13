@@ -1,8 +1,12 @@
-// import './profile.css'
+import './sharedScreen.css'
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import ProfileSettings from "./profileSettings";
+import { Card, Col, Row,Button } from 'antd';
+import { DownloadOutlined } from '@ant-design/icons';
+
 const Profile = () => {
 
   const { _id } = useSelector((state) => state.user);
@@ -35,37 +39,38 @@ const Profile = () => {
     fetchUserDetails();
   }, []);
   console.log(file)
+
   return (
     <>
-    
-      <div class="card">
-        <div className='ram'>
-
-          <input type="file" onChange={(e) => {
+    <div className='card'>
+      <Row gutter={16}>
+    <Col span={20}>
+      <Card title="Update Profile Picture" bordered={true}>
+      <input type="file" onChange={(e) => {
             setFile(e.target.files[0])
-          }} className='setFile'/>
-          </div>
-       
-        <div class="imgbx">
+          }}/>
+          
+          <Button onClick={() => triggerImgSave()} type="primary" icon={<DownloadOutlined />} >
+          </Button>
           {userDetails.avatarName && <img src={require(`../../uploads/${userDetails.avatarName}`)} alt="Loading.." />}
-        </div>
-        <div class="contain">
-          <div class="detail">
-            <h2>{userDetails.name}<div></div>
-              <span>{userDetails._id}</span>
-            </h2>
-            <div class="data">
-              <h3>email<div></div><span>{userDetails.email}</span></h3>
-
-              <h3>Phone Number<div></div><span>984780000</span></h3>
-            </div>
-            <div class="actionBtn">
-              <button onClick={() => triggerImgSave()}>Save</button>
-              <button><Link to='/settings'> Settings</Link></button>
-            </div>
-          </div>
-        </div>
+      </Card>
+    </Col>
+    <Col span={20}>
+      <Card title="User Description" bordered={true}>
+      <div className="usertdetails">
+      <h3>Name:<div></div><span>{userDetails.firstName} {userDetails.lastName}</span></h3>
+      <h3>Email:<div></div><span>{userDetails.email}</span></h3>
+              <h3>Phone Number:<div></div><span>{userDetails.phoneNumber}</span></h3>
+              </div>
+      </Card>
+    </Col>
+  </Row>
+  <div className='actionBtn'>
+    <Button type="dashed" ghost>
+      <Link to='/profileSettings'><ProfileSettings /></Link>
+      </Button>
       </div>
+  </div>
     </>
   );
 };

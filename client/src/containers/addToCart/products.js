@@ -9,9 +9,17 @@ import pastries from '../../images/pastries.jpg'
 import other from '../../images/bakery3.jpg'
 import './cart.css'
 import { AiFillPlusCircle,AiFillMinusCircle } from "react-icons/ai";
+import Widget from '../admin/components/widget/widget';
 
 
 const Products = () => {
+
+const[data,setData]=useState()
+
+const updateData = (value) => {
+    setData(value);
+  };
+
     const products = [
         {
             id: 1,
@@ -91,8 +99,6 @@ const Products = () => {
             setFavLists(tempFavList)
         }
 
-
-        // setTotalLikes(totalLikes+value)
     }
 
     const addCart = (id) => {
@@ -125,18 +131,18 @@ const Products = () => {
                 {productList.map((item, id) => {
                     return (<Cart item={item}
                         id={id}
+                        updateData={updateData}
                         addCart={addCart}
                         newCount={newCount} />)
                 }
                 )}
             </div>
             
-            {/* <div>
+            <div>
             {productList.map((item,id)=>{
-                    return (<BoxSx item={item} 
-                    id={id} />)
+                    return (<Widget item={item} id={id}  />)
                 })}
-            </div> */}
+            </div>
 
             <div className="Fav">
                 Favorites list: {favLists.length}
@@ -170,7 +176,7 @@ const Products = () => {
                                 </tr>
                             )
                         })}
-                        <h7 id="center">Grand Total  =Rs {calculateGrandTotal()}</h7>
+                        <h3 id="center">Grand Total  =Rs {calculateGrandTotal()}</h3>
                     </tbody>
                 </table>
             </div>

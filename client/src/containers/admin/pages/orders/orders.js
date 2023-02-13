@@ -1,23 +1,18 @@
 import React from 'react'
-import WaterMark from '../../../../components/waterMark'
 import MySidebar from '../../components/sidebar/sidebar'
-import Widget from '../../components/widget/widget'
-import './adminHome.css'
+import OrdersDescription from './ordersDescription'
 
-const AdminHome = () => {
+const Orders = () => {
   return (
-    <>
     <div className='home' style={{display:"flex"}}>
         <div style={{width:"25%"}}>
             <MySidebar />
         </div>
         <div style={{width:"75%", marginTop:"30px"}}>
-        <WaterMark />
-<Widget />
+<OrdersDescription />
 </div>
     </div>
-    </>
   )
 }
 
-export default AdminHome
+export default Orders

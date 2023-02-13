@@ -27,6 +27,24 @@ router.post('/profile', upload, async (req, res) =>{
   }
 })
 
+router.get("/users/:id", async (req, res) => {
+  try {
+      const data = await Users.findById(req.params.id)
+      console.log(data)
+      if(data){
+          res.status(200).json({
+            userDetails:data
+          })
+      }else{
+          res.status(500).json({
+              msg: "something went wrong"
+          })
+      }
+  } catch (err) {
+      console.log(err);
+  }
+  });
+
 router.post("/signup", async (req, res) => {
   try {
     const hash = await bcrypt.hashSync(req.body.password, 10);
@@ -81,6 +99,52 @@ router.post("/login", async (req, res) => {
       })
     }
 
+});
+
+router.get("/users", async (req, res) => {
+  try {
+      const data = await Users.find()
+      console.log(data)
+      if(data){
+          res.status(200).json({
+            userDetails:data
+          })
+      }else{
+          res.status(500).json({
+              msg: "something went wrong"
+          })
+      }
+  } catch (err) {
+      console.log(err);
+  }
+  });
+
+
+
+router.put("/changePassword", async (req, res) => {
+  try {
+    const user = await Users.findOne({ _id: req.query._id })
+    if (user) {
+      const { password } = user;
+      const isMatched =await bcrypt.compareSync(req.body.currentPassword, password);
+      if (isMatched) {
+        const hash = await bcrypt.hashSync(req.body.newPassword, 10);
+        user.password = hash;
+        const data = await Users.findByIdAndUpdate(user._id, user);
+        if (data) {
+          res.status(200).json({success:true, msg: "Password has changed" })
+        }
+        else {
+          res.status(500).json({ msg: "something went wrong" })
+        }
+      } else {
+        res.status(500).json({ msg: "Current password does not matched" })
+      }
+    }
+
+  } catch (err) {
+    console.log(err);
+  }
 });
 
 module.exports = router;

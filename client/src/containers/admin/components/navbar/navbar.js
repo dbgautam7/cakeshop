@@ -1,7 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import logo from '../../../../images/admin.png'
-import { IoMdNotifications } from 'react-icons/io';
 import { GrLanguage } from 'react-icons/gr';
 import Logout from '../../../../components/logout';
 
@@ -24,8 +23,6 @@ const Navbar = () => {
               <i className="fas fa-search"></i>
             </span>
           </form>
-
-          <IoMdNotifications style={{ height: "40px", width: "40px", color: "grey" }} />
 
          <h3 style={{color:"black"}}><GrLanguage /> English</h3>
 
