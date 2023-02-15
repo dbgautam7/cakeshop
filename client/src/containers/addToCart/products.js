@@ -1,86 +1,34 @@
-import React, { useState } from 'react';
-import Cart from './cart';
-import bread from '../../images/bread.jpg'
-import bdycake from '../../images/bdycake.jpg'
-import buns from '../../images/buns.jpg'
-import cookies from '../../images/cookies.jpg'
-import dessert from '../../images/dessert.jpg'
-import pastries from '../../images/pastries.jpg'
-import other from '../../images/bakery3.jpg'
-import './cart.css'
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import { AiFillPlusCircle,AiFillMinusCircle } from "react-icons/ai";
-import Widget from '../admin/components/widget/widget';
+import Cart from './cart'
+import './cart.css'
 
 
 const Products = () => {
 
-const[data,setData]=useState()
+    const [favLists, setFavLists] = useState([]);
+    const [productList, setProductList] = useState([]);
+    const [loading,setLoading]=useState(false)
+    const[data,setData]=useState()
 
 const updateData = (value) => {
     setData(value);
   };
 
-    const products = [
-        {
-            id: 1,
-            img: bread,
-            name: "Bread",
-            price: 55,
-            cartCount: 0,
-            quantity: 1
-        },
-        {
-            id: 2,
-            img: buns,
-            name: "Buns",
-            price: 77,
-            cartCount: 0,
-            quantity: 1
-        },
-        {
-            id: 3,
-            img: pastries,
-            name: "Pastries",
-            price: 99,
-            cartCount: 0,
-            quantity: 1
-        },
-        {
-            id: 4,
-            img: bdycake,
-            name: "Cakes",
-            price: 699,
-            cartCount: 0,
-            quantity: 1
-        },
-        {
-            id: 5,
-            img: cookies,
-            name: "Cookies",
-            price: 89,
-            cartCount: 0,
-            quantity: 1
-        },
-        {
-            id: 6,
-            img: dessert,
-            name: "Desserts",
-            price: 120,
-            cartCount: 0,
-            quantity: 1
-        },
-        {
-            id: 7,
-            img: other,
-            name: "Others",
-            price: 299,
-            cartCount: 0,
-            quantity: 1
-        },
-    ];
-
-    const [favLists, setFavLists] = useState([]);
-    const [productList, setProductList] = useState(products);
+    const fetchProductsData=()=>{
+        setLoading(true)
+        axios.get(`${process.env.REACT_APP_API_URL}/products`)
+        .then((response) => {
+            // console.log(response)
+            setProductList(response.data.productList);
+          });
+          setLoading(false)
+    }
+    
+    useEffect(()=>{
+        fetchProductsData()
+    },[])
 
     const newCount = (value) => {
         const newVal = favLists.filter((item, id) => {
@@ -138,11 +86,6 @@ const updateData = (value) => {
                 )}
             </div>
             
-            <div>
-            {productList.map((item,id)=>{
-                    return (<Widget item={item} id={id}  />)
-                })}
-            </div>
 
             <div className="Fav">
                 Favorites list: {favLists.length}

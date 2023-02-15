@@ -1,8 +1,17 @@
+.signup-container{
+  background-image: url(https://media.istockphoto.com/id/1013435204/photo/businessman-filling-online-registration-form.jpg?b=1&s=170667a&w=0&k=20&c=3zXl5z4At09Hs_gx-rGfRjXhJ7SHJNZO2jW4DfFVDNI=);
+  background-size: cover;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .sign-up-form {
     margin: auto;
-    max-width: 50%;
-    background-color: #f8ebf8ec;
-    border-radius: 10px;
+    width: 40%;
+    background-color: rgba(138, 212, 148, 0.63);
+    border-radius: 50px;
     padding: 25spx;
     margin-top: 30px;
   }

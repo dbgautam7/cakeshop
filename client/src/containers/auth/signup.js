@@ -4,7 +4,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { Link, useNavigate } from "react-router-dom";
 import {message} from 'antd'
-import { responseHandler } from "../../utils/responseHandler";
+
 
 const SignupForm = () => {
   const navigate=useNavigate()
@@ -38,6 +38,7 @@ const SignupForm = () => {
   });
   return (
     <>
+    <div className="signup-container">
       <div className="sign-up-form">
         {/* using formik yup library for from validation */}
         <Formik
@@ -67,11 +68,7 @@ const SignupForm = () => {
               else{
                 message.error(data.error,[3])
               }
-              // const alertMessage = responseHandler(response, data.errorMsg)
-              //     alert(alertMessage)
-              
-             
-              // resetForm({ values: "" });
+              resetForm({ values: "" });
             } catch (err) {
               alert(err);
             }
@@ -115,7 +112,7 @@ const SignupForm = () => {
         </span>
       </div>
       </div>
-      
+      </div>
     </>
 
   )
