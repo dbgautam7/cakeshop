@@ -5,7 +5,7 @@ const multer  = require('multer')
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, '../client/src/uploads')
+    cb(null, '../client/src/uploads/products')
   },
   filename: function (req, file, cb) {
     cb(null, file.originalname)
@@ -17,7 +17,7 @@ const upload = multer({ storage: storage }).single('productImage')
 router.post("/products", upload, async (req, res) => {
     try {
       // console.log(req)
-      const product=await Products.find({})
+      const product=await Products.findOne({name: req.body.name})
         if(!product){
           // const productData =await Products.create(req.body);
           
@@ -36,7 +36,7 @@ router.post("/products", upload, async (req, res) => {
           } 
         }
         else{
-          res.status(409).json({ error: "Product already exists" });
+          res.status(409).json({ msg: "Product already exists" });
         }
    
     } catch (err) {
@@ -47,8 +47,10 @@ router.post("/products", upload, async (req, res) => {
   router.get("/products", async (req, res) => {
     try {
         const data = await Products.find()
+        console.log(data)
         if(data){
             res.status(200).json({
+              productList:data,
                 msg:"Fetch Success"
             })
         }else{

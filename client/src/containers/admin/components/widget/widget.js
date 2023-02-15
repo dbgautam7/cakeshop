@@ -1,19 +1,33 @@
 import React from 'react'
+import { EditOutlined, EllipsisOutlined, DeleteOutlined } from '@ant-design/icons';
 import { Card } from 'antd';
+const { Meta } = Card;
 
-const Widget = () => {
+const Widget = (props) => {
   return (
     <>
     <Card
-    title="Card title"
-    bordered={true}
     style={{
       width: 300,
     }}
+    //  cover={<img alt={props.item.productImage} 
+    //src={require(`../../../../uploads/products/${props.item.productImage}`)} />
+    cover={
+      props.item.productImage && 
+      <img
+      src={props.item.productImage}
+        alt={props.item.productImage} />
+    }
+    actions={[
+      <DeleteOutlined  key="delete" />,
+      <EditOutlined key="edit" />,
+      <EllipsisOutlined key="ellipsis" />,
+    ]}
   >
-    <p>Card content</p>
-    <p>Card content</p>
-    <p>Card content</p>
+    <Meta
+      title={props.item.name}
+      description= {"Rs " + props.item.price}
+    />
   </Card>
     </>
   )

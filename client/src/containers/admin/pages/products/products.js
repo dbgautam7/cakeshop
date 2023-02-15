@@ -31,11 +31,13 @@ const haandleImageUpload=(e)=>{
     
 
     axios.post(`${process.env.REACT_APP_API_URL}/products`, formData).then((res) => {
-      console.log(res.data);
       message.success("Product added successfully", [2])
-      // setName('')
-      // setPrice()
-      // setSelectedFile('')
+      setName('')
+      setPrice()
+      setSelectedFile('')
+      formData.delete('name');
+      formData.delete('price');
+      formData.delete('productImage');
       setVisible(false);
     })
       .catch((err) => alert(err, "Error"));
@@ -46,23 +48,23 @@ const haandleImageUpload=(e)=>{
   };
 
 
-  const props = {
-    name: 'file',
-    action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
-    headers: {
-      authorization: 'authorization-text',
-    },
-    onChange(info) {
-      if (info.selectedFile.status !== 'uploading') {
-        console.log(info.selectedFile, info.fileList);
-      }
-      if (info.file.status === 'done') {
-        message.success(`${info.selectedFile.name} file uploaded successfully`);
-      } else if (info.selectedFile.status === 'error') {
-        message.error(`${info.selectedFile.name} file upload failed.`);
-      }
-    },
-  };
+  // const props = {
+  //   name: 'file',
+  //   action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
+  //   headers: {
+  //     authorization: 'authorization-text',
+  //   },
+  //   onChange(info) {
+  //     if (info.selectedFile.status !== 'uploading') {
+  //       console.log(info.selectedFile, info.fileList);
+  //     }
+  //     if (info.file.status === 'done') {
+  //       message.success(`${info.selectedFile.name} file uploaded successfully`);
+  //     } else if (info.selectedFile.status === 'error') {
+  //       message.error(`${info.selectedFile.name} file upload failed.`);
+  //     }
+  //   },
+  // };
 
   return (
     <>
