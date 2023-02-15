@@ -14,22 +14,6 @@
     width: 400px;
   }
   
-  .cart img {
-    height: 200px;
-    width: 200px;
-  }
-  
-  .cart .fa-heart {
-    cursor: pointer;
-    margin-bottom: 10px;
-    font-size: 30px;
-  }
-  
-  .cart .fa-cart-shopping {
-    cursor: pointer;
-    font-size: 30px;
-  }
-
 
   .Fav {
     margin: 20px 0;

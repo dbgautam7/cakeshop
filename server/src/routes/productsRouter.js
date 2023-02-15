@@ -78,4 +78,20 @@ router.post("/products", upload, async (req, res) => {
       }
       });
 
+      router.put("/products", async (req, res) => {
+        // console.log(req.body._id)
+        try {
+          const data = await Products.findByIdAndUpdate(req.body._id)
+          if(data){
+            res.status(200).json({msg: 'updated successfully'})
+          }
+          else{
+            res.status(500).json({msg:"something went wrong"})
+          }
+        } catch (err) {
+            console.log(err);
+        }
+        });
+  
+
   module.exports = router;

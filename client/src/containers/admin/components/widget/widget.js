@@ -17,10 +17,27 @@ const triggerDeleteProduct=async()=>{
    console.log(res)
    if(res.status===200){
     props.fetchProductsData()
-    message.success("Orders deleted successfully",[2])
+    message.success("Products deleted successfully",[2])
   }
   else{
     message.error("Unable to delete the product",[2])
+  }
+}
+
+const triggerEditProduct=async()=>{
+  const requestOptions={
+    method:"PUT",
+    headers:{"Content-Type":"application/json"},
+    body:JSON.stringify({_id})
+  }
+  const res=await fetch(`${process.env.REACT_APP_API_URL}/products`,requestOptions)
+  console.log(res)
+  if(res.status===200){
+    props.fetchProductsData()
+    message.success("Products Edited successfully",[2])
+  }
+  else{
+    message.error("Unable to Edit the product",[2])
   }
 }
 
@@ -40,7 +57,7 @@ const triggerDeleteProduct=async()=>{
     }
     actions={[
       <DeleteOutlined  key="delete" onClick={()=>triggerDeleteProduct()} />,
-      <EditOutlined key="edit" />,
+      <EditOutlined key="edit" onClick={()=>triggerEditProduct()} />,
       <EllipsisOutlined key="ellipsis" />,
     ]}
   >
