@@ -28,7 +28,7 @@ router.post("/products", upload, async (req, res) => {
           });
           productData.save()
 
-          console.log(productData)
+          // console.log(productData)
           if (productData) {
             res.json({ msg: "Product is added" });
           } else {
@@ -47,7 +47,7 @@ router.post("/products", upload, async (req, res) => {
   router.get("/products", async (req, res) => {
     try {
         const data = await Products.find()
-        console.log(data)
+        // console.log(data)
         if(data){
             res.status(200).json({
               productList:data,
@@ -62,5 +62,20 @@ router.post("/products", upload, async (req, res) => {
         console.log(err);
     }
     });
+
+    router.delete("/products", async (req, res) => {
+      // console.log(req.body._id)
+      try {
+        const data = await Products.findByIdAndDelete(req.body._id)
+        if(data){
+          res.status(200).json({msg: 'deleted successfully'})
+        }
+        else{
+          res.status(500).json({msg:"something went wrong"})
+        }
+      } catch (err) {
+          console.log(err);
+      }
+      });
 
   module.exports = router;

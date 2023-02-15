@@ -32,7 +32,7 @@ useEffect(()=>{
         </div>
         <div style={{width:"75%", marginTop:"30px"}}>
 {productList.map((item,id)=>{
-  return (<Widget id={id} item={item} />)
+  return (<Widget id={id} item={item} fetchProductsData={fetchProductsData} />)
 })}
 </div>
     </div>
