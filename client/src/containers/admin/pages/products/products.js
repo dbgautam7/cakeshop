@@ -8,35 +8,42 @@ const Products = () => {
   const [visible, setVisible] = useState(false);
   const [name, setName] = useState("");
   const [price, setPrice] = useState()
-  const [selectedFile, setSelectedFile] = useState();
+  const [productImage, setProductImage] = useState();
 
   const showModal = () => {
     setVisible(true);
   };
 
 
-const haandleImageUpload=(e)=>{
-  setSelectedFile(e.target.files[0])
+const handleImageUpload=(e)=>{
+  setProductImage(e.target.files[0])
 }
 
   const handleOk = (e) => {
     // console.log(e.target.value)
+    e.preventDefault()
 
     const formData = new FormData();
     formData.append("name", name);
     formData.append("price", price);
-    formData.append("productImage", selectedFile.name);
-    console.log("hello",selectedFile.name)
-    
+    formData.append("productImage", productImage);
+    console.log("hello",productImage)
+  
 
-    axios.post(`${process.env.REACT_APP_API_URL}/products`, formData).then((res) => {
+    axios.post(`${process.env.REACT_APP_API_URL}/products`, formData,{
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    }).then((res) => {
+      console.log("abcde",res)
+      console.log(res.data,"good")
       message.success("Product added successfully", [2])
-      setName('')
-      setPrice()
-      setSelectedFile('')
-      formData.delete('name');
-      formData.delete('price');
-      formData.delete('productImage');
+      // setName('')
+      // setPrice()
+      // setSelectedFile('')
+      // formData.delete('name');
+      // formData.delete('price');
+      // formData.delete('productImage');
       setVisible(false);
     })
       .catch((err) => alert(err, "Error"));
@@ -104,7 +111,7 @@ const haandleImageUpload=(e)=>{
               <Form.Item
                 rules={[{ required: true }]}
                 label="Product Image">
-                <input type='file' onChange={(e) => haandleImageUpload(e)} />
+                <input type='file' onChange={handleImageUpload} />
               </Form.Item>
               <div style={{ textAlign: "center" }}>
                 <Form.Item>

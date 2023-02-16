@@ -16,17 +16,25 @@ const upload = multer({ storage: storage }).single('productImage')
 
 router.post("/products", upload, async (req, res) => {
     try {
-      // console.log(req)
+
+      // const { name, price } = req.body;
+      // const selectedFile = req.file.filename;
+    
+      // const product = new Product({ name, price,selectedFile  });
+      // await product.save();
+    
+      // res.json(product);
+
+      console.log(req.file,req.body,"check")
       const product=await Products.findOne({name: req.body.name})
         if(!product){
-          // const productData =await Products.create(req.body);
-          
           const productData =new Products({
             name: req.body.name,
             price: req.body.price,
-            productImage: req.body.productImage
+            productImage: req.file.filename
           });
-          console.log(productData)
+          console.log(req.file.filename,"ok")
+          console.log(productData,"data")
           productData.save()
 
           // console.log(productData)
@@ -47,12 +55,23 @@ router.post("/products", upload, async (req, res) => {
   });
 
   router.get("/products", async (req, res) => {
+
+    // const { q } = req.query;
+    // console.log(q)
+    // const search = (validProducts) => {
+    //   return validProducts.filter((item,id) =>
+    //   item.name.includes(q)
+  
+    //   )
+    // }
+
     try {
         const data = await Products.find()
         // console.log(data)
         if(data){
             res.status(200).json({
               productList:data,
+              // validProductsOptions: search(data),
                 msg:"Fetch Success"
             })
         }else{

@@ -1,5 +1,6 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
+import SearchBar from '../../../../components/search/searchBar'
 import MySidebar from '../../components/sidebar/sidebar'
 import Widget from '../../components/widget/widget'
 import './adminHome.css'
@@ -30,7 +31,9 @@ useEffect(()=>{
         <div style={{width:"25%"}}>
             <MySidebar />
         </div>
-        <div style={{width:"75%", marginTop:"30px"}}>
+        <div style={{width:"75%", marginTop:"30px",display:"flex", gap:"32px", flexWrap:"wrap"}}>
+        {/* <SearchBar /> */}
+
 {productList.map((item,id)=>{
   return (<Widget id={id} item={item} fetchProductsData={fetchProductsData} />)
 })}

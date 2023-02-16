@@ -47,13 +47,9 @@ const triggerEditProduct=async()=>{
     style={{
       width: 300,
     }}
-    //  cover={<img alt={props.item.productImage} 
-    //src={require(`../../../../uploads/products/${props.item.productImage}`)} />
-    cover={
-      props.item.productImage && 
-      <img
-      src={props.item.productImage}
-        alt={props.item.productImage} />
+     cover={props.item?.productImage &&
+     <img alt={props.item.productImage} 
+    src={require(`../../../../uploads/products/${props.item?.productImage}`)} />
     }
     actions={[
       <DeleteOutlined  key="delete" onClick={()=>triggerDeleteProduct()} />,

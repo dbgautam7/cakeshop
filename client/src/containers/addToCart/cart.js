@@ -25,8 +25,9 @@ const Cart=(props)=> {
       <CardMedia
         component="img"
         height="194"
-        image={props.item.productIamge}
-        alt={props.item.productIamge}
+        image={require(`../../uploads/products/${props.item.productImage}`)}
+        // image={props.item.productImage ? require(`../../uploads/products/${props.item.productImage}`).default : null}
+        alt={props.item?.productImage || "img"}
       />
       <CardContent>
         <Typography variant="body2" color="text.secondary">
