@@ -1,4 +1,4 @@
-import { useMemo, useRef } from "react";
+import { useMemo, useRef,useCallback, useState } from "react";
 import { MapContainer, TileLayer, Marker, Popup, Polyline } from "react-leaflet"
 import "leaflet/dist/leaflet.css"
 import { useDispatch, useSelector } from "react-redux"
@@ -25,48 +25,51 @@ const dragReceiverMarker = L.icon({
 
 
 const MyMap = () => {
-  const { senderLocationLatLng, receiverLocationLatLng } = useSelector(state => state.location)
-  const dispatch = useDispatch()
-  const toRadian = angle => (angle * Math.PI) / 180;
-  const lat1 = toRadian(receiverLocationLatLng.lat);
-  const lng1 = toRadian(receiverLocationLatLng.lng);
-  const lat2 = toRadian(senderLocationLatLng.lat);
-  const lng2 = toRadian(senderLocationLatLng.lng);
-
-  const calculateDistance = () => {
-    const R = 6371
-    const a =
-      Math.sin((lat2 - lat1) / 2) * Math.sin((lat2 - lat1) / 2) +
-      Math.cos(lat1) * Math.cos(lat2) * Math.sin((lng2 - lng1) / 2) * Math.sin((lng2 - lng1) / 2);
-
-    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-
-    const distance = R * c;
-    notification.open({
-      message: `Distance between Sender and Receiver is: ${distance}`
-      
-    });
-    dispatch(setDistance(distance))
-  }
-
-  const { lat, lng } = senderLocationLatLng
-
-  const center = {
-    lat: 27.68564550564005,
-    lng: 85.3445145828365,
-  }
-
-
-  const geoCodeLatLng = (lat, lng) => {
-    console.log("jgg", process.env.REACT_APP_MAP_API_KEY)
-    fetch(`https://api.geoapify.com/v1/geocode/reverse?lat=${lat}&lon=${lng}&apiKey=${process.env.REACT_APP_MAP_API_KEY}`)
-      .then((res) => res.json())
-      .then((data) => notification.open({ message: `${data.features[0].properties.formatted}` }));
-  }
-
-  const SenderDraggableMarker=()=> {
+  const {senderLocationLatLng,receiverLocationLatLng} = useSelector(state=> state.location)
     const dispatch = useDispatch()
+    const toRadian = angle => (angle * Math.PI) / 180;
+    const lat1 = toRadian(receiverLocationLatLng.lat);
+    const lng1 = toRadian(receiverLocationLatLng.lng);
+    const lat2 = toRadian(senderLocationLatLng.lat);
+    const lng2 = toRadian(senderLocationLatLng.lng);
+
+    const calculateDistance = ()=> {
+      const R = 6371
+      const a =
+    Math.sin((lat2 - lat1) / 2) * Math.sin((lat2 - lat1) / 2) +
+    Math.cos(lat1) * Math.cos(lat2) * Math.sin((lng2 - lng1) / 2) * Math.sin((lng2 - lng1) / 2);
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  const distance = R * c;
+  notification.open({
+    message: `Distance between Sender and Receiver is: ${distance}`
+    
+  });
+  dispatch(setDistance(distance))
+    }
+
+    const {lat, lng} = senderLocationLatLng
+
+    const center = {
+      lat: 27.68564550564005,
+      lng: 85.3445145828365,
+    }
+
+
+
+    
+  const geoCodeLatLng =(lat, lng)=> {
+    fetch(`https://api.geoapify.com/v1/geocode/reverse?lat=${lat}&lon=${lng}&apiKey=${process.env.REACT_APP_MAP_API_KEY}`)
+    .then((res)=> res.json())
+    .then((data)=> notification.open({ message: `${data.features[0].properties.formatted}` }))
+  }
+
+  function SenderDraggableMarker() {
+
+    const {senderLocationLatLng,} = useSelector(state=> state.location)
+    const dispatch = useDispatch()
+    const [draggable, setDraggable] = useState(false)
     const markerRef = useRef(null)
+
 
     const eventHandlers = useMemo(
       (e) => ({
@@ -75,8 +78,8 @@ const MyMap = () => {
           if (marker != null) {
             const latLngObj = {
               lat: marker.getLatLng().lat,
-              lng: marker.getLatLng().lng
-            }
+               lng: marker.getLatLng().lng
+              }
             dispatch(setSenderLocationLatLng(latLngObj))
             calculateDistance()
             geoCodeLatLng(marker.getLatLng().lat, marker.getLatLng().lng)
@@ -85,7 +88,10 @@ const MyMap = () => {
       }),
       [],
     )
-
+    const toggleDraggable = useCallback(() => {
+      setDraggable((d) => !d)
+    }, [])
+    
     return (
       <Marker
         draggable={true}
@@ -102,8 +108,9 @@ const MyMap = () => {
     )
   }
 
-  const ReceiverDraggableMarker=()=> {
+  function ReceiverDraggableMarker() {
     const dispatch = useDispatch()
+    const [draggable, setDraggable] = useState(false)
     const markerRef = useRef(null)
 
     const eventHandlers = useMemo(
@@ -113,18 +120,21 @@ const MyMap = () => {
           if (marker != null) {
             const latLngObj = {
               lat: marker.getLatLng().lat,
-              lng: marker.getLatLng().lng
-            }
+               lng: marker.getLatLng().lng
+              }
             dispatch(setReceiverLocationLatLng(latLngObj))
-            calculateDistance()
-            geoCodeLatLng(marker.getLatLng().lat, marker.getLatLng().lng)
+              calculateDistance()
+              geoCodeLatLng(marker.getLatLng().lat, marker.getLatLng().lng)
+            
           }
         },
       }),
       [],
     )
-
-
+    const toggleDraggable = useCallback(() => {
+      setDraggable((d) => !d)
+    }, [])
+    
     return (
       <Marker
         draggable={true}
@@ -133,25 +143,26 @@ const MyMap = () => {
         icon={dragReceiverMarker}
         ref={markerRef}>
         <Popup minWidth={90}>
-          <span >
-            <input placeholder="enter sender name" />
-          </span>
+          {/* <span >
+           <input placeholder="enter sender name"/>
+          </span> */}
         </Popup>
       </Marker>
     )
   }
-  return (
-    <>
-      <MapContainer center={lat ? [lat, lng] : [27.68564550564005, 85.3445145828365]} zoom={10} scrollWheelZoom={false}
-        style={{ height: "100vh", width: "100vw" }}>
-        <TileLayer
-          attribution='&copy; <Link to="https://www.openstreetmap.org/copyright">OpenStreetMap</Link> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
-        <SenderDraggableMarker />
-        <ReceiverDraggableMarker />
-        <Polyline color="#003312" positions={[senderLocationLatLng, receiverLocationLatLng]} />
-      </MapContainer>
+  return(
+      <>
+      <MapContainer  center={lat ? [lat, lng] : [ 27.68564550564005,85.3445145828365]} zoom={10} scrollWheelZoom={false}
+                 style={{ height: "100vh", width: "100vw" }}>
+                <TileLayer
+                  attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                  url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                />
+             <SenderDraggableMarker/>
+             <ReceiverDraggableMarker/>
+             {lat &&  <Polyline color="#003312" positions={[senderLocationLatLng, receiverLocationLatLng]} /> }
+            
+   </MapContainer>
     </>
   )
 }

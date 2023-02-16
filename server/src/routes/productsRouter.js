@@ -21,15 +21,17 @@ router.post("/products", upload, async (req, res) => {
         if(!product){
           // const productData =await Products.create(req.body);
           
-          const productData =await new Products({
+          const productData =new Products({
             name: req.body.name,
             price: req.body.price,
             productImage: req.body.productImage
           });
+          console.log(productData)
           productData.save()
 
           // console.log(productData)
           if (productData) {
+            
             res.json({ msg: "Product is added" });
           } else {
             res.json({ msg: "something went worng" });

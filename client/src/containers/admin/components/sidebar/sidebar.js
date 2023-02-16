@@ -7,13 +7,14 @@ import {
   CDBSidebarMenu,
   CDBSidebarMenuItem,
 } from 'cdbreact';
-import { NavLink,Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { TbDeviceAnalytics } from 'react-icons/tb';
 import { ImUsers } from 'react-icons/im';
 import { FaProductHunt } from 'react-icons/fa';
 import { FaJediOrder } from 'react-icons/fa';
 import { IoIosNotifications } from 'react-icons/io';
 import { MdSettings } from 'react-icons/md';
+import { FcHome } from 'react-icons/fc';
 
 const MySidebar = () => {
   const [selectedColor, setSelectedColor] = useState('black');
@@ -27,13 +28,16 @@ const MySidebar = () => {
  <div style={{ display: 'flex', height: '100vh', overflow: 'scroll initial' }}>
       <CDBSidebar textColor="#fff" backgroundColor="#333">
         <CDBSidebarHeader prefix={<i className="fa fa-bars fa-large"></i>}>
-          <Link to="/" className="text-decoration-none" style={{ color: 'inherit', fontSize: '24px'}}>
+          <div className="text-decoration-none" style={{ color: 'inherit', fontSize: '24px'}}>
             Admin Panel
-          </Link>
+          </div>
         </CDBSidebarHeader>
 
         <CDBSidebarContent className="sidebar-content">
           <CDBSidebarMenu>
+          <NavLink to="/" activeClassName="activeClicked">
+          <CDBSidebarMenuItem ><FcHome />Home</CDBSidebarMenuItem>
+          </NavLink>
             <NavLink exact to="/users" activeClassName="activeClicked">
               <CDBSidebarMenuItem ><ImUsers />Users</CDBSidebarMenuItem>
             </NavLink>

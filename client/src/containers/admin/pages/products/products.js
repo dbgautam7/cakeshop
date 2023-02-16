@@ -1,9 +1,8 @@
 import React, { useState } from "react";
-import { Modal, Form, Input, Button, message, Upload } from "antd";
+import { Modal, Form, Input, Button, message } from "antd";
 import axios from "axios";
 import MySidebar from "../../components/sidebar/sidebar";
 import { IoIosAddCircle } from 'react-icons/io';
-import { FiUpload } from 'react-icons/fi';
 
 const Products = () => {
   const [visible, setVisible] = useState(false);
@@ -21,13 +20,13 @@ const haandleImageUpload=(e)=>{
 }
 
   const handleOk = (e) => {
-    console.log(e.target.value)
+    // console.log(e.target.value)
 
     const formData = new FormData();
     formData.append("name", name);
     formData.append("price", price);
     formData.append("productImage", selectedFile.name);
-    console.log(selectedFile.name)
+    console.log("hello",selectedFile.name)
     
 
     axios.post(`${process.env.REACT_APP_API_URL}/products`, formData).then((res) => {
