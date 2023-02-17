@@ -25,22 +25,22 @@ const EditProducts = ({ id, name, price }) => {
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
-    const [editProduct, setEditProduct] = useState()
+    const [editProduct, setEditProduct] = useState({id,name,price})
 
-    // const handleNameChange = (event) => {
-    //     setEditProduct({ ...editProduct, name: event.target.value });
-    //   };
+    const handleNameChange = (event) => {
+        setEditProduct({ ...editProduct, name: event.target.value });
+      };
 
-    //   const handlePriceChange = (event) => {
-    //     setEditProduct({ ...editProduct, price: event.target.value });
-    //   };
+      const handlePriceChange = (event) => {
+        setEditProduct({ ...editProduct, price: event.target.value });
+      };
 
 
     const handleEditProduct = async () => {
         const requestOptions = {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ name,price })
+            body: JSON.stringify({ name: editProduct.name, price: editProduct.price})
         }
         try {
             const res = await fetch(`${process.env.REACT_APP_API_URL}/products?id=${id}`, requestOptions)
@@ -76,16 +76,16 @@ const EditProducts = ({ id, name, price }) => {
                         id="filled-required"
                         defaultValue={name}
                         variant="filled"
-                        // onChange={handleNameChange}
+                        onChange={handleNameChange}
                     />
                     <Typography sx={{ color: 'green' }}>Price:</Typography>
                     <TextField
                         id="filled-required"
                         defaultValue={price}
                         variant="filled"
-                        // onChange={handlePriceChange}
+                        onChange={handlePriceChange}
                     />
-                    <Button onClick={(e) => handleEditProduct(e.target.value)} >Save</Button>
+                    <Button onClick={() => handleEditProduct()} >Save</Button>
                 </Box>
             </Modal>
 
