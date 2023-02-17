@@ -50,7 +50,7 @@ const triggerDeleteProduct=async()=>{
     }}
      cover={props.item?.productImage &&
      <img alt={props.item.productImage} 
-    src={require(`../../../../uploads/products/${props.item?.productImage}`)} />
+    src={require(`../../../uploads/products/${props.item?.productImage}`)} />
     }
     actions={[
       <DeleteOutlined  key="delete" onClick={()=>triggerDeleteProduct()} />,

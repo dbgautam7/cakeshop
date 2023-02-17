@@ -2,9 +2,9 @@ import { useMemo, useRef,useCallback, useState } from "react";
 import { MapContainer, TileLayer, Marker, Popup, Polyline } from "react-leaflet"
 import "leaflet/dist/leaflet.css"
 import { useDispatch, useSelector } from "react-redux"
-import { setSenderLocationLatLng, setReceiverLocationLatLng, setDistance } from "../../redux/reducers/loactionSlice"
+import { setSenderLocationLatLng, setReceiverLocationLatLng, setDistance } from "../../../redux/reducers/loactionSlice"
 import L from 'leaflet';
-import '../../App.css'
+import '../../../App.css'
 import { notification } from 'antd';
 
 const dragSenderMarker = L.icon({

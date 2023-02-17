@@ -1,10 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import logo from '../../../../images/admin.png'
+import logo from '../../../images/admin.png'
 import { GrLanguage } from 'react-icons/gr';
-import Logout from '../../../../components/logout';
+import Logout from '../../../components/logout';
 
-const Navbar = () => {
+const AdminNavbar = () => {
   return (
     <>
       <nav className="navbar navbar-light bg-light">
@@ -41,4 +41,4 @@ const Navbar = () => {
   )
 }
 
-export default Navbar
+export default AdminNavbar

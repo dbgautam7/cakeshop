@@ -1,6 +1,6 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import SearchBar from '../../../../components/search/searchBar'
+import SearchBar from '../../../components/search/searchBar'
 import MySidebar from '../../components/sidebar/sidebar'
 import Widget from '../../components/widget/widget'
 import './adminHome.css'

@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import { Container, Form, Nav, Navbar } from 'react-bootstrap';
 import { Button } from 'antd';
 import './navbar.css'
-import Logout from '../../components/logout';
+import Logout from '../../../components/logout';
 import { Link } from 'react-router-dom';
 
 const MyNavbar = () => {
