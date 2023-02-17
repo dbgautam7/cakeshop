@@ -1,13 +1,11 @@
 import React from 'react'
-import Products from '../addToCart/products'
-
-
+import Products from '../../components/addToCart/products'
 
 const Home = () => {
   return (
-    <>
+    <div className='user-home'>
     <Products />
-    </>
+    </div>
   )
 }
 

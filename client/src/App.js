@@ -1,25 +1,26 @@
 import './App.css';
 import { Route, Routes } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+
 import SignupForm from './containers/auth/signup';
 import Login from './containers/auth/login';
-import Home from './containers/home/home';
-import AboutUs from './containers/aboutUs/aboutUs';
-import Contact from './containers/contact/contact';
-import MyNavbar from './containers/navbar/navbar';
+import Home from './user/containers/home/home';
+import AboutUs from './user/containers/aboutUs/aboutUs';
+import Contact from './user/containers/contact/contact';
+import MyNavbar from './user/components/navbar/navbar';
 import Profile from './containers/sharedScreens/profile';
 import ErrorPage from './containers/errrorPage/errorPage';
-import { useSelector } from 'react-redux';
-import MyMap from './containers/map/map';
-import Navbar from './containers/admin/components/navbar/navbar';
-import Users from './containers/admin/pages/users/users';
-import Products from './containers/admin/pages/products/products';
-import AdminHome from './containers/admin/pages/adminHome/adminHome';
+import MyMap from './user/containers/map/map';
+import AdminNavbar from './admin/components/navbar/adminNavbar';
+import Users from './admin/pages/users/users';
+import Products from './admin/pages/products/products';
+import AdminHome from './admin/pages/adminHome/adminHome';
 import ProfileSettings from './containers/sharedScreens/profileSettings';
 import ChangePassword from './containers/sharedScreens/changePassword';
-import Settings from './containers/admin/pages/settings/settings';
-import Orders from './containers/admin/pages/orders/orders';
-import Analytics from './containers/admin/pages/analytics/analytics';
-import Notifications from './containers/admin/pages/notifications/notifications';
+import Settings from './admin/pages/settings/settings';
+import Orders from './admin/pages/orders/orders';
+import Analytics from './admin/pages/analytics/analytics';
+import Notifications from './admin/pages/analytics/analytics';
 
 const App=()=> {
   const {phoneNumber} =useSelector(state=>state.user)
@@ -45,13 +46,13 @@ const App=()=> {
       const AdminScreen=()=>{
         return(
           <Routes>
-            <Route exact path='/' element={<><Navbar /><AdminHome /></>} />
-            <Route path='/orders' element={<><Navbar /><Orders /></>} />
-            <Route path='/users' element={<><Navbar /><Users /></>} />
-            <Route path='/products' element={<><Navbar /><Products /></>} />
-            <Route path='/analytics' element={<><Navbar /><Analytics /></>} />
-            <Route path='/settings' element={<><Navbar /><Settings /></>} />
-            <Route path='/notifications' element={<><Navbar /><Notifications /></>} />
+            <Route exact path='/' element={<><AdminNavbar /><AdminHome /></>} />
+            <Route path='/orders' element={<><AdminNavbar /><Orders /></>} />
+            <Route path='/users' element={<><AdminNavbar /><Users /></>} />
+            <Route path='/products' element={<><AdminNavbar /><Products /></>} />
+            <Route path='/analytics' element={<><AdminNavbar /><Analytics /></>} />
+            <Route path='/settings' element={<><AdminNavbar /><Settings /></>} />
+            <Route path='/notifications' element={<><AdminNavbar /><Notifications /></>} />
             <Route path='*' element={<ErrorPage />} />
           </Routes>
         )

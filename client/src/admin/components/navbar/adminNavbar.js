@@ -1,17 +1,17 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import logo from '../../../../images/admin.png'
+import logo from '../../../images/admin.png'
 import { GrLanguage } from 'react-icons/gr';
-import Logout from '../../../../components/logout';
+import Logout from '../../../components/logout';
 
-const Navbar = () => {
+const AdminNavbar = () => {
   return (
     <>
       <nav className="navbar navbar-light bg-light">
         <div className="container">
           <img src={logo} height="50" alt="admin" loading="lazy" />
 
-          <form className="d-flex input-group w-auto">
+          {/* <form className="d-flex input-group w-auto">
             <input
               type="search"
               className="form-control rounded"
@@ -22,7 +22,7 @@ const Navbar = () => {
             <span className="input-group-text border-0" id="search-addon">
               <i className="fas fa-search"></i>
             </span>
-          </form>
+          </form> */}
 
          <h3 style={{color:"black"}}><GrLanguage /> English</h3>
 
@@ -41,4 +41,4 @@ const Navbar = () => {
   )
 }
 
-export default Navbar
+export default AdminNavbar

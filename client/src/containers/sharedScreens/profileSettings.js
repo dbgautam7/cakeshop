@@ -1,4 +1,4 @@
-import { DownOutlined, SmileOutlined } from '@ant-design/icons';
+import { DownOutlined} from '@ant-design/icons';
 import { Dropdown, Space } from 'antd';
 import {Link} from 'react-router-dom'
 const items = [
