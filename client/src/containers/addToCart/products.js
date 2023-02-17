@@ -75,7 +75,7 @@ const Products = () => {
 
     return (
         <>
-            <div class="mx-3 my-2">
+            <div class="mx-5 my-2 ml-auto d-flex justify-content-end">
                 <CustomDrawer productList={productList} favLists={favLists} />
             </div>
 
@@ -91,14 +91,14 @@ const Products = () => {
             </div>
 
 
-            <div className="Fav">
+            {/* <div className="Fav">
                 Favorites list: {favLists.length}
                 {favLists.map((item, id) => {
                     return <ul><li>{item.name}</li></ul>
                 })
 
                 }
-            </div>
+            </div> */}
 
             <div className='table'>
                 <table className="table table-striped">

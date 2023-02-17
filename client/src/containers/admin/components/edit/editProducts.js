@@ -40,7 +40,7 @@ const EditProducts = ({ id, name, price }) => {
         const requestOptions = {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ name: editProduct.name, price: editProduct.price})
+            body: JSON.stringify({name:editProduct.name, price:editProduct.price})
         }
         try {
             const res = await fetch(`${process.env.REACT_APP_API_URL}/products?id=${id}`, requestOptions)

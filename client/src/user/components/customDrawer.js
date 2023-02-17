@@ -1,8 +1,9 @@
 import { Drawer } from 'antd';
-import { LeftCircleOutlined } from '@ant-design/icons';
+import { RightSquareOutlined } from '@ant-design/icons';
 import { useState } from 'react';
+import AddToCart from './addToCart';
 
-const CustomDrawer = (props) => {
+const CustomDrawer = ({productList,favLists}) => {
   const [open, setOpen] = useState(false);
   const showDrawer = () => {
     setOpen(true);
@@ -12,18 +13,19 @@ const CustomDrawer = (props) => {
   };
   return (
     <>
-      <LeftCircleOutlined onClick={showDrawer} style={{ fontSize: '50px', color: '#44bcd8', cursor: 'pointer' }} />
-
-      <Drawer title="My Actions" placement="left" onClose={onClose} open={open}>
-        <p style={{color:"InfoText"}}>
-          Favorites list: {props.favLists.length}
-          {props.favLists.map((item, id) => {
+      <RightSquareOutlined onClick={showDrawer}
+        style={{ fontSize: '50px', color: '#44bcd8', cursor: 'pointer', display: 'inline-block', verticalAlign: 'middle' }} />
+      
+      <Drawer title="My Actions" placement="right" onClose={onClose} open={open}>
+        <p style={{ color: "InfoText" }}>
+          Favorites list: {favLists.length} 
+          {favLists.map((item, id) => {
             return <ul><li>{item.name}</li></ul>
           })
           }
         </p>
-        <p style={{color:"aqua"}}>My Cart</p>
-        <p style={{color:"#873e23"}}>My Orders</p>
+         <p style={{ color: "aqua" }}><AddToCart productList={productList} favLists={favLists} /></p>
+        <p style={{ color: "#873e23" }}>My Orders</p>
       </Drawer>
     </>
   );
