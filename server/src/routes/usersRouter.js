@@ -18,7 +18,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage }).single('avatar')
 
 router.post('/profile', upload, async (req, res) =>{
-  console.log(req.file)
+  // console.log(req.file)
   const data = await Users.findByIdAndUpdate(req.body._id, {avatarName: req.file.filename}).lean()
   if(data){
     res.status(200).json({
@@ -30,7 +30,7 @@ router.post('/profile', upload, async (req, res) =>{
 router.get("/users/:id", async (req, res) => {
   try {
       const data = await Users.findById(req.params.id)
-      console.log(data)
+      // console.log(data)
       if(data){
           res.status(200).json({
             userDetails:data
@@ -104,7 +104,7 @@ router.post("/login", async (req, res) => {
 router.get("/users", async (req, res) => {
   try {
       const data = await Users.find()
-      console.log(data)
+      // console.log(data)
       if(data){
           res.status(200).json({
             userDetails:data
@@ -122,6 +122,7 @@ router.get("/users", async (req, res) => {
 
 
 router.put("/changePassword", async (req, res) => {
+  console.log(req.query)
   try {
     const user = await Users.findOne({ _id: req.query._id })
     if (user) {

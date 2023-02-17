@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Form, Input, Button, message } from 'antd';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux'
@@ -7,6 +8,7 @@ import './sharedScreen.css'
 
 const ChangePassword = () => {
 
+const navigate=useNavigate()
   const [isFormVisible, setIsFormVisible] = useState(true);
   const dispatch = useDispatch()
     const { _id } = useSelector(state => state.user)
@@ -24,12 +26,12 @@ const ChangePassword = () => {
         body: JSON.stringify({ currentPassword, newPassword })
       });
       const data = await response.json();
-  
       if (data.success) {
         message.success('Password has changed successfully');
         form.resetFields();
         dispatch(logoutResetDetails)
         setIsFormVisible(false);
+        navigate('/')
       } else {
         message.error(data.message);
       }

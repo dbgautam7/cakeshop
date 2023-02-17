@@ -25,7 +25,7 @@ router.post("/products", upload, async (req, res) => {
     
       // res.json(product);
 
-      console.log(req.file,req.body,"check")
+      // console.log(req.file,req.body,"check")
       const product=await Products.findOne({name: req.body.name})
         if(!product){
           const productData =new Products({
@@ -33,8 +33,8 @@ router.post("/products", upload, async (req, res) => {
             price: req.body.price,
             productImage: req.file.filename
           });
-          console.log(req.file.filename,"ok")
-          console.log(productData,"data")
+          // console.log(req.file.filename,"ok")
+          // console.log(productData,"data")
           productData.save()
 
           // console.log(productData)
@@ -100,17 +100,24 @@ router.post("/products", upload, async (req, res) => {
       });
 
       router.put("/products", async (req, res) => {
-        // console.log(req.body._id)
         try {
-          const data = await Products.findByIdAndUpdate(req.body._id)
-          if(data){
-            res.status(200).json({msg: 'updated successfully'})
-          }
-          else{
-            res.status(500).json({msg:"something went wrong"})
+          const { name, price } = req.body;
+          console.log(req.body,req.query,"++")
+          const updatedProduct = await Products.findByIdAndUpdate(
+            req.query.id,
+            {name,price},
+            {new:true} );
+          if (updatedProduct) {
+            console.log(updatedProduct,"hi")
+            res.status(200).json({
+              editProduct: updatedProduct,
+              msg: "Product updated successfully"
+            });
+          } else {
+            res.status(500).json({ msg: "Something went wrong" });
           }
         } catch (err) {
-            console.log(err);
+          console.log(err);
         }
         });
   

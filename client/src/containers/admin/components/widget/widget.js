@@ -1,6 +1,7 @@
 import React from 'react'
-import { EditOutlined, EllipsisOutlined, DeleteOutlined } from '@ant-design/icons';
+import { EllipsisOutlined, DeleteOutlined } from '@ant-design/icons';
 import { Card, message } from 'antd';
+import EditProducts from '../edit/editProducts';
 const { Meta } = Card;
 
 const Widget = (props) => {
@@ -14,7 +15,7 @@ const triggerDeleteProduct=async()=>{
     body:JSON.stringify({_id})
    }
    const res = await fetch(`${process.env.REACT_APP_API_URL}/products`,requestOptions);
-   console.log(res)
+  //  console.log(res)
    if(res.status===200){
     props.fetchProductsData()
     message.success("Products deleted successfully",[2])
@@ -24,22 +25,22 @@ const triggerDeleteProduct=async()=>{
   }
 }
 
-const triggerEditProduct=async()=>{
-  const requestOptions={
-    method:"PUT",
-    headers:{"Content-Type":"application/json"},
-    body:JSON.stringify({_id})
-  }
-  const res=await fetch(`${process.env.REACT_APP_API_URL}/products`,requestOptions)
-  console.log(res)
-  if(res.status===200){
-    props.fetchProductsData()
-    message.success("Products Edited successfully",[2])
-  }
-  else{
-    message.error("Unable to Edit the product",[2])
-  }
-}
+// const triggerEditProduct=async()=>{
+//   const requestOptions={
+//     method:"PUT",
+//     headers:{"Content-Type":"application/json"},
+//     body:JSON.stringify({_id})
+//   }
+//   const res=await fetch(`${process.env.REACT_APP_API_URL}/products`,requestOptions)
+//   console.log(res)
+//   if(res.status===200){
+//     props.fetchProductsData()
+//     message.success("Products Edited successfully",[2])
+//   }
+//   else{
+//     message.error("Unable to Edit the product",[2])
+//   }
+// }
 
   return (
     <>
@@ -53,7 +54,8 @@ const triggerEditProduct=async()=>{
     }
     actions={[
       <DeleteOutlined  key="delete" onClick={()=>triggerDeleteProduct()} />,
-      <EditOutlined key="edit" onClick={()=>triggerEditProduct()} />,
+      <EditProducts id={_id} name={props.item.name} price={props.item.price} />,
+      // <EditOutlined key="edit" onClick={()=>triggerEditProduct()} />,
       <EllipsisOutlined key="ellipsis" />,
     ]}
   >

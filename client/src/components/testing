@@ -349,3 +349,23 @@ debugger
   )
 }
 export default MyMap
+
+router.put("/products", async (req, res) => {
+  try {
+    const { name, price } = req.body;
+    console.log(req.body,req.query,"++")
+    const updatedProduct = await Products.findByIdAndUpdate(req.query.id,
+      {name,price},{new:true} );
+    if (updatedProduct) {
+      console.log(updatedProduct,"hi")
+      res.status(200).json({
+        editProduct: updatedProduct,
+        msg: "Product updated successfully"
+      });
+    } else {
+      res.status(500).json({ msg: "Something went wrong" });
+    }
+  } catch (err) {
+    console.log(err);
+  }
+  });
