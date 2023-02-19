@@ -7,7 +7,7 @@ import Login from './containers/auth/login';
 import Home from './user/containers/home/home';
 import AboutUs from './user/containers/aboutUs/aboutUs';
 import Contact from './user/containers/contact/contact';
-import MyNavbar from './user/components/navbar/navbar';
+import UserNavbar from './user/components/navbar/userNavbar';
 import Profile from './containers/sharedScreens/profile';
 import ErrorPage from './containers/errrorPage/errorPage';
 import MyMap from './user/containers/map/map';
@@ -62,13 +62,13 @@ const App=()=> {
       const UserScreen=()=>{
         return(
           <Routes>
-            <Route exact path='/' element={<><MyNavbar /><Home /></>} />
-      <Route exact path='/contact' element={<><MyNavbar /><Contact /></>} />
-      <Route exact path='/aboutus' element={<><MyNavbar /><AboutUs /></>} />
-      <Route exact path='/profile' element={<><MyNavbar /><Profile /></>} />
-      <Route exact path='/profileSettings' element={<><MyNavbar /><ProfileSettings /></>} />
-      <Route exact path='/changePassword' element={<><MyNavbar /><ChangePassword /></>} />
-      <Route exact path='/map' element={<><MyNavbar /><MyMap /></>} />
+            <Route exact path='/' element={<><UserNavbar /><Home /></>} />
+      <Route exact path='/contact' element={<><UserNavbar /><Contact /></>} />
+      <Route exact path='/aboutus' element={<><UserNavbar /><AboutUs /></>} />
+      <Route exact path='/profile' element={<><UserNavbar /><Profile /></>} />
+      <Route exact path='/profileSettings' element={<><UserNavbar /><ProfileSettings /></>} />
+      <Route exact path='/changePassword' element={<><UserNavbar /><ChangePassword /></>} />
+      <Route exact path='/map' element={<><UserNavbar /><MyMap /></>} />
       <Route path='*' element={<ErrorPage />} />
           </Routes>
         )
