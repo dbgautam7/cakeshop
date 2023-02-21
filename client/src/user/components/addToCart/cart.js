@@ -8,10 +8,13 @@ import CardActions from '@mui/material/CardActions';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import ShareIcon from '@mui/icons-material/Share';
+import {FacebookShareButton, WhatsappShareButton,FacebookMessengerShareButton } from "react-share";
+import {FacebookIcon,FacebookMessengerIcon,WhatsappIcon} from "react-share";
 import ShoppingCartOutlined from '@mui/icons-material/ShoppingCartOutlined';
 
 const Cart=(props)=> {
+
+  const shareUrl = 'https://example.com';
 
   const [isFav, setIsFav] = useState(false)
   return (
@@ -46,15 +49,38 @@ const Cart=(props)=> {
          }
         }} />
         </IconButton>
-        <IconButton aria-label="share">
-          <ShareIcon />
-        </IconButton>
+
         <IconButton aria-label="add to cart">
           <ShoppingCartOutlined 
           onClick={()=>{
          props.addCart(props.id)
        }} />
         </IconButton>
+
+        <FacebookShareButton
+        url={shareUrl}
+        quote="Check out this link!"
+        hashtag="#example"
+        disabled={false} >
+        <FacebookIcon size={32} round={true} />
+        </FacebookShareButton>
+
+        <FacebookMessengerShareButton 
+        url={shareUrl}
+      quote="Check out this link!"
+      hashtag="#example"
+      disabled={false}  >
+        <FacebookMessengerIcon size={32} round={true} />
+        </FacebookMessengerShareButton >
+
+        <WhatsappShareButton
+        url={shareUrl}
+        quote="Check out this link!"
+        hashtag="#example"
+        disabled={false} >
+        <WhatsappIcon size={32} round={true} />
+        </WhatsappShareButton>
+
       </CardActions>
     </Card>
     </div>
