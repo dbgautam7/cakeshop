@@ -31,7 +31,7 @@ const UserNavbar = () => {
                     </Nav>
                     </div>
 
-                    <Form className="d-flex">
+                    {/* <Form className="d-flex">
                         <Form.Control
                             type="search"
                             placeholder="Search"
@@ -39,8 +39,10 @@ const UserNavbar = () => {
                             aria-label="Search"
                         />
                         <Button variant="outline-success">Search</Button>
-                    </Form>
+                    </Form> */}
+                    <div className="ms-auto">
                     <Logout />
+                    </div>
         </Navbar>
     </>
     );

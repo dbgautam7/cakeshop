@@ -32,14 +32,16 @@ const AdminHome = () => {
         <div style={{ width: "25%" }}>
           <MySidebar />
         </div>
-        <div style={{ width: "75%", marginTop: "30px", display: "flex", gap: "32px", flexWrap: "wrap" }}>
-        {/* <SearchBar onChange={(e) => setQuery(e.target.value)} /> */}
-        <SearchBar productList={productList} />
-
-          {productList.map((item, id) => {
-            return (<Widget id={id} item={item} fetchProductsData={fetchProductsData} />)
-          })}
-        </div>
+        <div style={{ display: "flex", margin:"10px", flexDirection: "column" }}>
+  <div style={{marginBottom:"20px", width:"50%"}}>
+    <SearchBar productList={productList} />
+  </div>
+  <div style={{ display: "flex", gap: "32px", flexWrap: "wrap" }}>
+    {productList.map((item, id) => {
+      return <Widget key={id} item={item} fetchProductsData={fetchProductsData} />;
+    })}
+  </div>
+</div>
       </div>
     </>
   )

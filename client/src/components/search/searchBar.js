@@ -1,11 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FiKey } from "react-icons/fi";
 
-const SearchBar=({productList})=> {
-  debugger
-  console.log("@", productList)
+const SearchBar = ({ productList }) => {
   const [key, setKey] = useState("");
-  const [searchResult, setSearchResult] = useState([]);
 
   const handleSearch = async () => {
     try {
@@ -18,29 +15,39 @@ const SearchBar=({productList})=> {
     }
   };
 
+  useEffect(()=>{
+    handleSearch()
+  },[key])
+
   return (
     <div>
-      <form onSubmit={()=>handleSearch()}>
-        <input
-          type="text"
-          value={key}
-          onChange={(event) => setKey(event.target.value)}
-        />
-        <button type="submit">Search</button>
-      </form>
-      {/* {productList.filter((item,id) => {
-            if (key === "") {
-              return item;
-            } else if (
-              item.name.toLowerCase().includes(key.toLowerCase())
-            ) {
-              return item;
-            } else {
-              return "";
-            }
-          })} */}
+      <form className="d-flex input-group w-auto">
+            <input
+              type="search"
+              className="form-control rounded"
+              placeholder="Search"
+              aria-label="Search"
+              value={key}
+              aria-describedby="search-addon"
+              onChange={(event) => setKey(event.target.value)}
+            />
+            <span className="input-group-text border-0" id="search-addon">
+              <i className="fas fa-search"></i>
+            </span>
+          </form>
+      {productList.filter((item, id) => {
+        if (key === "") {
+          return null;
+        } else if (item.name.toLowerCase().includes(key.toLowerCase())) {
+          return item;
+        } else {
+          return null;
+        }
+      }).map((item) => (
+        <div key={item.id}>{item.name}</div>
+      ))}
     </div>
   );
-}
+};
 
-export default SearchBar
+export default SearchBar;

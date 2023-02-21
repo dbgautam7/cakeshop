@@ -4,6 +4,7 @@ import { AiFillPlusCircle, AiFillMinusCircle } from "react-icons/ai";
 import CustomDrawer from './customDrawer';
 import Cart from './cart'
 import './cart.css'
+import SearchBar from '../../../components/search/searchBar';
 
 
 const Products = () => {
@@ -75,6 +76,9 @@ const Products = () => {
 
     return (
         <>
+  <div style={{margin:"20px auto", width:"40%"}}>
+    <SearchBar productList={productList} />
+  </div>
             <div class="mx-5 my-2 ml-auto d-flex justify-content-end">
                 <CustomDrawer productList={productList} favLists={favLists} />
             </div>
@@ -89,7 +93,6 @@ const Products = () => {
                 }
                 )}
             </div>
-
 
             {/* <div className="Fav">
                 Favorites list: {favLists.length}

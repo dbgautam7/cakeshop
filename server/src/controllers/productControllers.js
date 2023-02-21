@@ -78,21 +78,25 @@ const DeleteProducts = async (req, res) => {
 
 const EditProducts = async (req, res) => {
     try {
-        const data = await Products.find()
-        if (data) {
-            res.status(200).json({
-                productList: data,
-                msg: "Fetch Success"
-            })
-        } else {
-            res.status(500).json({
-                msg: "something went wrong"
-            })
-        }
+      const { name, price } = req.body;
+      console.log(req.body,req.query,"++")
+      const updatedProduct = await Products.findByIdAndUpdate(
+        req.query.id,
+        {name,price},
+        {new:true} );
+      if (updatedProduct) {
+        console.log(updatedProduct,"hi")
+        res.status(200).json({
+          editProduct: updatedProduct,
+          msg: "Product updated successfully"
+        });
+      } else {
+        res.status(500).json({ msg: "Something went wrong" });
+      }
     } catch (err) {
-        console.log(err);
+      console.log(err);
     }
-}
+    }
 
 const GetSearchResults = async (req, res) => {
     try {
