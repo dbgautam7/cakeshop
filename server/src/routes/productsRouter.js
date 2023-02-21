@@ -55,23 +55,11 @@ router.post("/products", upload, async (req, res) => {
   });
 
   router.get("/products", async (req, res) => {
-
-    // const { q } = req.query;
-    // console.log(q)
-    // const search = (validProducts) => {
-    //   return validProducts.filter((item,id) =>
-    //   item.name.includes(q)
-  
-    //   )
-    // }
-
     try {
         const data = await Products.find()
-        // console.log(data)
         if(data){
             res.status(200).json({
               productList:data,
-              // validProductsOptions: search(data),
                 msg:"Fetch Success"
             })
         }else{
@@ -120,6 +108,28 @@ router.post("/products", upload, async (req, res) => {
           console.log(err);
         }
         });
+
+        router.get("/search/:key", async (req, res) => {
+          try {
+            const data = await Products.find({
+              name: { $regex: req.params.key, $options: "i" }
+            });
+            console.log(data);
+            if (data && data.length>0) {
+              res.status(200).json({
+                key:data,
+                msg: "Search Success",
+              });
+            } else {
+              res.status(404).json({
+                msg: "No products found",
+              });
+            }
+          } catch (err) {
+            console.log(err)
+          }
+        });
+        
   
 
   module.exports = router;

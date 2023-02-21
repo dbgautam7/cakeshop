@@ -33,7 +33,8 @@ const AdminHome = () => {
           <MySidebar />
         </div>
         <div style={{ width: "75%", marginTop: "30px", display: "flex", gap: "32px", flexWrap: "wrap" }}>
-        <SearchBar onChange={(e) => setQuery(e.target.value)} />
+        {/* <SearchBar onChange={(e) => setQuery(e.target.value)} /> */}
+        <SearchBar productList={productList} />
 
           {productList.map((item, id) => {
             return (<Widget id={id} item={item} fetchProductsData={fetchProductsData} />)

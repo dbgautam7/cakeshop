@@ -369,3 +369,23 @@ router.put("/products", async (req, res) => {
     console.log(err);
   }
   });
+
+  import axios from 'axios'
+import React, { useEffect, useState } from 'react'
+
+const SearchBar = ({productList}) => {
+  const [searchData,setSearchData]=useState([productList])
+ 
+
+  
+
+ 
+
+  return (
+    <div>
+      
+    </div>
+  );
+};
+
+export default SearchBar

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { AiFillPlusCircle, AiFillMinusCircle } from "react-icons/ai";
-import CustomDrawer from '../customDrawer';
+import CustomDrawer from './customDrawer';
 import Cart from './cart'
 import './cart.css'
 
