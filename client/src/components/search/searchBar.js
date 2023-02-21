@@ -1,17 +1,18 @@
 import { useState } from "react";
+import { FiKey } from "react-icons/fi";
 
 const SearchBar=({productList})=> {
+  debugger
   console.log("@", productList)
   const [key, setKey] = useState("");
   const [searchResult, setSearchResult] = useState([]);
 
   const handleSearch = async () => {
-    
     try {
       const response = await fetch(`${process.env.REACT_APP_API_URL}/search/${key}`);
       const data = await response.json();
       console.log(data,"@@")
-      setSearchResult(data);
+      // setSearchResult(data);
     } catch (err) {
       console.log(err);
     }
@@ -19,7 +20,7 @@ const SearchBar=({productList})=> {
 
   return (
     <div>
-      <form onSubmit={handleSearch}>
+      <form onSubmit={()=>handleSearch()}>
         <input
           type="text"
           value={key}
@@ -27,7 +28,17 @@ const SearchBar=({productList})=> {
         />
         <button type="submit">Search</button>
       </form>
-      <h1>{searchResult}</h1>
+      {/* {productList.filter((item,id) => {
+            if (key === "") {
+              return item;
+            } else if (
+              item.name.toLowerCase().includes(key.toLowerCase())
+            ) {
+              return item;
+            } else {
+              return "";
+            }
+          })} */}
     </div>
   );
 }

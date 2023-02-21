@@ -389,3 +389,80 @@ const SearchBar = ({productList}) => {
 };
 
 export default SearchBar
+
+
+import { useState } from "react";
+
+const SearchBar=({productList})=> {
+  // console.log("@", productList)
+  const [key, setKey] = useState("");
+  const [searchResult, setSearchResult] = useState([]);
+
+  const handleSearch = async () => {
+    try {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/search/${key}`);
+      const data = await response.json();
+      console.log(data,"@@")
+      // setSearchResult(data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  return (
+    <div>
+      <form onSubmit={()=>handleSearch()}>
+        <input
+          type="text"
+          onChange={(event) => setKey(event.target.value)}
+        />
+        <button type="submit">Search</button>
+      </form>
+      {/* {productList.map((item,id)=>{
+        if (item[id].name===searchResult)
+      })} */}
+      {/* <h1>{searchResult}</h1> */}
+    </div>
+  );
+}
+
+export default SearchBar
+
+
+import React, { useState, useEffect } from "react";
+
+const SearchBar=({productList})=> {
+  const [searchText, setSearchText] = useState("");
+
+  return (
+    <>
+      <input
+        type="text"
+        placeholder="Search..."
+        value={searchText}
+        onChange={(event) => {
+          setSearchText(event.target.value);
+        }}
+      />
+      <div>
+        <ul>
+          {productList.filter((val) => {
+            if (searchText === "") {
+              return val;
+            } else if (
+              val.first_name.toLowerCase().includes(searchText.toLowerCase())
+            ) {
+              return val;
+            } else {
+              return "";
+            }
+          }).map((data, index) => (
+            <li key={index}>{data.first_name}</li>
+          ))}
+        </ul>
+      </div>
+      </>
+  );
+  }
+
+export default SearchBar

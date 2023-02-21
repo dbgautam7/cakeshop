@@ -1,6 +1,3 @@
-const express = require("express");
-const { findByIdAndDelete, findByIdAndUpdate } = require("../models/Carts");
-const router = express.Router();
 const Carts = require("../models/Carts");
 
 const PostCart = async (req, res) => {
