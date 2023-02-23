@@ -45,7 +45,7 @@ const GetProducts = async (req, res) => {
       const page = parseInt(req.query.page) || 1;
       const size = parseInt(req.query.size) || 3;
       const count = await Products.countDocuments();
-      console.log("hello",count)
+    //   console.log("hello",count)
       const data = await Products.find()
         .sort({ _id: 1 })
         .skip((page - 1) * size)
