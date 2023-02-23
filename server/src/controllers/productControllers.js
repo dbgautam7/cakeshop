@@ -42,21 +42,26 @@ const PostProducts = async (req, res) => {
 
 const GetProducts = async (req, res) => {
     try {
-        const data = await Products.find()
-        if (data) {
-            res.status(200).json({
-                productList: data,
-                msg: "Fetch Success"
-            })
-        } else {
-            res.status(500).json({
-                msg: "something went wrong"
-            })
-        }
+      const page = parseInt(req.query.page) || 1;
+      const size = parseInt(req.query.size) || 3;
+      const count = await Products.countDocuments();
+      console.log("hello",count)
+      const data = await Products.find()
+        .sort({ _id: 1 })
+        .skip((page - 1) * size)
+        .limit(size);
+      res.status(200).json({
+        productList: data,
+        totalItems: count,
+        msg: 'Fetch Success',
+      });
     } catch (err) {
-        console.log(err);
+      console.log(err);
+      res.status(500).json({
+        msg: 'Something went wrong',
+      });
     }
-}
+  };
 
 const DeleteProducts = async (req, res) => {
     try {

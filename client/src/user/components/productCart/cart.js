@@ -51,7 +51,6 @@ const Cart = (props) => {
 
   return (
     <div className='cart-container'>
-      <div className='cart'>
         <Card sx={{ maxWidth: 345 }}>
           <CardHeader
             sx={{ color: 'blue' }}
@@ -112,7 +111,6 @@ const Cart = (props) => {
           </CardActions>
         </Card>
       </div>
-    </div>
   );
 };
 

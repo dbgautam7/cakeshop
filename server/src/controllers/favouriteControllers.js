@@ -1,4 +1,3 @@
-const { findByIdAndDelete } = require("../models/Favourites");
 const Favourites=require("../models/Favourites")
 
 const PostFavourite= async (req, res) => {
