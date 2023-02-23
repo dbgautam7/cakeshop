@@ -3,8 +3,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 20px;
-    border: 1px solid #ccc;
+    border:1px solid #b8f0bb;
+    border-radius: 10px;
     margin: 10px;
     width: 400px;
   }

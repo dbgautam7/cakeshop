@@ -65,6 +65,7 @@ const Cart = (props) => {
               'No Image for this product'
             }
             alt={props.item?.productImage || 'img'}
+            style={{ height: 250, objectFit: 'cover' }}
           />
           <CardContent>
             <Typography variant='body2' color='text.secondary'>

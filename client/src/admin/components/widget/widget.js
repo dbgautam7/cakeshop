@@ -47,10 +47,14 @@ const triggerDeleteProduct=async()=>{
     <Card
     style={{
       width: 300,
+      backgroundColor: 'white',
+      borderRadius: 8,
+      boxShadow: '0 2px 6px rgba(0, 0, 0, 0.2)',
     }}
      cover={props.item?.productImage &&
      <img alt={props.item.productImage} 
-    src={require(`../../../uploads/products/${props.item?.productImage}`)} />
+    src={require(`../../../uploads/products/${props.item?.productImage}`)} 
+    style={{ height: 250, objectFit: 'cover' }} />
     }
     actions={[
       <DeleteOutlined  key="delete" onClick={()=>triggerDeleteProduct()} />,

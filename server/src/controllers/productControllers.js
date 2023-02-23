@@ -47,9 +47,9 @@ const GetProducts = async (req, res) => {
       const count = await Products.countDocuments();
     //   console.log("hello",count)
       const data = await Products.find()
-        .sort({ _id: 1 })
-        .skip((page - 1) * size)
-        .limit(size);
+        .sort({ _id: 1 }) //arrange the documents in ascending order from the db collection and _1 for descending order
+        .skip((page - 1) * size) //skips a certain number of documents based on the "page" and "size" query parameters.
+        .limit(size); // limits the number of documents returned based on the "size" query parameter
       res.status(200).json({
         productList: data,
         totalItems: count,
