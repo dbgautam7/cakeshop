@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
-import { Container, Form, Nav, Navbar } from 'react-bootstrap';
+import { Form, Nav, Navbar } from 'react-bootstrap';
 import { Button } from 'antd';
 import './navbar.css'
 import Logout from '../../../components/logout';
 import { Link } from 'react-router-dom';
 
-const MyNavbar = () => {
+const UserNavbar = () => {
 
     const [currentTime, setCurrentTime] = useState(new Date());
 
@@ -31,7 +31,7 @@ const MyNavbar = () => {
                     </Nav>
                     </div>
 
-                    <Form className="d-flex">
+                    {/* <Form className="d-flex">
                         <Form.Control
                             type="search"
                             placeholder="Search"
@@ -39,11 +39,13 @@ const MyNavbar = () => {
                             aria-label="Search"
                         />
                         <Button variant="outline-success">Search</Button>
-                    </Form>
+                    </Form> */}
+                    <div className="ms-auto">
                     <Logout />
+                    </div>
         </Navbar>
     </>
     );
 }
 
-export default MyNavbar;
+export default UserNavbar;

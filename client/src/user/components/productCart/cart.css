@@ -1,15 +1,10 @@
-.cart-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  
-.cart {
+
+  .cart-container{
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 20px;
-    border: 1px solid #ccc;
+    border:1px solid #b8f0bb;
+    border-radius: 10px;
     margin: 10px;
     width: 400px;
   }
@@ -37,14 +32,21 @@
   }
 
   .product-container {
+    position: absolute;
+    left: 0;
+    right: 0;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: center;
+    align-items: center;
   }
   
-  .product-container .Cart {
-    width: 30%;
-    margin: 10px;
+  .pagination-container {
+    position: absolute;
+    left: 50%; /* center horizontally */
+    bottom: -30px; /* move up slightly to align with product items */
+    transform: translateX(-50%);
+    margin-top: 10px; /* add margin top */
   }
   
   /* table style */
