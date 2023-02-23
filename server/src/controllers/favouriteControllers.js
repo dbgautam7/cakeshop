@@ -2,15 +2,21 @@ const { findByIdAndDelete } = require("../models/Favourites");
 const Favourites=require("../models/Favourites")
 
 const PostFavourite= async (req, res) => {
-    try {
+  try {
+      const { productId, userId } = req.body;
+      const existingFavourite = await Favourites.findOne({ productId, userId });
+      if (existingFavourite) {
+          res.status(400).json({ message: 'Product already in favourites' });
+          return;
+      }
       const favouriteProduct = new Favourites(req.body);
-      console.log(favouriteProduct)
       await favouriteProduct.save();
       res.status(200).json({ message: 'Favorite item added successfully.' });
-    } catch (error) {
+  } catch (error) {
       res.status(500).json({ message: 'Something went wrong.' });
-    }
-  };
+  }
+};
+
 
   const GetFavourite=async (req, res) => {
     try {
@@ -26,7 +32,7 @@ const PostFavourite= async (req, res) => {
   const RemoveFavourite = async (req, res) => {
     console.log(req.params,"req")
     try {
-      const data = await Favourites.findByIdAndDelete(req.params.productId);
+      const data = await Favourites.findOneAndDelete(req.params.productId);
       console.log(data)
       if (data) {
         res.status(200).json({

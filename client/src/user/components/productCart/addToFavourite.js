@@ -1,10 +1,14 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux';
+import { CloseOutlined  } from '@ant-design/icons';
+
 
 const AddToFavourite = ({productList}) => {
 
   const [favouriteProduct, setFavouriteProduct] = useState([]);
+  const [isFav, setIsFav] = useState(false);
+  const [color, setColor] = useState('black');
   const { _id } = useSelector(state => state.user)
   const userId = _id
   
@@ -19,8 +23,27 @@ const AddToFavourite = ({productList}) => {
 
   useEffect(()=>{
     fetchFavProducts()
-  },[])
+  },[userId])
+// debugger
+//   console.log(favouriteProduct,"favouriteProduct")
 
+// const favId=favouriteProduct.map((item,id)=>{
+// return item._id
+// })
+// console.log(favId,"favId")
+
+  const handleRemoveFav = async (productId) => {
+    try {
+      const response = await axios.delete(`${process.env.REACT_APP_API_URL}/products/favourites/${productId}`);
+      console.log(response,"response")
+      setIsFav(false);
+      setColor('black');
+      fetchFavProducts();
+      console.log(response.data, "Favourite removed successfully!");
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   const idOfProduct = productList.map((item) => item._id);
 const idOfFav = favouriteProduct.map((item) => item.productId);
@@ -34,7 +57,11 @@ console.log(commonIds,"Hellop")
         <ul>
           {productList.map(item => {
             if (commonIds.includes(item._id)) {
-              return <li key={item._id}>{item.name}</li>
+              return <li key={item._id}>{item.name}
+                <CloseOutlined  type="dashed" style={{marginLeft:"10px"}}
+                onClick={()=>handleRemoveFav(item._id)}
+                >Remove</CloseOutlined>
+              </li>
             } else {
               return null;
             }

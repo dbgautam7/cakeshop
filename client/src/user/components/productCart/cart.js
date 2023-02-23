@@ -7,10 +7,10 @@ import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import FavoriteIcon from '@mui/icons-material/Favorite';
 import {FacebookShareButton, WhatsappShareButton } from "react-share";
 import {FacebookIcon,WhatsappIcon} from "react-share";
-import ShoppingCartOutlined from '@mui/icons-material/ShoppingCartOutlined';
+import {message} from 'antd'
+
 
 import { useSelector } from 'react-redux';
 import axios from 'axios';
@@ -29,33 +29,24 @@ const Cart = (props) => {
 
   const handleAddToFav = async (productId) => {
     try {
-      const response = await axios.post(
-        `${process.env.REACT_APP_API_URL}/products/favourites`,
-        { productId, userId,color:"red" }
-      );
-      setFavouriteProduct([...favouriteProduct, response.data]);
-      setIsFav(true);
-      setColor('red');
+      const isProductFav = favouriteProduct.some((product) => product.productId === productId);
+      if (!isProductFav) {
+        const response = await axios.post(`${process.env.REACT_APP_API_URL}/products/favourites`, {
+          productId,
+          userId,
+          color: "red"
+        });
+        setFavouriteProduct([...favouriteProduct, response.data]);
+        setIsFav(true);
+        setColor('red');
+      } else {
+        message.error("Product already added to favourites.", 2);
+      }
     } catch (error) {
       console.error(error);
     }
   };
-
-const handleRemoveFav=async(productId)=>{
-  try {
-    console.log(favouriteProduct.includes(productId),"check")
-    if(favouriteProduct.includes(productId)){
-    const response = await axios.delete(
-      `${process.env.REACT_APP_API_URL}/products/favourites/${productId}`);
-      setIsFav(false);
-      setColor('black');
-      console.log(response.data,"hi");
-  } 
-}
-catch (error) {
-    console.error(error);
-  }
-}
+  
 
 
   return (
@@ -83,26 +74,24 @@ catch (error) {
           </CardContent>
           <CardActions disableSpacing>
             <IconButton aria-label='add to favorites'>
-              <FavoriteIcon
-                style={{ color: color }}
+              <p
+                style={{ color: color, border:"2px solid grey",borderRadius:"10px" }}
                 onClick={() => {
-                  if (isFav) {
-                    setIsFav(false);
-                    setColor('black');
-                    handleRemoveFav()
-                  } else {
                     handleAddToFav(props.item._id);
-                  }
                 }}
-              />
+                >
+                  Add To Fav
+                </p>
             </IconButton>
 
             <IconButton aria-label='add to cart'>
-              <ShoppingCartOutlined
+              <p style={{border:"2px solid grey",borderRadius:"10px", color:"indigo"}}
                 onClick={() => {
                   props.addCart(props.id);
                 }}
-              />
+              >
+                Add to Cart
+                </p>
             </IconButton>
 
             <FacebookShareButton
