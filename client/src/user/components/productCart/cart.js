@@ -20,12 +20,13 @@ const Cart = (props) => {
   const shareUrl = 'https://example.com';
 
   const [favouriteProduct, setFavouriteProduct] = useState([]);
+  const [cartProduct,setCartProduct]=useState([])
   const [isFav, setIsFav] = useState(false);
   const [color, setColor] = useState('black');
   const { _id } = useSelector((state) => state.user);
   const userId = _id;
 
-  console.log(_id, props.item._id, '@@@');
+  console.log( props.item, '@@@');
 
   const handleAddToFav = async (productId) => {
     try {
@@ -39,6 +40,24 @@ const Cart = (props) => {
         setFavouriteProduct([...favouriteProduct, response.data]);
         setIsFav(true);
         setColor('red');
+      } else {
+        message.error("Product already added to favourites.", 2);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleAddToCart=async (productId) => {
+    try {
+      const isProductFav = cartProduct.some((product) => product.productId === productId);
+      if (!isProductFav) {
+        const response = await axios.post(`${process.env.REACT_APP_API_URL}/products/carts`, {
+          productId,
+          userId,
+        });
+        console.log(response,"res")
+        setCartProduct([...cartProduct, response.data]);
       } else {
         message.error("Product already added to favourites.", 2);
       }
@@ -87,7 +106,7 @@ const Cart = (props) => {
             <IconButton aria-label='add to cart'>
               <p style={{border:"2px solid grey",borderRadius:"10px", color:"indigo"}}
                 onClick={() => {
-                  props.addCart(props.id);
+                  handleAddToCart(props.item._id)
                 }}
               >
                 Add to Cart
