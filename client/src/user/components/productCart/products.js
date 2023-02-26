@@ -12,11 +12,7 @@ const Products = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(3);
   const [totalItems, setTotalItems] = useState(0);
-  const [data, setData] = useState();
 
-  const updateData = (value) => {
-    setData(value);
-  };
 
   const fetchProductsData = () => {
     setLoading(true);
@@ -52,7 +48,7 @@ const Products = () => {
       </div>
       <div className="product-container">
         {productList.map((item, id) => (
-          <Cart item={item} id={id} updateData={updateData} />
+          <Cart item={item} id={id} />
         ))}
          <div className="pagination-container">
     <Pagination

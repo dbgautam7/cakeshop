@@ -81,3 +81,13 @@
     text-align: center;
   }
   
+  .cart-item {
+    display: flex;
+    align-items: center;
+  }
+  
+  .cart-item-name {
+    margin-right: 10px;
+    color:rgb(24, 26, 26);
+  }
+  

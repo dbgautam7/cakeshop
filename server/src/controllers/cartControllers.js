@@ -3,9 +3,10 @@ const Carts = require("../models/Carts");
 const PostCart = async (req, res) => {
     try {
         const data = await Carts.create(req.body)
+        console.log(data)
         if(data){
             res.status(200).json({
-                msg: "orders dispatched successfully"
+                msg: "Product added to cart successfully"
             })
         }
         else{
@@ -18,19 +19,20 @@ const PostCart = async (req, res) => {
     }
   };
 
-  const GetCart = async (req, res) => {
-    try {
-       const data=await Carts.find()
-       if(data){
-        console.log(data)
-        res.status(200).json({
-            msg:"Orders fetched successfully"
-        })
-       }
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  const GetCart = (req, res) => {
+    Carts.find()
+      .populate('userId', 'email') 
+      .populate('productId', 'name price') 
+      .exec((err, carts) => {
+        if (err) {
+          console.error(err);
+          res.status(500).json({ error: err });
+        } else {
+          console.log(carts,"carts")
+          res.json(carts);
+        }
+      });
+  }
 
   const GetCartById = async (req, res) => {
     try {

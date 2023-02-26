@@ -1,33 +1,51 @@
-import React, { useState } from 'react'
+import axios from 'axios';
+import React, { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux';
+import { PlusCircleOutlined,MinusCircleOutlined } from '@ant-design/icons';
+import "./cart.css"
+import { Link } from 'react-router-dom';
 
 const AddToCart = ({productList}) => {
 
-    const [addCartProduct,setAddCartProduct]=useState(productList)
-    const [cartCount,setCartCount]=useState(0)
+  const [cartProduct, setCartProduct] = useState([]);
+  const [showCartItems, setShowCartItems] = useState(false);
+  const { _id } = useSelector(state => state.user)
+  const userId = _id
 
-    const addCart = (id) => {
-        const tempProductList = [...addCartProduct]
-        tempProductList[id]['cartCount']++
-        setAddCartProduct(tempProductList)
+  const fetchCartProducts =async () => {
+    try {
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/products/carts?userId=${userId}`);
+      setCartProduct(response.data);
+    } catch (error) {
+      console.error(error);
     }
+  };
 
-    const delCart = (id) => {
-        const tempProductList = [...addCartProduct]
-        tempProductList[id]['cartCount']--
-        setAddCartProduct(tempProductList)
+  useEffect(()=>{
+    fetchCartProducts()
+  },[userId])
 
-    }
+  const handleShowCartItems = () => {
+    setShowCartItems(true);
+  }
 
-    const calculateGrandTotal = (item, id) => {
-        const tempProductList = [...addCartProduct]
-        const grandTotal = tempProductList.reduce((total, curr) => {
-            total = total + (curr.cartCount * curr.price)
-            return total
-        }, 0)
-        return grandTotal
-    }
   return (
-    <div>My Cart</div>
+    <div>
+    <Link to="/cart" onClick={handleShowCartItems}><h5 style={{textDecoration:"none"}}>My Cart:</h5></Link>
+    {showCartItems && 
+      <div>
+        {cartProduct.map((item) => (
+          <div key={item._id} className="cart-item">
+            <span className="cart-item-name">{item.productId.name}</span>
+            <PlusCircleOutlined />1<MinusCircleOutlined />
+          </div>
+        ))}
+         <Link to="/">Go back to home</Link>
+      </div>
+      
+    }
+   
+ </div>
   )
 }
 
