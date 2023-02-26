@@ -69,7 +69,7 @@ const RouteHandler = () => {
   <Route exact path='/profileSettings' element={<><UserNavbar /><ProfileSettings /></>} />
   <Route exact path='/changePassword' element={<><UserNavbar /><ChangePassword /></>} />
   <Route exact path='/map' element={<><UserNavbar /><MyMap /></>} />
-  <Route exact path='/cart' element={<><UserNavbar /><AddToCart /></>} />
+  <Route exact path='/carts' element={<><UserNavbar /><AddToCart /></>} />
     <Route path='*' element={<ErrorPage />} />
       </Routes>
     )

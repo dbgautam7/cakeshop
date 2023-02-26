@@ -23,6 +23,7 @@ const Cart = (props) => {
   const [cartProduct,setCartProduct]=useState([])
   const [isFav, setIsFav] = useState(false);
   const [color, setColor] = useState('black');
+  const [quantity,setQuantity]=useState(1)
   const { _id } = useSelector((state) => state.user);
   const userId = _id;
 
@@ -32,7 +33,7 @@ const Cart = (props) => {
     try {
       const isProductFav = favouriteProduct.some((product) => product.productId === productId);
       if (!isProductFav) {
-        const response = await axios.post(`${process.env.REACT_APP_API_URL}/products/favourites`, {
+        const response = await axios.post(`${process.env.REACT_APP_API_URL}/favourites`, {
           productId,
           userId,
           color: "red"
@@ -52,9 +53,10 @@ const Cart = (props) => {
     try {
       const isProductFav = cartProduct.some((product) => product.productId === productId);
       if (!isProductFav) {
-        const response = await axios.post(`${process.env.REACT_APP_API_URL}/products/carts`, {
+        const response = await axios.post(`${process.env.REACT_APP_API_URL}/carts`, {
           productId,
           userId,
+          quantity
         });
         console.log(response,"res")
         setCartProduct([...cartProduct, response.data]);

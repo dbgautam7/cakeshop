@@ -14,7 +14,7 @@ const AddToCart = ({productList}) => {
 
   const fetchCartProducts =async () => {
     try {
-      const response = await axios.get(`${process.env.REACT_APP_API_URL}/products/carts?userId=${userId}`);
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/carts?userId=${userId}`);
       setCartProduct(response.data);
     } catch (error) {
       console.error(error);
@@ -29,24 +29,45 @@ const AddToCart = ({productList}) => {
     setShowCartItems(true);
   }
 
+  const handleIncrementCart = async (productId, quantity) => {
+    try {
+      const response = await axios.put(`${process.env.REACT_APP_API_URL}/carts/${productId}`, { userId, quantity: quantity + 1 });
+      setCartProduct(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleDecrementCart = async (productId, quantity) => {
+    if (quantity > 0) {
+      try {
+        const response = await axios.put(`${process.env.REACT_APP_API_URL}/carts/${productId}`, { userId, quantity: quantity - 1 });
+        setCartProduct(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  };
+
+
   return (
     <div>
-    <Link to="/cart" onClick={handleShowCartItems}><h5 style={{textDecoration:"none"}}>My Cart:</h5></Link>
-    {showCartItems && 
-      <div>
-        {cartProduct.map((item) => (
-          <div key={item._id} className="cart-item">
-            <span className="cart-item-name">{item.productId.name}</span>
-            <PlusCircleOutlined />1<MinusCircleOutlined />
-          </div>
-        ))}
-         <Link to="/">Go back to home</Link>
-      </div>
-      
-    }
-   
- </div>
-  )
-}
+      <Link to="/carts" onClick={handleShowCartItems}><h5 style={{textDecoration:"none"}}>My Cart:</h5></Link>
+      {showCartItems && 
+        <div>
+          {cartProduct.map((item) => (
+            <div key={item._id} className="cart-item">
+              <span className="cart-item-name">{item.productId.name}</span>
+              <PlusCircleOutlined onClick={() => handleIncrementCart(item.productId._id, item.quantity)} />
+              {item.quantity}
+              <MinusCircleOutlined onClick={() => handleDecrementCart(item.productId._id, item.quantity)} />
+            </div>
+          ))}
+          <Link to="/">Go back to home</Link>
+        </div>
+      }
+    </div>
+  );
+};
 
-export default AddToCart
+export default AddToCart;

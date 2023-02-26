@@ -3,7 +3,7 @@ const Carts = require("../models/Carts");
 const PostCart = async (req, res) => {
     try {
         const data = await Carts.create(req.body)
-        console.log(data)
+        // console.log(data)
         if(data){
             res.status(200).json({
                 msg: "Product added to cart successfully"
@@ -28,7 +28,7 @@ const PostCart = async (req, res) => {
           console.error(err);
           res.status(500).json({ error: err });
         } else {
-          console.log(carts,"carts")
+          // console.log(carts,"carts")
           res.json(carts);
         }
       });
@@ -38,7 +38,7 @@ const PostCart = async (req, res) => {
     try {
       const data = await Carts.findOne({ _id: req.params.id });
       if (data) {
-        console.log(data);
+        // console.log(data);
         res.status(200).json(data);
       } else {
         res.status(404).json({ message: "Cart not found" });
@@ -52,7 +52,7 @@ const PostCart = async (req, res) => {
   const DeleteCart=async(req,res)=>{
     try{
         const data=await Carts.findByIdAndDelete({_id:req.query.id})
-        console.log(data)
+        // console.log(data)
         if(data){
             res.status(200).json({
                 msg:"Cart deleted successfully"
@@ -64,30 +64,22 @@ const PostCart = async (req, res) => {
     }
   }
 
-  const UpdateCart = async (req, res) => {
+  const UpdateCart= async (req, res) => {
+    console.log(req.body,req.params)
     try {
-      const data = await Carts.findByIdAndUpdate(
-       { _id: req.params.id },
-        { $set: req.body },
-        { new: true }
-      );
-      console.log(data);
-      if (data) {
-        res.status(200).json({
-          msg: "Cart updated successfully",
-        });
-      } else {
-        res.status(404).json({
-          msg: "Cart not found",
-        });
+      const cartId = req.params.id;
+      const { userId, quantity } = req.body;
+      const updatedCartItem = await Carts.findByIdAndUpdate(cartId, { quantity }, { new: true });
+      if (!updatedCartItem) {
+        return res.status(404).json({ error: 'Cart item not found' });
       }
+      const updatedCart = await Carts.find({ userId }).populate('productId');
+      res.json(updatedCart);
     } catch (error) {
-      console.log(error);
-      res.status(500).json({
-        msg: "Server error",
-      });
+      console.error(error);
+      res.status(500).json({ error: 'Internal server error' });
     }
-  };
+  }
 
 
   exports.PostCart = PostCart;
