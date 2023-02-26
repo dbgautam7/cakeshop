@@ -1,23 +1,17 @@
 const Carts = require("../models/Carts");
 
 const PostCart = async (req, res) => {
-    try {
-        const data = await Carts.create(req.body)
-        console.log(data)
-        if(data){
-            res.status(200).json({
-                msg: "Product added to cart successfully"
-            })
-        }
-        else{
-            res.status(404).json({
-                msg:"Something went wrong"
-            })
-        }
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  try {
+    const cartData = req.body;
+    console.log(cartData)
+    const newCart = new Carts(cartData);
+    const savedCart = await newCart.save();
+    res.status(200).json(savedCart);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Failed to save cart item" });
+  }
+};
 
   const GetCart = (req, res) => {
     Carts.find()
@@ -28,7 +22,7 @@ const PostCart = async (req, res) => {
           console.error(err);
           res.status(500).json({ error: err });
         } else {
-          console.log(carts,"carts")
+          // console.log(carts,"carts")
           res.json(carts);
         }
       });
@@ -67,7 +61,7 @@ const PostCart = async (req, res) => {
   const UpdateCart = async (req, res) => {
     try {
       const data = await Carts.findByIdAndUpdate(
-       { _id: req.params.id },
+       { userId: req.params.userId },
         { $set: req.body },
         { new: true }
       );

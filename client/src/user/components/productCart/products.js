@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Pagination } from 'antd';
 import CustomDrawer from './customDrawer';
 import Cart from './cart'
-import './cart.css'
+import '../cart.css'
 import SearchBar from '../../../components/search/searchBar';
 
 const Products = () => {

@@ -19,7 +19,7 @@ import Settings from '../../admin/pages/settings/settings';
 import Orders from '../../admin/pages/orders/orders';
 import Analytics from '../../admin/pages/analytics/analytics';
 import Notifications from '../../admin/pages/analytics/analytics';
-import AddToCart from '../../user/components/productCart/addToCart';
+import ProductOrder from '../../user/components/productOrder/productOrder';
 
 
 const RouteHandler = () => {
@@ -69,7 +69,7 @@ const RouteHandler = () => {
   <Route exact path='/profileSettings' element={<><UserNavbar /><ProfileSettings /></>} />
   <Route exact path='/changePassword' element={<><UserNavbar /><ChangePassword /></>} />
   <Route exact path='/map' element={<><UserNavbar /><MyMap /></>} />
-  <Route exact path='/cart' element={<><UserNavbar /><AddToCart /></>} />
+  <Route exact path='/orders' element={<><UserNavbar /><ProductOrder /></>} />
     <Route path='*' element={<ErrorPage />} />
       </Routes>
     )

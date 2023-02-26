@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './cart.css'
+import '../cart.css'
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
@@ -32,7 +32,7 @@ const Cart = (props) => {
     try {
       const isProductFav = favouriteProduct.some((product) => product.productId === productId);
       if (!isProductFav) {
-        const response = await axios.post(`${process.env.REACT_APP_API_URL}/products/favourites`, {
+        const response = await axios.post(`${process.env.REACT_APP_API_URL}/favourites`, {
           productId,
           userId,
           color: "red"
@@ -44,29 +44,26 @@ const Cart = (props) => {
         message.error("Product already added to favourites.", 2);
       }
     } catch (error) {
-      console.error(error);
+      console.error(error); 
     }
   };
 
   const handleAddToCart=async (productId) => {
     try {
-      const isProductFav = cartProduct.some((product) => product.productId === productId);
-      if (!isProductFav) {
-        const response = await axios.post(`${process.env.REACT_APP_API_URL}/products/carts`, {
+      const response = await axios.post(
+        `${process.env.REACT_APP_API_URL}/carts`,
+        {
           productId,
           userId,
-        });
-        console.log(response,"res")
-        setCartProduct([...cartProduct, response.data]);
-      } else {
-        message.error("Product already added to favourites.", 2);
-      }
+          quantity:1
+        }
+      );
+      setCartProduct([...cartProduct, response.data]);
     } catch (error) {
       console.error(error);
     }
   };
   
-
 
   return (
     <div className='cart-container'>

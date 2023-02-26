@@ -2,7 +2,9 @@ import { Drawer } from 'antd';
 import { RightSquareOutlined } from '@ant-design/icons';
 import { useState } from 'react';
 import AddToCart from './addToCart';
-import AddToFavourite from './addToFavourite';
+import AddToFavourite from '../productFav/addToFavourite';
+import ProductOrder from '../productOrder/productOrder';
+import { Link } from 'react-router-dom';
 
 const CustomDrawer = ({productList}) => {
   const [open, setOpen] = useState(false);
@@ -21,7 +23,8 @@ const CustomDrawer = ({productList}) => {
         
         <AddToFavourite productList={productList} />
          <p style={{ color: "aqua" }}><AddToCart productList={productList}  /></p>
-        <p style={{ color: "#873e23" }}>My Orders</p>
+        <Link to="/orders"><p style={{ color: "#873e23" }}><ProductOrder /></p></Link>
+        <Link to="/">Back to Home</Link>
       </Drawer>
     </>
   );
