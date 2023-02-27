@@ -19,7 +19,7 @@ import Settings from '../../admin/pages/settings/settings';
 import Orders from '../../admin/pages/orders/orders';
 import Analytics from '../../admin/pages/analytics/analytics';
 import Notifications from '../../admin/pages/analytics/analytics';
-import ProductOrder from '../../user/components/productOrder/productOrder';
+import ProductOrder from '../../user/containers/productOrder/productOrder';
 
 
 const RouteHandler = () => {

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
-import { Form, Nav, Navbar } from 'react-bootstrap';
-import { Button } from 'antd';
+import { Nav, Navbar } from 'react-bootstrap';
 import './navbar.css'
 import Logout from '../../../components/logout';
 import { Link } from 'react-router-dom';
@@ -27,6 +26,7 @@ const UserNavbar = () => {
                         <Link to="/aboutus">About Us</Link>
                         <Link to="/contact">Contact</Link>
                         <Link to="/map">Map</Link>
+                        <Link to='/orders'>Orders</Link>
                         <h3 className='show-time'>{currentTime.toLocaleString()}</h3>
                     </Nav>
                     </div>
