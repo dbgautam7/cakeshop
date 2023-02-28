@@ -5,6 +5,7 @@ const usersRouter=require("./routes/usersRouter")
 const productsRouter=require("./routes/productsRouter")
 const cartRouter=require("./routes/cartRouter")
 const favouriteRouter=require("./routes/favouriteRouter")
+const orderRouter=require("./routes/orderRouter")
 require('dotenv').config()
 
 const app = express()
@@ -17,6 +18,7 @@ app.use(usersRouter);
 app.use(productsRouter)
 app.use(cartRouter)
 app.use(favouriteRouter)
+app.use(orderRouter)
 
 connect()
 

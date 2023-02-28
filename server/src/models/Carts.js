@@ -14,6 +14,9 @@ const cartsSchema = new mongoose.Schema({
       type: Number,
       required: true
     }
-});
+    
+},
+{collection:"carts"}
+);
 
 module.exports = mongoose.model("Carts", cartsSchema);
