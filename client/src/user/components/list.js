@@ -31,9 +31,6 @@ const MyCartList = () => {
     setIsModalOpen(true);
   };
 
-  const handleOk = () => {
-    setIsModalOpen(false);
-  };
   const handleCancel = () => {
     setIsModalOpen(false);
   };
@@ -45,6 +42,22 @@ const MyCartList = () => {
       <Button type='primary' onClick={() => showModal(item)}>Order Now</Button>
     </div>
   ));
+
+  const postOrders=async()=>{
+    try {
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/orders`,
+      {
+        cartId:selectedProduct._id,
+        quantity: selectedProduct.quantity
+      });
+      console.log(response.data);
+      setIsModalOpen(false);
+    } catch (error) {
+      console.error(error);
+      
+    }
+  };
+
 
   return (
     <div style={{width:"50%", margin:"auto"}}>
@@ -61,7 +74,11 @@ const MyCartList = () => {
       />
 
       {selectedProduct && (
-        <Modal title="Mix our sweetness with your celebration 😍" visible={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+        <Modal title="Mix our sweetness with your celebration 😍" 
+        visible={isModalOpen} 
+        onCancel={handleCancel}
+        onOk={postOrders}
+        >
           <Input.Group compact>
             <Input
               style={{
