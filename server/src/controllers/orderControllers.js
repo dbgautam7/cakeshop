@@ -40,6 +40,25 @@ const PostOrder = async (req, res) => {
     });
 }
 
+// const PutOrder = async (req, res) => {
+//   console.log(req.query,"req")
+//   try {
+//     const data = await Orders.findByIdAndUpdate(req.query.cartId, 
+//       { quantity: req.body.quantity },
+//       {new:true});
+//     if (!data) {
+//       return res.status(404).json({ error: "Order not found" });
+//     }
+//     console.log(data,"data");
+//     res.json({ message: "Order updated successfully",data });
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).json({ error: "Failed to update order" });
+//   }
+// };
+
+
 
   exports.PostOrder=PostOrder
   exports.GetOrders=GetOrders
+  // exports.PutOrder=PutOrder

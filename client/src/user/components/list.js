@@ -43,14 +43,19 @@ const MyCartList = () => {
     </div>
   ));
 
+  const [selectedQuantity, setSelectedQuantity] = useState(selectedProduct?.quantity); //optional chaining
+const handleQuantityChange = (value) => {
+  setSelectedQuantity(value);
+};
   const postOrders=async()=>{
     try {
       const response = await axios.post(`${process.env.REACT_APP_API_URL}/orders`,
       {
         cartId:selectedProduct._id,
-        quantity: selectedProduct.quantity
+        quantity:selectedQuantity
       });
       console.log(response.data);
+      setSelectedQuantity(response.data.quantity)
       setIsModalOpen(false);
     } catch (error) {
       console.error(error);
@@ -97,9 +102,9 @@ const MyCartList = () => {
           </Input.Group>
 
           {selectedProduct.quantity > 10 ? (
-            <InputNumber defaultValue={selectedProduct.quantity} style={{ width: '30%' }} />
+            <InputNumber defaultValue={selectedProduct.quantity} style={{ width: '30%' }} onChange={handleQuantityChange} />
           ) : (
-            <Select defaultValue={selectedProduct.quantity} style={{ width: '30%' }}>
+            <Select defaultValue={selectedProduct.quantity} style={{ width: '30%' }} onChange={handleQuantityChange}>
               {[...Array(10)].map((_, index) => (
                 <Option key={index + 1} value={index + 1}>{index + 1}</Option>
               ))}
