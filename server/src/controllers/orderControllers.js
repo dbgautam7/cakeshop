@@ -19,14 +19,14 @@ const PostOrder = async (req, res) => {
         path: 'cartId',
         populate: {
           path: 'userId',
-          select: 'email'
+          select: 'email phoneNumber firstName'
         }
       })
     .populate({
       path: 'cartId',
       populate: {
         path: 'productId',
-        select: 'name'
+        select: 'name price'
       }
     })
     .exec((err, orders) => {

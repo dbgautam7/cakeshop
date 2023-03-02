@@ -20,6 +20,7 @@ import Orders from '../../admin/pages/orders/orders';
 import Analytics from '../../admin/pages/analytics/analytics';
 import Notifications from '../../admin/pages/analytics/analytics';
 import ProductOrder from '../../user/containers/productOrder/productOrder';
+import MyOrders from '../../user/containers/productOrder/myOrders';
 
 
 const RouteHandler = () => {
@@ -70,6 +71,7 @@ const RouteHandler = () => {
   <Route exact path='/changePassword' element={<><UserNavbar /><ChangePassword /></>} />
   <Route exact path='/map' element={<><UserNavbar /><MyMap /></>} />
   <Route exact path='/orders' element={<><UserNavbar /><ProductOrder /></>} />
+  <Route exact path='/myOrders' element={<><UserNavbar /><MyOrders /></>} />
     <Route path='*' element={<ErrorPage />} />
       </Routes>
     )
