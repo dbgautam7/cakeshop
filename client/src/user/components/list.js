@@ -45,14 +45,36 @@ const MyCartList = () => {
 
   const [selectedQuantity, setSelectedQuantity] = useState(selectedProduct?.quantity); //optional chaining
 const handleQuantityChange = (value) => {
+  debugger
   setSelectedQuantity(value);
+  calculateTotalPrice();
 };
+
+const initialPrice=selectedProduct?.productId.price
+const [totalPrice, setTotalPrice] = useState(initialPrice);
+
+const calculateTotalPrice = () => {
+  if (selectedProduct && selectedProduct.productId && selectedQuantity) {
+    setTotalPrice(initialPrice * selectedQuantity);
+  }
+  else{
+    setTotalPrice(initialPrice)
+  }
+}
+
+useEffect(() => {
+  calculateTotalPrice();
+}, [selectedProduct, selectedQuantity]);
+
+console.log(initialPrice, "selectedProduct", totalPrice);
+
   const postOrders=async()=>{
     try {
       const response = await axios.post(`${process.env.REACT_APP_API_URL}/orders`,
       {
         cartId:selectedProduct._id,
-        quantity:selectedQuantity
+        quantity:selectedQuantity,
+        totalPrice
       });
       console.log(response.data);
       setSelectedQuantity(response.data.quantity)
@@ -111,7 +133,7 @@ const handleQuantityChange = (value) => {
             </Select>
           )}
 
-          <Typography>Total Price:</Typography>
+          <Typography>Total Price:{totalPrice}</Typography>
         </Modal>
       )}
     </div>
