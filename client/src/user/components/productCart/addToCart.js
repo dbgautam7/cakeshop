@@ -14,6 +14,7 @@ const AddToCart = ({productList}) => {
     try {
       const response = await axios.get(`${process.env.REACT_APP_API_URL}/carts?userId=${userId}`);
       setCartProduct(response.data);
+      console.log(response.data,"%%")
     } catch (error) {
       console.error(error);
     }
@@ -30,13 +31,19 @@ const AddToCart = ({productList}) => {
     <div>
        <h5 style={{color:"deeppink"}}>My Cart:</h5>
        <div>
-  {cartProduct.map((item) => (
-    <div key={item._id} className="cart-item">
-      <span className="cart-item-name">{item.productId.name}</span>
-      <DeleteOutlined />
+        {cartProduct.map((item) => {
+            if (userId === item.userId._id) {
+                return (
+                    <div key={item._id} className="cart-item">
+                        <span className="cart-item-name">{item.productId.name}</span>
+                        <DeleteOutlined />
+                    </div>
+                )
+            } else {
+                return null;
+            }
+        })}
     </div>
-  ))}
-</div>
     </div>
   )
 }

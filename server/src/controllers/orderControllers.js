@@ -34,10 +34,37 @@ const PostOrder = async (req, res) => {
         console.error(err);
         res.status(500).json({ error: err });
       } else {
-        // console.log(orders[0].cartId.userId.email,"orders")
         res.json(orders);
       }
     });
+}
+
+const GetMyOrdersById = (req, res) => {
+  console.log(req.params,"%%")
+  Orders.find({userId:req.params.userId})
+  .populate({
+      path: 'cartId',
+      populate: {
+        path: 'userId',
+        select: 'email phoneNumber firstName'
+      }
+    })
+  .populate({
+    path: 'cartId',
+    populate: {
+      path: 'productId',
+      select: 'name price'
+    }
+  })
+  .exec((err, myOrders) => {
+    if (err) {
+      console.error(err);
+      res.status(500).json({ error: err });
+    } else {
+      console.log(myOrders,"orders")
+      res.json(myOrders);
+    }
+  });
 }
 
 // const PutOrder = async (req, res) => {
@@ -61,4 +88,5 @@ const PostOrder = async (req, res) => {
 
   exports.PostOrder=PostOrder
   exports.GetOrders=GetOrders
+  exports.GetMyOrdersById=GetMyOrdersById
   // exports.PutOrder=PutOrder
