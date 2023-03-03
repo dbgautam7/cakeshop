@@ -37,4 +37,5 @@ and add,delete and edit products.
 15. Nodejs middlewares such as cors,bodyParser and express 
 16. Client and Server side pagination
 17. Mongoose 
+18. Pdf genetation and print feature using ReactToPrint
 
