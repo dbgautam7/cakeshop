@@ -25,24 +25,27 @@ const AddToCart = ({productList}) => {
   },[userId])
 
 
-
+  const filteredCartProduct = cartProduct.filter((item) => {
+    if (userId === item.userId._id) {
+      return item;
+    }
+    return null;
+  });
 
   return (
     <div>
        <h5 style={{color:"deeppink"}}>My Cart:</h5>
        <div>
-        {cartProduct.map((item) => {
-            if (userId === item.userId._id) {
-                return (
-                    <div key={item._id} className="cart-item">
-                        <span className="cart-item-name">{item.productId.name}</span>
-                        <DeleteOutlined />
-                    </div>
-                )
-            } else {
-                return null;
-            }
-        })}
+       {filteredCartProduct.length > 0 ? (
+          filteredCartProduct.map((item) => (
+            <div key={item._id} className="cart-item">
+              <span className="cart-item-name">{item.productId.name}</span>
+              <DeleteOutlined />
+            </div>
+          ))
+        ) : (
+          <div>Cart is empty!</div>
+        )}
     </div>
     </div>
   )

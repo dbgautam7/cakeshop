@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react'
-import { Divider, Table } from 'antd';
+import React, { useEffect, useState,useRef } from 'react'
+import { Button, Divider, Table } from 'antd';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
+import ReactToPrint from 'react-to-print';
 
 const MyOrders = () => {
 
@@ -61,11 +62,16 @@ const MyOrders = () => {
         }
     })
 
+const tableRef=useRef()
 
     return (
         <div style={{ width: "80%", margin: "auto" }}>
             <Divider>My Order Lists</Divider>
-            <Table columns={columns} dataSource={data} size="middle" />
+            <Table columns={columns} dataSource={data} size="middle" ref={tableRef} />
+            <ReactToPrint
+        trigger={() => <Button>Print</Button>}
+        content={() => tableRef.current}
+      />
         </div>
     )
 }
