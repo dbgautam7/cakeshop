@@ -10,14 +10,13 @@ app.post('/mail', async(req,res)=>{
         const sent_to=email
         const sent_from= process.env.EMAIL_USER
         const reply_to=email
-        const subject="Thank you"
+        const subject="Nodemailer Test"
         const message=`
-        <h1>Hello</h1>
-        <p>Thanks</p>
-        <p>Regards</p>`
+        <h3>Hello from nodemailer</h3>
+        <p>Thanks for your kind support</p>
+        <p>Regards...</p>`
 
         await emailController.sendEmail(subject, message, sent_to, sent_from, reply_to);
-
         res.status(200).json({ success: true, message: "Email sent",email });
       } catch (error) {
         console.error(error);

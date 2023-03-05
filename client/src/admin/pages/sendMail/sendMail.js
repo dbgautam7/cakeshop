@@ -2,7 +2,7 @@ import axios from 'axios'
 import React, { useState } from 'react'
 import MySidebar from '../../components/sidebar/sidebar'
 
-const Settings = () => {
+const SendMail = () => {
 
   const [email,setEmail] = useState("")
 
@@ -19,7 +19,7 @@ const postEmail=async()=>{
         <div style={{width:"75%", marginTop:"30px"}}>
 
         <div>
-<h2>Send me a Message</h2>
+<h2>Send a message to users</h2>
 <input
 type="text"
 placeholder="email"
@@ -36,4 +36,4 @@ Send Message
   )
 }
 
-export default Settings
+export default SendMail

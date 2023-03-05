@@ -13,7 +13,7 @@ import { ImUsers } from 'react-icons/im';
 import { FaProductHunt } from 'react-icons/fa';
 import { FaJediOrder } from 'react-icons/fa';
 import { IoIosNotifications } from 'react-icons/io';
-import { MdSettings } from 'react-icons/md';
+import { AiOutlineMail } from 'react-icons/ai';
 import { FcHome } from 'react-icons/fc';
 
 const MySidebar = () => {
@@ -53,8 +53,8 @@ const MySidebar = () => {
             <NavLink exact to="/analytics" activeClassName="activeClicked">
               <CDBSidebarMenuItem >{<TbDeviceAnalytics />} Analytics</CDBSidebarMenuItem>
             </NavLink>
-            <NavLink exact to="/settings" activeClassName="activeClicked">
-              <CDBSidebarMenuItem >{<MdSettings />} Settings</CDBSidebarMenuItem>
+            <NavLink exact to="/sendMail" activeClassName="activeClicked">
+              <CDBSidebarMenuItem >{<AiOutlineMail />} Send Email</CDBSidebarMenuItem>
             </NavLink>
           </CDBSidebarMenu>
         </CDBSidebarContent>

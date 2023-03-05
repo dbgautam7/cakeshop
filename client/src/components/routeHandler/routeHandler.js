@@ -15,12 +15,12 @@ import Products from '../../admin/pages/products/products';
 import AdminHome from '../../admin/pages/adminHome/adminHome';
 import ProfileSettings from '../../containers/sharedScreens/profileSettings';
 import ChangePassword from '../../containers/sharedScreens/changePassword';
-import Settings from '../../admin/pages/settings/settings';
 import Orders from '../../admin/pages/orders/orders';
 import Analytics from '../../admin/pages/analytics/analytics';
 import Notifications from '../../admin/pages/analytics/analytics';
 import ProductOrder from '../../user/containers/productOrder/productOrder';
 import MyOrders from '../../user/containers/productOrder/myOrders';
+import SendMail from '../../admin/pages/sendMail/sendMail';
 
 
 const RouteHandler = () => {
@@ -52,7 +52,7 @@ const RouteHandler = () => {
         <Route path='/users' element={<><AdminNavbar /><Users /></>} />
         <Route path='/products' element={<><AdminNavbar /><Products /></>} />
         <Route path='/analytics' element={<><AdminNavbar /><Analytics /></>} />
-        <Route path='/settings' element={<><AdminNavbar /><Settings /></>} />
+        <Route path='/sendMail' element={<><AdminNavbar /><SendMail /></>} />
         <Route path='/notifications' element={<><AdminNavbar /><Notifications /></>} />
         <Route path='*' element={<ErrorPage />} />
       </Routes>
