@@ -14,7 +14,7 @@ const AddToFavourite = ({productList}) => {
   
   const fetchFavProducts =async () => {
     try {
-      const response = await axios.get(`${process.env.REACT_APP_API_URL}/products/favourites?userId=${userId}`);
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/favourites?userId=${userId}`);
       setFavouriteProduct(response.data);
     } catch (error) {
       console.error(error);
@@ -34,7 +34,7 @@ const AddToFavourite = ({productList}) => {
 
   const handleRemoveFav = async (productId) => {
     try {
-      const response = await axios.delete(`${process.env.REACT_APP_API_URL}/products/favourites/${productId}`);
+      const response = await axios.delete(`${process.env.REACT_APP_API_URL}/favourites/${productId}`);
       console.log(response,"response")
       setIsFav(false);
       setColor('black');
