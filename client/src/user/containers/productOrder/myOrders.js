@@ -1,4 +1,4 @@
-import React, { useEffect, useState,useRef } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import { Button, Divider, Table } from 'antd';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
@@ -46,32 +46,30 @@ const MyOrders = () => {
         },
     ];
 
-    let data = []
-    data = myOrdersList.map((item, id) => {
-        if (userId === item.cartId.userId._id) {
-            return ({
-                key: id + 1,
-                name: item.cartId.productId.name,
-                unitPrice: item.cartId.productId.price,
-                quantity: item.quantity,
-                totalAmount: item.totalPrice
-            })
-        }
-        else {
-            data = <h3>No data found!!</h3>
-        }
-    })
+    const data = myOrdersList
+        .filter((item) => item.cartId.userId._id === userId)
+        .map((item, id) => ({
+            key: id + 1,
+            name: item.cartId.productId.name,
+            unitPrice: item.cartId.productId.price,
+            quantity: item.quantity,
+            totalAmount: item.totalPrice,
+        }));
 
-const tableRef=useRef()
+    const tableRef = useRef()
 
     return (
         <div style={{ width: "80%", margin: "auto" }}>
             <Divider>My Order Lists</Divider>
-            <Table columns={columns} dataSource={data} size="middle" ref={tableRef} />
-            <ReactToPrint
-        trigger={() => <Button>Print</Button>}
-        content={() => tableRef.current}
-      />
+            {data.length > 0 ? (
+                <>
+                    <Table columns={columns} dataSource={data} size='middle' ref={tableRef} />
+                    <ReactToPrint trigger={() => <Button>Print</Button>} content={() => tableRef.current} />
+                </>
+            ) : (
+                <h1 style={{ display: "flex", justifyContent: "center", alignItems: "center"}}>No Orders Found</h1>
+            )}
+
         </div>
     )
 }

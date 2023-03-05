@@ -57,16 +57,6 @@ const OrdersDescription = () => {
       dataIndex: 'createdDate',
       key: 'createdDate',
     },
-    // {
-    //   title: 'Action',
-    //   key: 'action',
-    //   render: (_, record) => (
-    //     <Space size="middle">
-    //       <Button>Accept </Button>
-    //       <Button>Reject</Button>
-    //     </Space>
-    //   ),
-    // },
   ];
 
   const data=ordersList.map((item,id)=>{
