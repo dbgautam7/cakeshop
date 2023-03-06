@@ -1,6 +1,5 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Progress, Space } from 'antd';
 import {
     BarChart,
     Bar,
@@ -14,6 +13,7 @@ import {
 const BarCharts = () => {
 
   const [productList, setProductList] = useState([]);
+  const [productCount,setProductCount]=useState(0)
 
   const fetchProductsData = () => {
     axios.get(`${process.env.REACT_APP_API_URL}/products`)
@@ -29,6 +29,22 @@ const BarCharts = () => {
     fetchProductsData()
   }, [])
 
+
+  const fetchProductsCount= () => {
+    axios.get(`${process.env.REACT_APP_API_URL}/products/count`)
+      .then((response) => {
+        setProductCount(response.data)
+        console.log(response.data,"@@")
+      })
+      .catch((error) => {
+        console.error("Error fetching products count:", error);
+      });
+  }
+
+  useEffect(() => {
+    fetchProductsCount()
+  }, [])
+
 console.log(productList,"pro")
 
     const data=productList.map((item,id)=>{
@@ -42,19 +58,8 @@ console.log(productList,"pro")
 
     return (
         <>
-          <div style={{display:"flex", margin:"auto"}} >
-          <Space wrap>
-        <Progress
-        type="circle"
-        percent={productList.length}
-        format={() => `${productList.length}`}
-        strokeColor={{
-          '0%': '#108ee9',
-          '100%': '#87d068',
-        }}
-      />
-  </Space>
-
+          <div style={{display:"flex", margin:"auto", alignContent:"center", alignItems:"center"}} >
+            <h3 style={{color:"cadetblue"}}>Total Products Count: {productCount}</h3>
                 <BarChart
                     width={850}
                     height={400}

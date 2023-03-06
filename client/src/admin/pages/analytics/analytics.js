@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import MySidebar from '../../components/sidebar/sidebar'
 
 import BarCharts from "./chart"
@@ -12,7 +12,6 @@ const Analytics = () => {
             <MySidebar />
         </div>
         <div style={{width:"75%", marginTop:"30px"}}>
-  <h1>Hello</h1>
      <BarCharts />
 </div>
     </div>

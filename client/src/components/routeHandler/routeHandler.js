@@ -53,7 +53,7 @@ const RouteHandler = () => {
         <Route path='/products' element={<><AdminNavbar /><Products /></>} />
         <Route path='/analytics' element={<><AdminNavbar /><Analytics /></>} />
         <Route path='/sendMail' element={<><AdminNavbar /><SendMail /></>} />
-        <Route path='/notifications' element={<><AdminNavbar /><Notifications /></>} />
+        {/* <Route path='/notifications' element={<><AdminNavbar /><Notifications /></>} /> */}
         <Route path='*' element={<ErrorPage />} />
       </Routes>
     )

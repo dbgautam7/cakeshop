@@ -14,5 +14,6 @@ router.put("/products", productControllers.EditProducts);
 
 router.get("/search/:key", productControllers.GetSearchResults);
 
+router.get("/products/count", productControllers.GetProductsCount);
 
 module.exports = router;
