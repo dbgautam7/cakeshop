@@ -47,9 +47,9 @@ const MySidebar = () => {
             <NavLink exact to="/orders" activeClassName="activeClicked">
               <CDBSidebarMenuItem >{<FaJediOrder />} Orders</CDBSidebarMenuItem>
             </NavLink>
-            <NavLink exact to="/notifications" activeClassName="activeClicked">
+            {/* <NavLink exact to="/notifications" activeClassName="activeClicked">
               <CDBSidebarMenuItem >{<IoIosNotifications />} Notifications</CDBSidebarMenuItem>
-            </NavLink>
+            </NavLink> */}
             <NavLink exact to="/analytics" activeClassName="activeClicked">
               <CDBSidebarMenuItem >{<TbDeviceAnalytics />} Analytics</CDBSidebarMenuItem>
             </NavLink>

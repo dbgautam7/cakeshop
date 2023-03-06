@@ -1,26 +1,85 @@
-import React, { useState, useEffect,useRef } from 'react';
-import Chart from 'chart.js/auto';
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import {
+    BarChart,
+    Bar,
+    XAxis,
+    YAxis,
+    CartesianGrid,
+    Tooltip,
+    Legend,
+} from "recharts";
 
-const BarChart = ({ data, options }) => {
-  const [chart, setChart] = useState(null);
-  const chartRef = useRef(null);
+const BarCharts = () => {
+
+  const [productList, setProductList] = useState([]);
+  const [productCount,setProductCount]=useState(0)
+
+  const fetchProductsData = () => {
+    axios.get(`${process.env.REACT_APP_API_URL}/products`)
+      .then((response) => {
+        setProductList(response.data.productList)
+      })
+      .catch((error) => {
+        console.error("Error fetching product data:", error);
+      });
+  }
 
   useEffect(() => {
-    if (chartRef && chartRef.current) {
-      const newChartInstance = new Chart(chartRef.current, {
-        type: 'bar',
-        data,
-        options,
+    fetchProductsData()
+  }, [])
+
+
+  const fetchProductsCount= () => {
+    axios.get(`${process.env.REACT_APP_API_URL}/products/count`)
+      .then((response) => {
+        setProductCount(response.data)
+        console.log(response.data,"@@")
+      })
+      .catch((error) => {
+        console.error("Error fetching products count:", error);
       });
-      setChart(newChartInstance);
-    }
-  }, [chartRef, data, options]);
+  }
 
-  return (
-    <div>
-      <canvas ref={chartRef} />
-    </div>
-  );
+  useEffect(() => {
+    fetchProductsCount()
+  }, [])
+
+console.log(productList,"pro")
+
+    const data=productList.map((item,id)=>{
+      return ({
+        name:item.name,
+        price:item.price
+      })
+
+    })
+
+
+    return (
+        <>
+          <div style={{display:"flex", margin:"auto", alignContent:"center", alignItems:"center"}} >
+            <h3 style={{color:"cadetblue"}}>Total Products Count: {productCount}</h3>
+                <BarChart
+                    width={850}
+                    height={400}
+                    data={data}
+                    margin={{
+                        top: 5,
+                        right: 30,
+                        left: 20,
+                        bottom: 5,
+                    }}
+                >
+                    <CartesianGrid strokeDasharray="1 1" />
+                    <XAxis dataKey="name" />
+                    <YAxis />
+                    <Tooltip />
+                    <Legend />
+                    <Bar dataKey="price" fill="#8884d8" />
+                </BarChart>
+          </div>
+        </>
+    );
 };
-
-export default BarChart;
+export default BarCharts;

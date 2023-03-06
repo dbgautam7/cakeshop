@@ -125,8 +125,21 @@ const GetSearchResults = async (req, res) => {
 }
 
 
+const GetProductsCount=async (req, res) => {
+  try {
+    const count = await Products.countDocuments();
+    res.status(200).json(count.toString());
+    // console.log(count,"count")
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Error retrieving products count');
+  }
+}
+
+
 exports.PostProducts = PostProducts
 exports.GetProducts = GetProducts
 exports.DeleteProducts = DeleteProducts
 exports.EditProducts = EditProducts
 exports.GetSearchResults = GetSearchResults
+exports.GetProductsCount=GetProductsCount
