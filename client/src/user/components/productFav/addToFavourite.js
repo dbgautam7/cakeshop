@@ -16,6 +16,7 @@ const AddToFavourite = ({productList}) => {
     try {
       const response = await axios.get(`${process.env.REACT_APP_API_URL}/favourites?userId=${userId}`);
       setFavouriteProduct(response.data);
+      setIsFav(true)
     } catch (error) {
       console.error(error);
     }
