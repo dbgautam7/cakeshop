@@ -36,6 +36,14 @@ and add,delete and edit products.
 14. Environment variables setup using dotenv
 15. Nodejs middlewares such as cors,bodyParser and express 
 16. Client and Server side pagination
-17. Mongoose 
-18. Pdf genetation and print feature using ReactToPrint
+17. Mongoose query
+18. Pdf generation and print feature using ReactToPrint
+19. Recharts for chart creation
+20. Nodemailer to send email
+21. Documents count from database collection
 
+
+#Project Screenshots
+![adminHomeScreen](https://user-images.githubusercontent.com/119648262/223627498-71d874e3-cc6b-44f6-8e3f-732eb5d06522.PNG)
+![userOrder](https://user-images.githubusercontent.com/119648262/223627501-f48e8d33-773e-4bf1-bcc8-d38f7dbf1036.PNG)
+![userProfile](https://user-images.githubusercontent.com/119648262/223627502-dff82483-762d-49d2-8e74-130aa7373da8.PNG)
