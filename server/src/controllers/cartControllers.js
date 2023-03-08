@@ -1,4 +1,5 @@
 const Carts = require("../models/Carts");
+const { GetProductsCount } = require("./productControllers");
 
 const PostCart = async (req, res) => {
   try {
@@ -99,9 +100,21 @@ const PostCart = async (req, res) => {
     }
   };
 
+  const GetCartsCount=async (req, res) => {
+    try {
+      const count = await Carts.countDocuments();
+      res.status(200).json(count.toString());
+      console.log(count,"count")
+    } catch (err) {
+      console.error(err);
+      res.status(500).send('Error retrieving products count');
+    }
+  }
+
 
   exports.PostCart = PostCart;
   exports.GetCart = GetCart;
   exports.GetCartById = GetCartById;
   exports.DeleteCart = DeleteCart;
   exports.UpdateCart = UpdateCart;
+  exports.GetCartsCount=GetCartsCount

@@ -24,7 +24,7 @@ const AddToCart = ({ productList }) => {
 
   useEffect(() => {
     fetchCartProducts()
-  }, [userId])
+  }, [])
 
   const removeCartProducts = async (productId) => {
     try {

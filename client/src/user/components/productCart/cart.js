@@ -50,11 +50,11 @@ const Cart = (props) => {
 
   const handleAddToCart = async (productId) => {
     // Check if the product is already in the cart
-    const cartItem = cartProduct.some(item => item.productId._id === productId);
-    if (cartItem) {
+    const cartItemExists = cartProduct.some(item => item.productId=== productId);
+    if (cartItemExists) {
       message.warning("Product is already in the cart!");
       return;
-    } 
+    }
       try {
         const response = await axios.post(
           `${process.env.REACT_APP_API_URL}/carts`,
