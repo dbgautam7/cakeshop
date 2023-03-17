@@ -15,8 +15,8 @@ const AddToCart = ({ productList }) => {
   const fetchCartProducts = async () => {
     try {
       const response = await axios.get(`${process.env.REACT_APP_API_URL}/carts?userId=${userId}`);
+      setIsInCart(true)
       setCartProduct(response.data);
-      console.log(response.data, "%%")
     } catch (error) {
       console.error(error);
     }

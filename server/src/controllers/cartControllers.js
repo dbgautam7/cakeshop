@@ -1,5 +1,4 @@
 const Carts = require("../models/Carts");
-const { GetProductsCount } = require("./productControllers");
 
 const PostCart = async (req, res) => {
   try {
@@ -23,8 +22,8 @@ const PostCart = async (req, res) => {
 };
 
 
-  const GetCart = (req, res) => {
-    Carts.find()
+  const GetCart = async(req, res) => {
+   await Carts.find()
       .populate('userId', 'email') 
       .populate('productId', 'name price') 
       .exec((err, carts) => {
