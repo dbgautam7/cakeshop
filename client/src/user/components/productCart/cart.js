@@ -48,23 +48,31 @@ const Cart = (props) => {
     }
   };
 
-  const handleAddToCart=async (productId) => {
-    try {
-      const response = await axios.post(
-        `${process.env.REACT_APP_API_URL}/carts`,
-        {
-          productId,
-          userId,
-          quantity:1
-        }
-      );
-      setCartProduct([...cartProduct, response.data]);
-    } catch (error) {
-      console.error(error);
+  const handleAddToCart = async (productId) => {
+    // Check if the product is already in the cart
+    const cartItemExists = cartProduct.some(item => item.productId=== productId);
+    if (cartItemExists) {
+      message.warning("Product is already in the cart!");
+      return;
     }
-  };
-  
+      try {
+        const response = await axios.post(
+          `${process.env.REACT_APP_API_URL}/carts`,
+          {
+            productId,
+            userId,
+            quantity:1
+          }
+        );
+        setCartProduct([...cartProduct, response.data]);
+        message.success("Product added to cart!");
+      } catch (error) {
+        console.error(error);
+      }
+    }
 
+  
+  
   return (
     <div className='cart-container'>
         <Card sx={{ maxWidth: 345 }}>

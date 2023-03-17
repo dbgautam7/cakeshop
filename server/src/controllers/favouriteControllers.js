@@ -18,14 +18,19 @@ const PostFavourite= async (req, res) => {
 
 
   const GetFavourite=async (req, res) => {
-    try {
-      const data = await Favourites.find({userId: req.query.userId});
-    //   console.log(data)
-      res.status(200).json(data);
-    } catch (error) {
-      res.status(500).json({ message: 'Something went wrong.' });
-    }
-  }
+       await Favourites.find({userId: req.query.userId})
+      .populate('productId', 'name') 
+      .exec((err, favourites) => {
+        if (err) {
+          console.error(err);
+          res.status(500).json({ error: err });
+        } else {
+          // console.log(favourites,"favourites")
+          res.json(favourites);
+        }
+      }
+      )
+}
 
 
   const RemoveFavourite = async (req, res) => {

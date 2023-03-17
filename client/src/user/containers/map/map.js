@@ -1,4 +1,4 @@
-import { useMemo, useRef,useCallback, useState } from "react";
+import { useMemo, useRef,useCallback, useState, useEffect } from "react";
 import { MapContainer, TileLayer, Marker, Popup, Polyline } from "react-leaflet"
 import "leaflet/dist/leaflet.css"
 import { useDispatch, useSelector } from "react-redux"
@@ -39,9 +39,9 @@ const MyMap = () => {
     Math.sin((lat2 - lat1) / 2) * Math.sin((lat2 - lat1) / 2) +
     Math.cos(lat1) * Math.cos(lat2) * Math.sin((lng2 - lng1) / 2) * Math.sin((lng2 - lng1) / 2);
   const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-  const distance = R * c;
+  const distance = Math.round(R * c);
   notification.open({
-    message: `Distance between Sender and Receiver is: ${distance}`
+    message: `Distance between Sender and Receiver is: ${distance} km`
     
   });
   dispatch(setDistance(distance))
@@ -56,7 +56,6 @@ const MyMap = () => {
 
 
 
-    
   const geoCodeLatLng =(lat, lng)=> {
     fetch(`https://api.geoapify.com/v1/geocode/reverse?lat=${lat}&lon=${lng}&apiKey=${process.env.REACT_APP_MAP_API_KEY}`)
     .then((res)=> res.json())
