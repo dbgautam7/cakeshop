@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const db = "mongodb+srv://gautamdb7:gautamdb7@cluster0.oke4bhs.mongodb.net/";
+const db = "mongodb+srv://ranjana:ranjana123@bakeryshop.9vlz7wx.mongodb.net/";
 module.exports = connect = async () => {
   try {
     //database = cakeshop
