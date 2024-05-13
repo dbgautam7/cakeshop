@@ -35,6 +35,20 @@ const PORT = process.env.PORT;
 // const ipWhitelist = ipfilter(whitelist, { mode: "allow" });
 // app.use(ipWhitelist);
 
+const Pusher = require("pusher");
+
+const pusher = new Pusher({
+  appId: "1802006",
+  key: "d87e12a3717801b510f3",
+  secret: "0126314e2e46f7a4f797",
+  cluster: "ap2",
+  useTLS: true
+});
+
+pusher.trigger("my-channel", "my-event", {
+  message: "hello world"
+});
+
 app.use(express.json());
 app.use(cors());
 app.use(usersRouter);

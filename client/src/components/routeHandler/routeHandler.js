@@ -17,7 +17,6 @@ import ProfileSettings from '../../containers/sharedScreens/profileSettings';
 import ChangePassword from '../../containers/sharedScreens/changePassword';
 import Orders from '../../admin/pages/orders/orders';
 import Analytics from '../../admin/pages/analytics/analytics';
-import Notifications from '../../admin/pages/analytics/analytics';
 import ProductOrder from '../../user/containers/productOrder/productOrder';
 import MyOrders from '../../user/containers/productOrder/myOrders';
 import SendMail from '../../admin/pages/sendMail/sendMail';
@@ -25,7 +24,7 @@ import SendMail from '../../admin/pages/sendMail/sendMail';
 
 const RouteHandler = () => {
     const {phoneNumber} =useSelector(state=>state.user)
-    if(phoneNumber===9804400486){
+    if(phoneNumber===9864404715){
       return <AdminScreen />
     }else if(phoneNumber!==""){
       return <UserScreen />

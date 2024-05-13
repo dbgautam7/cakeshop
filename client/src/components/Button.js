@@ -3,6 +3,11 @@ import { NavLink } from 'react-router-dom';
 import './button.css'
 
  const Button =() => {
+  const jsonString = '{"name":"John","age":30}';
+
+const data = JSON.parse(jsonString);
+console.log(data);
+// Output: { name: "John", age: 30 }
 
   return (
     <div className='loginBtn'>
